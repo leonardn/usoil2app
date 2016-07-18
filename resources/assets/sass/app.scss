@@ -1,0 +1,81 @@
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+/*VARIABLES*/
+$primary-color: #53ad47;
+$primary-color-light: #d4d4d4;
+$primary-color-dark: #8d8d8d;
+@if not $primary-color-light {
+    $primary-color-light: lighten($primary-color, 15%);
+}
+@if not $primary-color-dark {
+    $primary-color-dark: darken($primary-color, 15%);
+}
+$secondary-color: #000;
+$success-color: green;
+$error-color: red;
+
+$link-color: #FFF;
+
+/*GENERAL STYLE*/
+
+header {
+	height: 73px;
+}
+
+h4 {
+	color: $primary-color-light;
+	padding-top: 20px;
+}
+
+h5 {
+	color: $primary-color;
+}
+h5.bot-heading {
+	color: $primary-color-dark;
+}
+
+.btn-primary,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:target,
+.btn-primary.target,
+.btn-primary:active,
+.btn-primary.active, 
+.open > .btn-primary.dropdown-toggle {
+    color: $link-color;
+    background-color: #f6c103;
+    border-color: #f6c103;
+}
+.btn-primary:hover {
+    background-color: #f6c61c;
+    border-color: #f6c61c;
+}
+
+.top-heading {
+    height: 73px;
+    border-bottom: 1px solid #e1e2e2;
+}
+.top-right-btn {
+	padding-top: 20px;
+}
+.line-break {
+	border-bottom: 1px solid #e1e2e2;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+.row-spacer-top-bot {
+	margin-top: 15px;
+    margin-bottom: 15px;
+}
+.link-to-checkboxes {
+	max-height: 260px;
+    height: 260px;
+    background: #f4f4f4;
+    overflow-y: scroll;
+    overflow: auto;
+}
+.link-to-checkboxes > div > div > label.checkbox-inline {
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
