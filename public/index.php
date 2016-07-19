@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('error_reporting', E_ALL);
+ini_set("display_errors", 1);
 
 /**
  * Laravel - A PHP Framework For Web Artisans
@@ -52,7 +55,6 @@ $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
-
 $response->send();
 
 $kernel->terminate($request, $response);
