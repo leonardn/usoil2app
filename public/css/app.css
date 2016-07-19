@@ -5748,6 +5748,10 @@ h5 {
 h5.bot-heading {
   color: #8d8d8d; }
 
+table#corporations-table,
+table#corporations-table > thead > tr > th {
+  border: 1px solid #ddd; }
+
 .btn-primary,
 .btn-primary:focus,
 .btn-primary.focus,

@@ -17,3 +17,4 @@
 <li>
    <a href="{!! url('/logout') !!}">Logout</a>
 </li>
+

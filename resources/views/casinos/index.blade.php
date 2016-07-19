@@ -11,5 +11,7 @@
         <div class="clearfix"></div>
 
         @include('casinos.table')
+
+        @include('core-templates::common.paginate', ['records' => $casinos])
         
 @endsection

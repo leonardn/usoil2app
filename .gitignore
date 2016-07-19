@@ -7,3 +7,7 @@ Homestead.json
 
 node_modules/
 /node_modules/
+node_modules.fail/
+/node_modules.fail/
+node_modules.old/
+/node_modules.old/

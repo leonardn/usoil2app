@@ -34,6 +34,11 @@ h5.bot-heading {
 	color: $primary-color-dark;
 }
 
+table#corporations-table,
+table#corporations-table > thead > tr > th {
+    border: 1px solid #ddd;
+}
+
 .btn-primary,
 .btn-primary:focus,
 .btn-primary.focus,
@@ -78,4 +83,7 @@ h5.bot-heading {
 	width: 100%;
 	padding-top: 10px;
 	padding-bottom: 10px;
+}
+.padding-left-none {
+    padding-left: 0px !important;
 }

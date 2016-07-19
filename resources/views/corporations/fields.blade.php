@@ -2,7 +2,7 @@
 <div class="col-md-12">
     <div class="col-md-12 top-heading">
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-10 padding-left-none">
                 <h4>{{ $moduleTitle }}</h4>
             </div>
             <div class="col-md-2">
@@ -165,8 +165,8 @@
                     @foreach($casinos as $casino)
                         <div class="col-md-12">
                             <label id="casino{!! $casino->id !!}" class="checkbox-inline">
-                                {!! Form::hidden('casino[]', false) !!}
-                                {!! Form::checkbox('casino[]', $casino->id, $casino->id_exists) !!} {!! $casino->casino_trade_name !!}
+                                {!! Form::hidden('casino['.$casino->custom_index.']', false) !!}
+                                {!! Form::checkbox('casino['.$casino->custom_index.']', $casino->id, $casino->id_exists) !!} {!! $casino->casino_trade_name !!}
                             </label>
                         </div>
                     @endforeach
