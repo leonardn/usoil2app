@@ -39,11 +39,7 @@ Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 Route::get('/home', 'HomeController@index');
-
 Route::resource('corporations', 'CorporationController');
-
-
-
 Route::resource('casinos', 'CasinoController');
-
 Route::resource('restaurants', 'RestaurantController');
+Route::resource('machines', 'MachineController');
