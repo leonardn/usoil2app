@@ -39,7 +39,11 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'url' => env('APP_URL', 'http://localhost/usoil2app/usoil2app'),
+=======
+    'url' => env('APP_URL', 'http://localhost/usoil2app'),
+>>>>>>> 1f6119bd87453c2dfaede669f7bf0f3935315463
 
     /*
     |--------------------------------------------------------------------------
@@ -149,7 +153,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+	  
         /*
          * Application Service Providers...
          */
@@ -214,7 +218,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
-        'Flash'     => Laracasts\Flash\Flash::class
+	    'Flash'     => Laracasts\Flash\Flash::class
 
     ],
 

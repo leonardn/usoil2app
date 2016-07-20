@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<<<<<<< HEAD
 <div class="col-md-12">
     <div class="col-md-12 top-heading">
         <div class="row">
@@ -106,4 +107,17 @@ function setDefault(arg, field)
    }
  });*/
 </script>
+=======
+        <h1 class="pull-left">Machines</h1>
+        <a class="btn btn-primary pull-right" style="margin-top: 25px" href="{!! route('machines.create') !!}">Add New</a>
+
+        <div class="clearfix"></div>
+
+        @include('flash::message')
+
+        <div class="clearfix"></div>
+
+        @include('machines.table')
+        
+>>>>>>> 1f6119bd87453c2dfaede669f7bf0f3935315463
 @endsection
