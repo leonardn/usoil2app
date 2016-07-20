@@ -32,10 +32,18 @@ class RestaurantController extends InfyOmBaseController
     public function index(Request $request)
     {
         $this->restaurantRepository->pushCriteria(new RequestCriteria($request));
-        $restaurants = $this->restaurantRepository->all();
+        $restaurants = $this->restaurantRepository->paginate(10);
 
-        return view('restaurants.index')
-            ->with('restaurants', $restaurants);
+        if($request->ajax())
+        {
+            return view('restaurants.table')
+                ->with('restaurants', $restaurants);
+        }
+        else 
+        {
+            return view('restaurants.index')
+                ->with('restaurants', $restaurants);
+        }
     }
 
     /**
@@ -58,6 +66,7 @@ class RestaurantController extends InfyOmBaseController
     public function store(CreateRestaurantRequest $request)
     {
         $input = $request->all();
+        return $input;
 
         $restaurant = $this->restaurantRepository->create($input);
 

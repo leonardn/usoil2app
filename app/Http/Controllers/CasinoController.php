@@ -32,10 +32,17 @@ class CasinoController extends InfyOmBaseController
     public function index(Request $request)
     {
         $this->casinoRepository->pushCriteria(new RequestCriteria($request));
-        $casinos = $this->casinoRepository->paginate(5);
+        $casinos = $this->casinoRepository->paginate(10);
 
-        return view('casinos.index')
-            ->with('casinos', $casinos);
+        if($request->ajax())
+        {
+            return view('casinos.table')->with('casinos', $casinos);
+        }
+        else
+        {
+            return view('casinos.index')
+                ->with('casinos', $casinos);
+        }
     }
 
     /**

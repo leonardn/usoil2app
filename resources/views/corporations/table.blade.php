@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-responsive" id="corporations-table">
+            <table class="table table-responsive list-table" id="corporations-table">
                 <thead>
                     <th>Corporation Name</th>
                     <th>Address</th>
@@ -21,7 +21,7 @@
                         <td>
                             {!! Form::open(['route' => ['corporations.destroy', $corporation->id], 'method' => 'delete']) !!}
                             <div class='btn-group'>
-                                <a href="{!! route('corporations.show', [$corporation->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                                <!-- <a href="{!! route('corporations.show', [$corporation->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a> -->
                                 <a href="{!! route('corporations.edit', [$corporation->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
                                 {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                             </div>
