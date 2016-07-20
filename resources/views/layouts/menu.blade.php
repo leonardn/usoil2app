@@ -14,7 +14,10 @@
     <a href="{!! route('restaurants.index') !!}">Restaurants</a>
 </li>
 
+<li class="{{ Request::is('machines*') ? 'active' : '' }}">
+    <a href="{!! route('machines.index') !!}">Machines</a>
+</li>
+
 <li>
    <a href="{!! url('/logout') !!}">Logout</a>
 </li>
-
