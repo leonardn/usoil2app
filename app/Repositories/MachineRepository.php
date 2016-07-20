@@ -11,8 +11,8 @@ class MachineRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'machine_name',
-        'machine_type'
+        'machine_name' => 'like',
+        'machine_type' => 'like',
     ];
 
     /**

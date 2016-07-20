@@ -32,10 +32,17 @@ class MachineController extends InfyOmBaseController
     public function index(Request $request)
     {
         $this->machineRepository->pushCriteria(new RequestCriteria($request));
-        $machines = $this->machineRepository->all();
-
-        return view('machines.index')
+        $machines = $this->machineRepository->paginate(10);
+				
+		if($request->ajax())
+        {
+            return view('machines.table')->with('machines', $machines);
+        }
+        else
+        {
+            return view('machines.index')
             ->with('machines', $machines);
+        }
     }
 
     /**
