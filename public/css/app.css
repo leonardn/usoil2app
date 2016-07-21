@@ -5752,6 +5752,9 @@ table.list-table,
 table.list-table > thead > tr > th {
   border: 1px solid #ddd; }
 
+td.border-right {
+  border-right: 1px solid #ddd; }
+
 .form-control:focus {
   border-color: #53ad47; }
 
@@ -5804,6 +5807,12 @@ table.list-table > thead > tr > th {
 .row-spacer-top-bot {
   margin-top: 5px;
   margin-bottom: 5px; }
+
+.btn-spacer-top-bot {
+  margin: 20px 0px 20px 0; }
+
+.btn-spacer-top-bot > a > i {
+  margin-top: 3px; }
 
 .cb-padding-top {
   padding-top: 10px; }

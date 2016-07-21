@@ -9,7 +9,7 @@
                     <th>Contact Person </th>
                     <th>Casino Phone</th>
                     <th>Casino Ein</th>
-                    <th colspan="3">Action</th>
+                    <th colspan="3" class="text-center">Action</th>
                 </thead>
                 <tbody>
                 @foreach($casinos as $casino)
@@ -20,12 +20,15 @@
                         <td>{!! $casino->contact_person_first_name.' '.$casino->contact_person_last_name !!}</td>
                         <td>{!! $casino->casino_phone !!}</td>
                         <td>{!! $casino->casino_ein !!}</td>
-                        <td>
+                        <td class="text-center border-right">
                             {!! Form::open(['route' => ['casinos.destroy', $casino->id], 'method' => 'delete']) !!}
+                            <a href="{!! route('casinos.edit', [$casino->id]) !!}" class='btn btn-default btn-xs'>
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                Edit
+                            </a> 
                             <div class='btn-group'>
                                 <!-- <a href="{!! route('casinos.show', [$casino->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a> -->
-                                <a href="{!! route('casinos.edit', [$casino->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                                {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                                {!! Form::button('<i class="glyphicon glyphicon-remove"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                             </div>
                             {!! Form::close() !!}
                         </td>

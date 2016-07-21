@@ -9,7 +9,7 @@
                     <th>Contact Person</th>
                     <th>Phone</th>
                     <th>Activation Date</th>
-                    <th colspan="3">Action</th>
+                    <th colspan="3" class="text-center">Action</th>
                 </thead>
                 <tbody>
                 @foreach($restaurants as $restaurant)
@@ -20,12 +20,15 @@
                         <td>{!! $restaurant->contact_person_first_name.' '.$restaurant->contact_person_last_name !!}</td>
                         <td>{!! $restaurant->contact_person_phone !!}</td>
                         <td>{!! $restaurant->activation_date !!}</td>
-                        <td>
+                        <td class="text-center border-right">
                             {!! Form::open(['route' => ['restaurants.destroy', $restaurant->id], 'method' => 'delete']) !!}
+                            <a href="{!! route('restaurants.edit', [$restaurant->id]) !!}" class='btn btn-default btn-xs'>
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                Edit
+                            </a>
                             <div class='btn-group'>
                                 <!-- <a href="{!! route('restaurants.show', [$restaurant->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a> -->
-                                <a href="{!! route('restaurants.edit', [$restaurant->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                                {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                                {!! Form::button('<i class="glyphicon glyphicon-remove"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                             </div>
                             {!! Form::close() !!}
                         </td>

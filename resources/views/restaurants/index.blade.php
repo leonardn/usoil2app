@@ -50,11 +50,15 @@
 </div>
 <div class="col-md-12">
 	<div class="row">
-		<div class="col-md-1 row-spacer-top-bot">
-			<a href="#" class="btn btn-primary">Export</a>
-		</div>
-		<div class="col-md-2 row-spacer-top-bot">
-			<a href="{!! route('restaurants.create') !!}" class="btn btn-primary">Add New Restaurant</a>
+		<div class="col-md-3 btn-spacer-top-bot">
+			<a href="#" class="btn btn-primary">
+                <i class="fa fa-file-excel-o fa-2 pull-left" aria-hidden="true"></i>
+                Export
+            </a>
+			<a href="{!! route('restaurants.create') !!}" class="btn btn-primary pull-right">
+                <i class="fa fa-plus-circle fa-2 pull-left" aria-hidden="true"></i>
+                Add New
+            </a>
 		</div>
 	</div>
 </div>

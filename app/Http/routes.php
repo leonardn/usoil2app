@@ -47,3 +47,6 @@ Route::resource('casinos', 'CasinoController');
 Route::resource('restaurants', 'RestaurantController');
 
 Route::resource('tests', 'TestController');
+
+//Export
+Route::get('get-corporation-export', 'ExcelController@getCorporationExport');
