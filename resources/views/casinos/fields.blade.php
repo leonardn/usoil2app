@@ -176,15 +176,17 @@
                     <h5>Restaurants Linked</h5>
                 </div>
             </div>
-            <div class="col-md-12 link-to-checkboxes">
-                <div class="row">
+            <div class="col-md-12 link-to-checkboxes-bg">
+                <div class="row link-to-checkboxes custom-scrollbar">
+                    @foreach($restaurants as $restaurant)
                         <div class="col-md-12 checkbox checkbox-warning">
-                            {!! Form::hidden('restaurants', false) !!}
-                            {!! Form::checkbox('restaurants', 'id', null, ['id' => 'restau']) !!} 
-                            <label for="restau" id="restaurants-id" class="checkbox-inline">
-                                Restaurant
+                            {!! Form::hidden('restaurant['.$restaurant->custom_index.']', false) !!}
+                            {!! Form::checkbox('restaurant['.$restaurant->custom_index.']', 'id', null, ['id' => 'is-active'.$restaurant->id]) !!} 
+                            <label for="is-active{!! $restaurant->id !!}" id="restaurants-id" class="checkbox-inline">
+                                {!! $restaurant->restaurant_name !!}
                             </label>
                         </div>
+                    @endforeach
                 </div>
             </div>
             <div class="col-md-12">
