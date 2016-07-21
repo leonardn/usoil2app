@@ -81,71 +81,96 @@
 @include('corporations.table')
 </div>
 
+<div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content text-center">
+            <div class="modal-header">
+                <strong>Are you sure you want to delete this record?</strong>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">&nbsp; &nbsp; &nbsp; No &nbsp; &nbsp; &nbsp;</button>
+                <a href="#" id="submit" class="btn btn-default" id-to-delete="0">&nbsp; &nbsp; &nbsp; Yes &nbsp; &nbsp; &nbsp;</a>
+            </div>
+        </div>
+    </div>
+</div>
         
 @endsection
 
 
 @section('scripts')
-<script type="text/javascript">
-$(".form-control").keyup(function( event ) {
-    if ( event.which == 13 ) {
-        event.preventDefault();
+    <script type="text/javascript">
+    $(".form-control").keyup(function( event ) {
+        if ( event.which == 13 ) {
+            event.preventDefault();
+        }
+        //console.log(setDefault($("#corporation_name").val(), 'no-value'));
+
+        var corporation_name = $("#corporation_name").val();
+        var corporation_phone = $("#corporation_phone").val();
+        var contact_person_first_name = $("#contact_person_first_name").val();
+        var contact_person_email = $("#contact_person_email").val();
+        var corporation_address1 = $("#corporation_address1").val();
+        var corporation_city = $("#corporation_city").val();
+        var corporation_state = $("#corporation_state").val();
+        var corporation_zipcode = $("#corporation_zipcode").val();
+
+        var urlRequest = 'corporations?search='+setDefault(corporation_name, 'corporation_name')+''+setDefault(corporation_phone, 'corporation_phone')+''+setDefault(contact_person_first_name, 'contact_person_first_name')+''+setDefault(contact_person_email, 'contact_person_email')+''+setDefault(corporation_address1, 'corporation_address1')+''+setDefault(corporation_city, 'corporation_city')+''+setDefault(corporation_state, 'corporation_state')+''+setDefault(corporation_zipcode, 'corporation_zipcode');
+
+        console.log(urlRequest.slice(0, -1));
+
+        if(corporation_name ||
+            corporation_phone ||
+            contact_person_first_name ||
+            contact_person_email ||
+            corporation_address1 ||
+            corporation_city ||
+            corporation_state ||
+            corporation_zipcode){
+        } else {
+            urlRequest = '/corporations;'
+        }
+
+        $.ajax({
+           type: 'get',
+           url: urlRequest.slice(0, -1),
+           success: function (response) {
+           if(response)   
+           {
+                $("#get-corporation").html(response);
+                return false;
+           }
+           else 
+           {
+                return false;
+           }
+         }
+       });
+    });
+
+    function setDefault(arg, field)
+    {
+        return arg != '' ? field + ':'+arg+';' : '';
     }
-    //console.log(setDefault($("#corporation_name").val(), 'no-value'));
 
-    var corporation_name = $("#corporation_name").val();
-    var corporation_phone = $("#corporation_phone").val();
-    var contact_person_first_name = $("#contact_person_first_name").val();
-    var contact_person_email = $("#contact_person_email").val();
-    var corporation_address1 = $("#corporation_address1").val();
-    var corporation_city = $("#corporation_city").val();
-    var corporation_state = $("#corporation_state").val();
-    var corporation_zipcode = $("#corporation_zipcode").val();
+    //DELETE
+    $(".deleteBtn").click(function(){
+        var id_to_delete = $(this).attr('id-to-delete');
+        $("a#submit").attr('id-to-delete', id_to_delete);
+    });
+    $("a#submit").click(function(){
+        var id_to_delete = $(this).attr('id-to-delete');
+        $("#form-delete-"+id_to_delete).submit();
+    });
 
-    var urlRequest = 'corporations?search='+setDefault(corporation_name, 'corporation_name')+''+setDefault(corporation_phone, 'corporation_phone')+''+setDefault(contact_person_first_name, 'contact_person_first_name')+''+setDefault(contact_person_email, 'contact_person_email')+''+setDefault(corporation_address1, 'corporation_address1')+''+setDefault(corporation_city, 'corporation_city')+''+setDefault(corporation_state, 'corporation_state')+''+setDefault(corporation_zipcode, 'corporation_zipcode');
-
-    console.log(urlRequest.slice(0, -1));
-
-    if(corporation_name ||
-        corporation_phone ||
-        contact_person_first_name ||
-        contact_person_email ||
-        corporation_address1 ||
-        corporation_city ||
-        corporation_state ||
-        corporation_zipcode){
-    } else {
-        urlRequest = '/corporations;'
-    }
-
-    $.ajax({
-       type: 'get',
-       url: urlRequest.slice(0, -1),
-       success: function (response) {
-       if(response)   
-       {
-            $("#get-corporation").html(response);
-            return false;
+    //https://github.com/andersao/l5-repository#enabling-in-your-repository
+    /*
+     * Enable post ajax
+     * $.ajaxSetup({
+       headers: {
+         'X-CSRF-TOKEN': '{{ csrf_token() }}'
        }
-       else 
-       {
-            return false;
-       }
-     }
-   });
-});
+     });*/
+    </script>
 
-function setDefault(arg, field)
-{
-    return arg != '' ? field + ':'+arg+';' : '';
-}
-//https://github.com/andersao/l5-repository#enabling-in-your-repository
-/*
- * Enable post ajax
- * $.ajaxSetup({
-   headers: {
-     'X-CSRF-TOKEN': '{{ csrf_token() }}'
-   }
- });*/
-</script>
 @endsection

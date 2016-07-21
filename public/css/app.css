@@ -5735,6 +5735,9 @@ button.close {
 
 /*VARIABLES*/
 /*GENERAL STYLE*/
+body {
+  padding: 0 !important; }
+
 header {
   height: 73px; }
 

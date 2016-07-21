@@ -65,53 +65,78 @@
 <div id="get-restaurants">
 	@include('restaurants.table')
 </div>
+
+<div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content text-center">
+            <div class="modal-header">
+                <strong>Are you sure you want to delete this record?</strong>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">&nbsp; &nbsp; &nbsp; No &nbsp; &nbsp; &nbsp;</button>
+                <a href="#" id="submit" class="btn btn-default" id-to-delete="0">&nbsp; &nbsp; &nbsp; Yes &nbsp; &nbsp; &nbsp;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @section('scripts')
-<script type="text/javascript">
-$(".form-control").keyup(function( event ) {
-    if ( event.which == 13 ) {
-        event.preventDefault();
+    <script type="text/javascript">
+    $(".form-control").keyup(function( event ) {
+        if ( event.which == 13 ) {
+            event.preventDefault();
+        }
+        var restaurant_name = $("#restaurant_name").val();
+    	var contact_person_phone = $("#contact_person_phone").val();
+    	var contact_person_first_name = $("#contact_person_first_name").val();
+    	var contact_person_email = $("#contact_person_email").val();
+    	var restaurant_location = $("#restaurant_location").val();
+    	var restaurant_location_code = $("#restaurant_location_code").val();
+
+        var urlRequest = 'restaurants?search='+setDefault(restaurant_name, 'restaurant_name')+''+setDefault(contact_person_phone, 'contact_person_phone')+''+setDefault(contact_person_first_name, 'contact_person_first_name')+''+setDefault(contact_person_email, 'contact_person_email')+''+setDefault(restaurant_location, 'restaurant_location')+''+setDefault(restaurant_location_code, 'restaurant_location_code');
+
+        if(restaurant_name ||
+            contact_person_phone ||
+            contact_person_first_name ||
+            contact_person_email ||
+            restaurant_location ||
+            restaurant_location_code){
+        } else {
+            urlRequest = '/restaurants;'
+        }
+
+        $.ajax({
+           type: 'get',
+           url: urlRequest.slice(0, -1),
+           success: function (response) {
+           if(response)   
+           {
+                $("#get-restaurants").html(response);
+                return false;
+           }
+           else 
+           {
+                return false;
+           }
+         }
+       });
+    });
+
+    function setDefault(arg, field)
+    {
+        return arg != '' ? field + ':'+arg+';' : '';
     }
-    var restaurant_name = $("#restaurant_name").val();
-	var contact_person_phone = $("#contact_person_phone").val();
-	var contact_person_first_name = $("#contact_person_first_name").val();
-	var contact_person_email = $("#contact_person_email").val();
-	var restaurant_location = $("#restaurant_location").val();
-	var restaurant_location_code = $("#restaurant_location_code").val();
 
-    var urlRequest = 'restaurants?search='+setDefault(restaurant_name, 'restaurant_name')+''+setDefault(contact_person_phone, 'contact_person_phone')+''+setDefault(contact_person_first_name, 'contact_person_first_name')+''+setDefault(contact_person_email, 'contact_person_email')+''+setDefault(restaurant_location, 'restaurant_location')+''+setDefault(restaurant_location_code, 'restaurant_location_code');
-
-    if(restaurant_name ||
-        contact_person_phone ||
-        contact_person_first_name ||
-        contact_person_email ||
-        restaurant_location ||
-        restaurant_location_code){
-    } else {
-        urlRequest = '/restaurants;'
-    }
-
-    $.ajax({
-       type: 'get',
-       url: urlRequest.slice(0, -1),
-       success: function (response) {
-       if(response)   
-       {
-            $("#get-restaurants").html(response);
-            return false;
-       }
-       else 
-       {
-            return false;
-       }
-     }
-   });
-});
-
-function setDefault(arg, field)
-{
-    return arg != '' ? field + ':'+arg+';' : '';
-}
-</script>
+     //DELETE
+    $(".deleteBtn").click(function(){
+        var id_to_delete = $(this).attr('id-to-delete');
+        $("a#submit").attr('id-to-delete', id_to_delete);
+    });
+    $("a#submit").click(function(){
+        var id_to_delete = $(this).attr('id-to-delete');
+        $("#form-delete-"+id_to_delete).submit();
+    });
+    </script>
 @endsection

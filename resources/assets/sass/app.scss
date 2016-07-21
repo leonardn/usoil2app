@@ -17,7 +17,9 @@ $error-color: red;
 $link-color: #FFF;
 
 /*GENERAL STYLE*/
-
+body {
+    padding: 0 !important;
+}
 header {
 	height: 73px;
 }

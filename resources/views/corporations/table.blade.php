@@ -19,7 +19,7 @@
                         <td>{!! $corporation->contact_person_first_name." ".$corporation->contact_person_last_name !!}</td>
                         <td>{!! $corporation->corporation_phone !!}</td>
                         <td class="text-center border-right">
-                            {!! Form::open(['route' => ['corporations.destroy', $corporation->id], 'method' => 'delete']) !!}
+                            {!! Form::open(['route' => ['corporations.destroy', $corporation->id], 'method' => 'delete', 'id' => 'form-delete-'.$corporation->id]) !!}
                             <a href="{!! route('corporations.edit', [$corporation->id]) !!}" class='btn btn-default btn-xs'>
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                 Edit
@@ -27,7 +27,7 @@
                             <div class='btn-group'>
                                 <!-- <a href="{!! route('corporations.show', [$corporation->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a> -->
 
-                                {!! Form::button('<i class="glyphicon glyphicon-remove"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'value' => 'Delete', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                                {!! Form::button('<i class="glyphicon glyphicon-remove"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs deleteBtn', 'value' => 'Delete', 'id-to-delete' => $corporation->id, 'onclick' => 'return false;', 'id' => 'submitBtn', 'data-toggle' => 'modal', 'data-target' => '#confirm-submit']) !!}
                             </div>
                             {!! Form::close() !!}
                         </td>
