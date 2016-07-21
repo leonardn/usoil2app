@@ -100,7 +100,7 @@ $(".form-control").keyup(function( event ) {
 
     var urlRequest = 'corporations?search='+setDefault(corporation_name, 'corporation_name')+''+setDefault(corporation_phone, 'corporation_phone')+''+setDefault(contact_person_first_name, 'contact_person_first_name')+''+setDefault(contact_person_email, 'contact_person_email')+''+setDefault(corporation_address1, 'corporation_address1')+''+setDefault(corporation_city, 'corporation_city')+''+setDefault(corporation_state, 'corporation_state')+''+setDefault(corporation_zipcode, 'corporation_zipcode');
 
-    //console.log(urlRequest.slice(0, -1));
+    console.log(urlRequest.slice(0, -1));
 
     if(corporation_name ||
         corporation_phone ||

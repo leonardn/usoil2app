@@ -41,7 +41,7 @@
             <!-- Restaurant Name Field -->
             {!! Form::text('restaurant_name', null, ['class' => 'form-control', 'placeholder' => 'Restaurant Name']) !!}
         </div>
-        <div class="col-md-8 row-spacer-top-bot checkbox checkbox-primary cb-padding-top">
+        <div class="col-md-8 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
             <!-- Status Field -->
             {!! Form::hidden('status', false) !!}
             {!! Form::checkbox('status', '1', null, ['id' => 'is-active', 'class' => 'styled']) !!} 
@@ -52,8 +52,9 @@
     </div>
     <div class="row">
         <div class="col-md-3 row-spacer-top-bot">
-            <!-- Activation Date Field -->
-            {!! Form::date('activation_date', null, ['class' => 'form-control', 'placeholder' => 'Activation Date']) !!}
+            <!-- Activation Date Field 
+            Form::date('activation_date', null, ['class' => 'form-control', 'placeholder' => 'Activation Date'])-->
+            <input class="form-control" placeholder="Activation Date" name="activation_date" type="date">
         </div>
     </div>
     <div class="row">

@@ -85,7 +85,7 @@
         </div>
         <div class="col-md-3 row-spacer-top-bot">
             <!-- Casino State Field -->
-            {!! Form::text('casino_state', null, ['class' => 'form-control', 'placeholder' => 'State']) !!}
+            {!! Form::select('casino_state', Config::get('constants.state_en'), null, ['class' => 'select-form-control']) !!}
         </div>
         <div class="col-md-3 row-spacer-top-bot">
             <!-- Casino Zipcode Field -->

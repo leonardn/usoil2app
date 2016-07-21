@@ -69,7 +69,7 @@
         </div>
         <div class="col-md-3 row-spacer-top-bot">
             <!-- Corporation State Field -->
-            {!! Form::text('corporation_state', null, ['class' => 'form-control', 'placeholder' => 'State']) !!}
+            {!! Form::select('corporation_state', Config::get('constants.state_en'), null, ['class' => 'select-form-control']) !!}
         </div>
         <div class="col-md-3 row-spacer-top-bot">
             <!-- Corporation Zipcode Field -->

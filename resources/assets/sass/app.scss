@@ -48,6 +48,19 @@ table.list-table > thead > tr > th {
     box-shadow: none;
     padding: 20px;
 }
+.select-form-control {
+    background: #f4f4f4;
+    border: 1px solid #f4f4f4;
+    box-shadow: none;
+    padding: 10px;
+    border-radius: 3px;
+
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555555;
+}
 
 .btn-primary,
 .btn-primary:focus,
