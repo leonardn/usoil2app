@@ -2,17 +2,19 @@
 
 namespace App\Repositories;
 
-use App\Models\Machine;
+use App\Models\MachineReadings;
 use InfyOm\Generator\Common\BaseRepository;
 
-class MachineRepository extends BaseRepository
+class MachineReadingsRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'machine_name' => 'like',
-        'machine_type' => 'like',
+		'restaurant_id',
+        'machine_id',
+        'temperature_reading' => 'like',
+        'reading_date_time',
     ];
 
     /**
@@ -20,6 +22,6 @@ class MachineRepository extends BaseRepository
      **/
     public function model()
     {
-        return Machine::class;
+        return MachineReadings::class;
     }
 }

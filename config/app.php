@@ -39,11 +39,7 @@ return [
     |
     */
 
-<<<<<<< HEAD
     'url' => env('APP_URL', 'http://localhost/usoil2app/usoil2app'),
-=======
-    'url' => env('APP_URL', 'http://localhost/usoil2app'),
->>>>>>> 1f6119bd87453c2dfaede669f7bf0f3935315463
 
     /*
     |--------------------------------------------------------------------------

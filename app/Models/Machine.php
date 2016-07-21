@@ -39,7 +39,8 @@ class Machine extends Model
 
     public $fillable = [
         'machine_name',
-        'machine_type'
+        'machine_type',
+        'status'
     ];
 
     /**

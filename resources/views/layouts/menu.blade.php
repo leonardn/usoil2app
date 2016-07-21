@@ -18,6 +18,10 @@
     <a href="{!! route('machines.index') !!}">Machines</a>
 </li>
 
+<li class="{{ Request::is('machinereadings*') ? 'active' : '' }}">
+    <a href="{!! route('machinereadings.index') !!}">Machine Readings</a>
+</li>
+
 <li>
    <a href="{!! url('/logout') !!}">Logout</a>
 </li>

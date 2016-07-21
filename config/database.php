@@ -58,11 +58,7 @@ return [
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'usoil2app_db'),
             'username' => env('DB_USERNAME', 'root'),
-<<<<<<< HEAD
             'password' => env('DB_PASSWORD', 'neal'),
-=======
-            'password' => env('DB_PASSWORD', ''),
->>>>>>> 1f6119bd87453c2dfaede669f7bf0f3935315463
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
@@ -76,11 +72,7 @@ return [
             'port' => env('DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'usoil2app_db'),
             'username' => env('DB_USERNAME', 'root'),
-<<<<<<< HEAD
             'password' => env('DB_PASSWORD', 'neal'),
-=======
-            'password' => env('DB_PASSWORD', ''),
->>>>>>> 1f6119bd87453c2dfaede669f7bf0f3935315463
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
