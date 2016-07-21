@@ -50,3 +50,5 @@ Route::resource('tests', 'TestController');
 
 //Export
 Route::get('get-corporation-export', 'ExcelController@getCorporationExport');
+Route::get('get-casino-export', 'ExcelController@getCasinoExport');
+Route::get('get-restaurant-export', 'ExcelController@getRestaurantExport');
