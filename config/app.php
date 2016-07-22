@@ -167,6 +167,14 @@ return [
         \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
         \InfyOm\CoreTemplates\CoreTemplatesServiceProvider::class,
 
+        /*
+         * App Providers from https://github.com/Maatwebsite/Laravel-Excel
+         */
+        Collective\Bus\BusServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
+		//Autocomplete
+		Sukohi\FormAutocomplete\FormAutocompleteServiceProvider::class,
     ],
 
     /*
@@ -214,8 +222,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
-	    'Flash'     => Laracasts\Flash\Flash::class
-
+        'Flash'     => Laracasts\Flash\Flash::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'FormAutocomplete' => Sukohi\FormAutocomplete\Facades\FormAutocomplete::class
     ],
 
 ];

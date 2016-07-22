@@ -215,13 +215,13 @@ class CorporationController extends InfyOmBaseController
             return redirect(route('corporations.index'));
         }
 
-        foreach($corporation->casinoLinks as $link)
-        {
-            $corpLink = CorporationCasinoLink::find($link->id);
-            $corpLink->forceDelete();
+        if($this->corporationRepository->delete($id)) {
+            foreach($corporation->casinoLinks as $link)
+            {
+                $corpLink = CorporationCasinoLink::find($link->id);
+                $corpLink->forceDelete();
+            }
         }
-
-        $this->corporationRepository->delete($id);
 
         Flash::success('Corporation deleted successfully.');
 

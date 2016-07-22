@@ -7,11 +7,9 @@
             </div>
             <div class="col-md-2">
                 <div class="row top-right-btn">
-                    <div class="col-md-6">
-                        <a href="{!! route('corporations.index') !!}" class="btn btn-default pull-right">Discard</a>
-                    </div>
-                    <div class="col-md-6">
-                        {!! Form::submit('Save', ['class' => 'btn btn-primary pull-left']) !!}
+                    <div class="col-md-12">
+                        <a href="{!! route('corporations.index') !!}" class="btn btn-default pull-left">Discard</a>
+                        {!! Form::submit('Save', ['class' => 'btn btn-primary pull-right']) !!}
                     </div>
                 </div>
             </div>

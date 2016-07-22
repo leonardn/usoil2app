@@ -42,7 +42,19 @@ Route::get('/home', 'HomeController@index');
 Route::resource('corporations', 'CorporationController');
 Route::resource('casinos', 'CasinoController');
 Route::resource('restaurants', 'RestaurantController');
+
 Route::resource('machines', 'MachineController');
 Route::resource('machinereadings', 'MachineReadingsController');
 Route::resource('restaurants', 'RestaurantController');
 Route::resource('tests', 'TestController');
+
+//Export
+Route::get('get-corporation-export', 'ExcelController@getCorporationExport');
+Route::get('get-casino-export', 'ExcelController@getCasinoExport');
+Route::get('get-restaurant-export', 'ExcelController@getRestaurantExport');
+Route::get('get-machine-export', 'ExcelController@getMachineExport');
+Route::get('get-machinereading-export', 'ExcelController@getMachineReadingExport');
+
+//Autocomplete
+Route::get('get-machine-autocomp', 'MachineController@getMachineAutoComp');
+
