@@ -52,3 +52,12 @@ Route::resource('tests', 'TestController');
 Route::get('get-corporation-export', 'ExcelController@getCorporationExport');
 Route::get('get-casino-export', 'ExcelController@getCasinoExport');
 Route::get('get-restaurant-export', 'ExcelController@getRestaurantExport');
+
+
+Route::resource('fryers', 'FryerController');
+
+Route::resource('yellowGreasePickups', 'YellowGreasePickupController');
+Route::get('get-autocomplete-corporation-options', 'AutoCompleteController@getCorporationAutoComplete');
+Route::get('get-autocomplete-casino-options', 'AutoCompleteController@getCasinoAutoComplete');
+
+Route::resource('fryerTMPSs', 'FryerTMPSController');
