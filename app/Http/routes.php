@@ -56,5 +56,11 @@ Route::get('get-machine-export', 'ExcelController@getMachineExport');
 Route::get('get-machinereading-export', 'ExcelController@getMachineReadingExport');
 
 //Autocomplete
-Route::get('get-machine-autocomp', 'MachineController@getMachineAutoComp');
+Route::get('get-autocomplete-machines-options', 'AutoCompleteController@getMachineAutoComplete');
+Route::get('get-autocomplete-restaurants-options', 'AutoCompleteController@getRestaurantAutoComplete');
 
+Route::resource('fryers', 'FryerController');
+Route::resource('yellowGreasePickups', 'YellowGreasePickupController');
+Route::get('get-autocomplete-corporation-options', 'AutoCompleteController@getCorporationAutoComplete');
+Route::get('get-autocomplete-casino-options', 'AutoCompleteController@getCasinoAutoComplete');
+Route::resource('fryerTMPSs', 'FryerTMPSController');

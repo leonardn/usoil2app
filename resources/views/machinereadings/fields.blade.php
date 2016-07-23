@@ -24,11 +24,13 @@
     <div class="row">
 		<div class="col-md-4 row-spacer-top-bot">
             <!-- Restaurant Name Field -->
-            {!! Form::text('restaurant_id', null, ['id'=>'restaurant_id', 'class' => 'form-control', 'placeholder' => 'Restaurant Name']) !!}
+            <input id="autocomplete-restaurant" class="form-control" placeholder="Restaurant Name" type="text">
+            {!! Form::hidden('restaurant_id', null, ['id' => 'restaurant_id']) !!}
         </div>
         <div class="col-md-4 row-spacer-top-bot">
             <!-- Machine Name Field -->
-            {!! Form::text('machine_id', null, ['id'=>'machine_id', 'class' => 'form-control', 'placeholder' => 'Machine Name']) !!}
+            <input id="autocomplete-machine" class="form-control" placeholder="Machine Name" type="text">
+            {!! Form::hidden('machine_id', null, ['id' => 'machine_id']) !!}
         </div>
     </div>
     <div class="row">
@@ -43,17 +45,3 @@
     </div>
     <div class="col-md-12 line-break"></div>
 </div>
-
-@section('scripts')
-<script type="text/javascript">
-$(document).ready(function(){
-       $('#machine_id').autocomplete({
-            source: "get-machine-autocomp",
-            minLength: 1,
-            select:function(e,ui){
-                $('#machine_id').val(ui.item.value);
-            }
-        });
-    });	
-</script>
-@endsection

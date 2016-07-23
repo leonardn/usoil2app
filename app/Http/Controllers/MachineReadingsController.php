@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateMachineReadingsRequest;
 use App\Repositories\MachineReadingsRepository;
 use App\Http\Controllers\AppBaseController as InfyOmBaseController;
 use Illuminate\Http\Request;
+use App\MachineReadings;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
@@ -33,7 +34,12 @@ class MachineReadingsController extends InfyOmBaseController
     {
         $this->machinereadingsRepository->pushCriteria(new RequestCriteria($request));
         $machinereadings = $this->machinereadingsRepository->paginate(10);
-				
+        
+        /*$machinereadings = \DB::table('machine_readings')
+							->join('machines', 'machine_readings.machine_id', '=', 'machines.id')
+							->join('restaurants', 'machine_readings.restaurant_id', '=', 'restaurants.id')
+							->get();*/
+		
 		if($request->ajax())
         {
             return view('machinereadings.table')->with('machinereadings', $machinereadings);

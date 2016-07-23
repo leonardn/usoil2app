@@ -77,4 +77,9 @@ class MachineReadings extends Model
         'temperature_reading' => 'required',
         'reading_date_time' => 'required'
     ];
+    
+    public function joinMachines() 
+    {
+        return $this->hasMany(Machine::class);
+    }
 }
