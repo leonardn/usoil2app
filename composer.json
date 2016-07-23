@@ -14,7 +14,8 @@
         "jlapp/swaggervel": "dev-master",
         "doctrine/dbal": "~2.3",
         "maatwebsite/excel": "~2.1.0",
-        "laravelcollective/bus": "^5.2"
+        "laravelcollective/bus": "^5.2",
+        "sukohi/form-autocomplete": "2.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

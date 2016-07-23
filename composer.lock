@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8d8a05f414cf2b05e6f53ed09454e46d",
-    "content-hash": "b46d947715909bc59574589285f7f725",
+    "hash": "12707f1b1fd0864d9911aba46887bfa6",
+    "content-hash": "b8ae51fed6898161cb8f587fefef0202",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1844,6 +1844,42 @@
                 "shell"
             ],
             "time": "2016-03-09 05:03:14"
+        },
+        {
+            "name": "sukohi/form-autocomplete",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SUKOHI/FormAutocomplete.git",
+                "reference": "8762165a9d56e1525e234b6e4ceea1df63b8dcd0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SUKOHI/FormAutocomplete/zipball/8762165a9d56e1525e234b6e4ceea1df63b8dcd0",
+                "reference": "8762165a9d56e1525e234b6e4ceea1df63b8dcd0",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sukohi\\FormAutocomplete\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sukohi",
+                    "email": "capilano.sukohi@gmail.com"
+                }
+            ],
+            "description": "A PHP package mainly developed for Laravel to generate form input tags of Bootstrap that can automatically display errors, labels and alerts.",
+            "time": "2015-08-31 21:57:17"
         },
         {
             "name": "swiftmailer/swiftmailer",

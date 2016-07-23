@@ -14,7 +14,14 @@
     <a href="{!! route('restaurants.index') !!}"><i class="fa fa-angle-right pull-right i-sidebar-chevron" aria-hidden="true"></i></i>Restaurants</a>
 </li>
 
+<li class="{{ Request::is('machines*') ? 'active' : '' }}">
+    <a href="{!! route('machines.index') !!}">Machines</a>
+</li>
+
+<li class="{{ Request::is('machinereadings*') ? 'active' : '' }}">
+    <a href="{!! route('machinereadings.index') !!}">Machine Readings</a>
+</li>
+
 <li>
    <a href="{!! url('/logout') !!}">Logout</a>
 </li>
-
