@@ -1,7 +1,3 @@
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-
 <div class="col-md-12">
     <div class="col-md-12 top-heading">
         <div class="row">
@@ -47,3 +43,17 @@
     </div>
     <div class="col-md-12 line-break"></div>
 </div>
+
+@section('scripts')
+<script type="text/javascript">
+$(document).ready(function(){
+       $('#machine_id').autocomplete({
+            source: "get-machine-autocomp",
+            minLength: 1,
+            select:function(e,ui){
+                $('#machine_id').val(ui.item.value);
+            }
+        });
+    });	
+</script>
+@endsection
