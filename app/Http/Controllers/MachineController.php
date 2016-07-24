@@ -161,20 +161,4 @@ class MachineController extends InfyOmBaseController
 
         return redirect(route('machines.index'));
     }
-    
-    public function getMachineAutoComp()
-    {
-		$term = Input::get('term');
-		
-		$results = array();
-        $records = DB::table('machines')
-						->where('machine_name', 'LIKE', $term.'%')
-						->get();
-        
-		foreach($records as $m)
-		{
-			$results[] = ['machine_name'=>$m->machine_name];
-		}
-		return Response::json($results);
-    }
 }

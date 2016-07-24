@@ -32,7 +32,6 @@ class Machine extends Model
     use SoftDeletes;
 
     public $table = 'machines';
-    
 
     protected $dates = ['deleted_at'];
 

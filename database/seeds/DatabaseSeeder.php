@@ -69,5 +69,13 @@ class DatabaseSeeder extends Seeder
 				'status' => '1',
 	        ]);
 		}
+		
+		//DUMMY CORPORATION DATA
+    	for ($x = 0; $x <= 9; $x++) {
+    		DB::table('corporations')->insert([
+				'corporation_name' => str_random(5).' Corp',
+				'status' => '1',
+	        ]);
+		}
     }
 }

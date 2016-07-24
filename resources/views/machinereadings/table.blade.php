@@ -12,8 +12,8 @@
                 <tbody>
                 @foreach($machinereadings as $machinereading)
                     <tr>
-                        <td>{!! $machinereading->restaurant_id !!}</td>
-						<td>{!! $machinereading->machine_id !!}</td>
+                        <td>{!! $machinereading->restaurants->restaurant_name !!}</td>
+						<td>{!! $machinereading->machines->machine_name !!}</td>
 						<td>{!! $machinereading->temperature_reading !!}</td>
 						<td>{!! $machinereading->reading_date_time !!}</td>
                         <td class="text-center border-right">

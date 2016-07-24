@@ -1,7 +1,3 @@
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-
 <div class="col-md-12">
     <div class="col-md-12 top-heading">
         <div class="row">
@@ -28,11 +24,13 @@
     <div class="row">
 		<div class="col-md-4 row-spacer-top-bot">
             <!-- Restaurant Name Field -->
-            {!! Form::text('restaurant_id', null, ['id'=>'restaurant_id', 'class' => 'form-control', 'placeholder' => 'Restaurant Name']) !!}
+            <input id="autocomplete-restaurant" class="form-control" placeholder="Restaurant Name" type="text">
+            {!! Form::hidden('restaurant_id', null, ['id' => 'restaurant_id']) !!}
         </div>
         <div class="col-md-4 row-spacer-top-bot">
             <!-- Machine Name Field -->
-            {!! Form::text('machine_id', null, ['id'=>'machine_id', 'class' => 'form-control', 'placeholder' => 'Machine Name']) !!}
+            <input id="autocomplete-machine" class="form-control" placeholder="Machine Name" type="text">
+            {!! Form::hidden('machine_id', null, ['id' => 'machine_id']) !!}
         </div>
     </div>
     <div class="row">
@@ -42,7 +40,7 @@
         </div>
         <div class="col-md-3 row-spacer-top-bot">
             <!-- Reading Date/Time Field -->
-			{!! Form::text('reading_date_time', null, ['id'=>'reading_date_time', 'class' => 'form-control', 'placeholder' => 'Reading Date/Time']) !!}
+			{!! Form::text('reading_date_time2', null, ['id'=>'reading_date_time', 'class' => 'form-control', 'placeholder' => 'Reading Date/Time']) !!}
         </div>
     </div>
     <div class="col-md-12 line-break"></div>
