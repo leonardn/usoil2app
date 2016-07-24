@@ -175,4 +175,9 @@ class Corporation extends Model
     {
         return $this->casinoLinks->forceDelete();
     }
+
+    public function yellowGreasePickup()
+    {
+        return $this->hasOne(YellowGreasePickup::class);   
+    }
 }

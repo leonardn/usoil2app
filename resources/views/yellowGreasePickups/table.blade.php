@@ -1,30 +1,37 @@
-<table class="table table-responsive" id="yellowGreasePickups-table">
-    <thead>
-        <th>Corporation Id</th>
-        <th>Casino Id</th>
-        <th>Grease</th>
-        <th>Pickup Date</th>
-        <th>Status</th>
-        <th colspan="3">Action</th>
-    </thead>
-    <tbody>
-    @foreach($yellowGreasePickups as $yellowGreasePickup)
-        <tr>
-            <td>{!! $yellowGreasePickup->corporation_id !!}</td>
-            <td>{!! $yellowGreasePickup->casino_id !!}</td>
-            <td>{!! $yellowGreasePickup->grease !!}</td>
-            <td>{!! $yellowGreasePickup->pickup_date !!}</td>
-            <td>{!! $yellowGreasePickup->status !!}</td>
-            <td>
-                {!! Form::open(['route' => ['yellowGreasePickups.destroy', $yellowGreasePickup->id], 'method' => 'delete']) !!}
-                <div class='btn-group'>
-                    <a href="{!! route('yellowGreasePickups.show', [$yellowGreasePickup->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    <a href="{!! route('yellowGreasePickups.edit', [$yellowGreasePickup->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
-                </div>
-                {!! Form::close() !!}
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-responsive list-table" id="yellowGreasePickups-table">
+                <thead>
+                    <th>Corporation Name</th>
+                    <th>Casino Name</th>
+                    <th>Grease</th>
+                    <th>Pickup Date</th>
+                    <th colspan="3" class="text-center">Action</th>
+                </thead>
+                <tbody>
+                @foreach($yellowGreasePickups as $yellowGreasePickup)
+                    <tr>
+                        <td>{!! $yellowGreasePickup->corporation->corporation_name !!}</td>
+                        <td>{!! $yellowGreasePickup->casino->casino_trade_name !!}</td>
+                        <td>{!! $yellowGreasePickup->grease !!}</td>
+                        <td>{!! $yellowGreasePickup->pickup_date !!}</td>
+                        <td class="text-center border-right">
+                            {!! Form::open(['route' => ['yellowGreasePickups.destroy', $yellowGreasePickup->id], 'method' => 'delete', 'id' => 'form-delete-'.$yellowGreasePickup->id]) !!}
+                            <a href="{!! route('yellowGreasePickups.edit', [$yellowGreasePickup->id]) !!}" class='btn btn-default btn-xs'>
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                Edit
+                            </a>
+                            <div class='btn-group'>
+                                {!! Form::button('<i class="glyphicon glyphicon-remove"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs deleteBtn', 'id-to-delete' => $yellowGreasePickup->id, 'onclick' => 'return false;', 'id' => 'submitBtn', 'data-toggle' => 'modal', 'data-target' => '#confirm-submit']) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+            @include('core-templates::common.paginate', ['records' => $yellowGreasePickups])
+        </div>
+    </div>
+</div>

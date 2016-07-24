@@ -38,7 +38,7 @@
     </div>
     <div class="row">
         <div class="col-md-4 row-spacer-top-bot">
-            <input id="autocomplete-corporation" class="form-control" placeholder="Corporation Name" type="text">
+            <input value="{!! isset($yellowGreasePickup->corporation->corporation_name) ? $yellowGreasePickup->corporation->corporation_name : '' !!}" id="autocomplete-corporation" class="form-control" placeholder="Corporation Name" type="text">
             {!! Form::hidden('corporation_id', null, ['id' => 'corporation_id']) !!}
         </div>
         <div class="col-md-8 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
@@ -52,7 +52,7 @@
     </div>
     <div class="row">
         <div class="col-md-4 row-spacer-top-bot">
-            <input id="autocomplete-casino" class="form-control" placeholder="Casino Name" type="text">
+            <input value="{!! isset($yellowGreasePickup->casino->casino_trade_name) ? $yellowGreasePickup->casino->casino_trade_name : '' !!}" id="autocomplete-casino" class="form-control" placeholder="Casino Name" type="text">
             {!! Form::hidden('casino_id', null, ['id' => 'casino_id']) !!}
         </div>
     </div>
