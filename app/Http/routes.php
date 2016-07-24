@@ -44,5 +44,23 @@ Route::resource('casinos', 'CasinoController');
 Route::resource('restaurants', 'RestaurantController');
 
 Route::resource('machines', 'MachineController');
+Route::resource('machinereadings', 'MachineReadingsController');
 Route::resource('restaurants', 'RestaurantController');
 Route::resource('tests', 'TestController');
+
+//Export
+Route::get('get-corporation-export', 'ExcelController@getCorporationExport');
+Route::get('get-casino-export', 'ExcelController@getCasinoExport');
+Route::get('get-restaurant-export', 'ExcelController@getRestaurantExport');
+Route::get('get-machine-export', 'ExcelController@getMachineExport');
+Route::get('get-machinereading-export', 'ExcelController@getMachineReadingExport');
+
+//Autocomplete
+Route::get('get-autocomplete-machines-options', 'AutoCompleteController@getMachineAutoComplete');
+Route::get('get-autocomplete-restaurants-options', 'AutoCompleteController@getRestaurantAutoComplete');
+
+Route::resource('fryers', 'FryerController');
+Route::resource('yellowGreasePickups', 'YellowGreasePickupController');
+Route::get('get-autocomplete-corporation-options', 'AutoCompleteController@getCorporationAutoComplete');
+Route::get('get-autocomplete-casino-options', 'AutoCompleteController@getCasinoAutoComplete');
+Route::resource('fryerTMPSs', 'FryerTMPSController');

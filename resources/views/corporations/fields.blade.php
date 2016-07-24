@@ -7,11 +7,9 @@
             </div>
             <div class="col-md-2">
                 <div class="row top-right-btn">
-                    <div class="col-md-6">
-                        <a href="{!! route('corporations.index') !!}" class="btn btn-default">Discard</a>
-                    </div>
-                    <div class="col-md-6">
-                        {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                    <div class="col-md-12">
+                        <a href="{!! route('corporations.index') !!}" class="btn btn-default pull-left">Discard</a>
+                        {!! Form::submit('Save', ['class' => 'btn btn-primary pull-right']) !!}
                     </div>
                 </div>
             </div>
@@ -38,49 +36,50 @@
     <div class="row">
         @include('core-templates::common.errors')
     </div>
-    <div class="row row-spacer-top-bot">
-        <div class="col-md-4">
+    <div class="row">
+        <div class="col-md-4 row-spacer-top-bot">
             <!-- Corporation Name Field -->
             {!! Form::text('corporation_name', null, ['class' => 'form-control', 'placeholder' => 'Corporation Name']) !!}
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
             <!-- Status Field -->
-            <label class="checkbox-inline">
-                {!! Form::hidden('status', false) !!}
-                {!! Form::checkbox('status', '1', null) !!} is Active?
+            {!! Form::hidden('status', false) !!}
+            {!! Form::checkbox('status', '1', null, ['id' => 'is-active', 'class' => 'styled']) !!} 
+            <label for="is-active" class="checkbox-inline">
+                is Active?
             </label>
         </div>
     </div>
-    <div class="row row-spacer-top-bot">
-        <div class="col-md-6">
+    <div class="row">
+        <div class="col-md-6 row-spacer-top-bot">
             <!-- Corporation Address1 Field -->
             {!! Form::text('corporation_address1', null, ['class' => 'form-control', 'placeholder' => 'Address 1']) !!}
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 row-spacer-top-bot">
             <!-- Corporation Address2 Field -->
             {!! Form::text('corporation_address2', null, ['class' => 'form-control', 'placeholder' => 'Address 2']) !!}
         </div>
     </div>
-    <div class="row row-spacer-top-bot">
-        <div class="col-md-3">
+    <div class="row">
+        <div class="col-md-3 row-spacer-top-bot">
             <!-- Corporation City Field -->
             {!! Form::text('corporation_city', null, ['class' => 'form-control', 'placeholder' => 'City']) !!}
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 row-spacer-top-bot">
             <!-- Corporation State Field -->
-            {!! Form::text('corporation_state', null, ['class' => 'form-control', 'placeholder' => 'State']) !!}
+            {!! Form::select('corporation_state', Config::get('constants.state_en'), null, ['class' => 'select-form-control']) !!}
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 row-spacer-top-bot">
             <!-- Corporation Zipcode Field -->
             {!! Form::text('corporation_zipcode', null, ['class' => 'form-control', 'placeholder' => 'Zip Code']) !!}
         </div>
     </div>
-    <div class="row row-spacer-top-bot">
-        <div class="col-md-3">
+    <div class="row">
+        <div class="col-md-3 row-spacer-top-bot">
             <!-- Corporation Phone Field -->
             {!! Form::text('corporation_phone', null, ['class' => 'form-control', 'placeholder' => 'Phone No.']) !!}
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 row-spacer-top-bot">
             <!-- Corporation Phone Ext Field -->
             {!! Form::text('corporation_phone_ext', null, ['class' => 'form-control', 'placeholder' => 'Ext']) !!}
         </div>
@@ -104,32 +103,32 @@
             </div>
         </div>
     </div>
-    <div class="row row-spacer-top-bot">
-        <div class="col-md-4">
+    <div class="row">
+        <div class="col-md-4 row-spacer-top-bot">
             <!-- Contact Person Title Field -->
             {!! Form::text('contact_person_title', null, ['class' => 'form-control', 'placeholder' => 'Job Title']) !!}
         </div>
     </div>
-    <div class="row row-spacer-top-bot">
-        <div class="col-md-4">
+    <div class="row">
+        <div class="col-md-4 row-spacer-top-bot">
             <!-- Contact Person First Name Field -->
             {!! Form::text('contact_person_first_name', null, ['class' => 'form-control', 'placeholder' => 'First Name']) !!}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 row-spacer-top-bot">
             <!-- Contact Person Last Name Field -->
             {!! Form::text('contact_person_last_name', null, ['class' => 'form-control', 'placeholder' => 'Last Name']) !!}
         </div>
     </div>
-    <div class="row row-spacer-top-bot">
-        <div class="col-md-4">
+    <div class="row">
+        <div class="col-md-4 row-spacer-top-bot">
             <!-- Contact Person Email Field -->
             {!! Form::email('contact_person_email', null, ['class' => 'form-control', 'placeholder' => 'Email']) !!}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 row-spacer-top-bot">
             <!-- Contact Person Phone Field -->
             {!! Form::text('contact_person_phone', null, ['class' => 'form-control', 'placeholder' => 'Phone']) !!}
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 row-spacer-top-bot">
             <!-- Contact Person Phone Ext Field -->
             {!! Form::text('contact_person_phone_ext', null, ['class' => 'form-control', 'placeholder' => 'Ext']) !!}
         </div>
@@ -160,13 +159,14 @@
                     <h5>Linked Casinos</h5>
                 </div>
             </div>
-            <div class="col-md-12 link-to-checkboxes">
-                <div class="row">
+            <div class="col-md-12 link-to-checkboxes-bg">
+                <div class="row link-to-checkboxes custom-scrollbar">
                     @foreach($casinos as $casino)
-                        <div class="col-md-12">
-                            <label id="casino{!! $casino->id !!}" class="checkbox-inline">
-                                {!! Form::hidden('casino['.$casino->custom_index.']', false) !!}
-                                {!! Form::checkbox('casino['.$casino->custom_index.']', $casino->id, $casino->id_exists) !!} {!! $casino->casino_trade_name !!}
+                        <div class="col-md-12 checkbox checkbox-warning">
+                            {!! Form::hidden('casino['.$casino->custom_index.']', false) !!}
+                            {!! Form::checkbox('casino['.$casino->custom_index.']', $casino->id, $casino->id_exists, ['id' => 'is-active'.$casino->id]) !!}
+                            <label for="is-active{!! $casino->id !!}" id="casino{!! $casino->id !!}" class="checkbox-inline">
+                                {!! $casino->casino_trade_name !!}
                             </label>
                         </div>
                     @endforeach

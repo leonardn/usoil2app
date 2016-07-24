@@ -12,15 +12,19 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use App\Repositories\RestaurantRepository;
+
 class CasinoController extends InfyOmBaseController
 {
     /** @var  CasinoRepository */
     private $casinoRepository;
+    private $restaurantRepository;
 
-    public function __construct(CasinoRepository $casinoRepo)
+    public function __construct(CasinoRepository $casinoRepo, RestaurantRepository $restaurantRepo)
     {
         $this->middleware('auth');
         $this->casinoRepository = $casinoRepo;
+        $this->restaurantRepository = $restaurantRepo;
     }
 
     /**
@@ -32,10 +36,17 @@ class CasinoController extends InfyOmBaseController
     public function index(Request $request)
     {
         $this->casinoRepository->pushCriteria(new RequestCriteria($request));
-        $casinos = $this->casinoRepository->paginate(5);
+        $casinos = $this->casinoRepository->paginate(10);
 
-        return view('casinos.index')
-            ->with('casinos', $casinos);
+        if($request->ajax())
+        {
+            return view('casinos.table')->with('casinos', $casinos);
+        }
+        else
+        {
+            return view('casinos.index')
+                ->with('casinos', $casinos);
+        }
     }
 
     /**
@@ -43,9 +54,17 @@ class CasinoController extends InfyOmBaseController
      *
      * @return Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('casinos.create');
+        $this->restaurantRepository->pushCriteria(new RequestCriteria($request));
+        $restaurants = $this->restaurantRepository->all();
+
+        // Assigning index to prevent htmlentities() expects parameter 1 to be string ERROR
+        for ($x = 0; $x < count($restaurants); $x++) {
+            $restaurants[$x]['custom_index'] = $x;
+        }
+        
+        return view('casinos.create')->with('restaurants', $restaurants);
     }
 
     /**
@@ -93,9 +112,25 @@ class CasinoController extends InfyOmBaseController
      *
      * @return Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
         $casino = $this->casinoRepository->findWithoutFail($id);
+
+        $this->restaurantRepository->pushCriteria(new RequestCriteria($request));
+        $restaurants = $this->restaurantRepository->all();
+
+        // Assigning index to prevent htmlentities() expects parameter 1 to be string ERROR
+        for ($x = 0; $x < count($restaurants); $x++) {
+            $restaurants[$x]['custom_index'] = $x;
+        }
+        // Assigning id_exists For checke checked boxes
+        // for ($x = 0; $x < count($casinos); $x++) {
+        //     foreach ($corporation->casinoLinks as $corpCasinoLink) {
+        //         if($casinos[$x]['id'] == $corpCasinoLink->casino_id) {
+        //             $casinos[$x]['id_exists'] = 1;
+        //         }
+        //     }
+        // }
 
         if (empty($casino)) {
             Flash::error('Casino not found');
@@ -103,7 +138,7 @@ class CasinoController extends InfyOmBaseController
             return redirect(route('casinos.index'));
         }
 
-        return view('casinos.edit')->with('casino', $casino);
+        return view('casinos.edit')->with('casino', $casino)->with('restaurants', $restaurants);
     }
 
     /**
