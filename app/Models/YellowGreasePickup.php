@@ -94,4 +94,14 @@ class YellowGreasePickup extends Model
         'grease' => 'required',
         'pickup_date' => 'required'
     ];
+
+    public function corporation() 
+    {
+        return $this->belongsTo(Corporation::class);
+    }
+
+    public function casino()
+    {
+        return $this->belongsTo(Casino::class);
+    }
 }

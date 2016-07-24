@@ -40,7 +40,7 @@
         </div>
         <div class="col-md-3 row-spacer-top-bot">
             <!-- Reading Date/Time Field -->
-			{!! Form::text('reading_date_time', null, ['id'=>'reading_date_time', 'class' => 'form-control', 'placeholder' => 'Reading Date/Time']) !!}
+			{!! Form::text('reading_date_time2', null, ['id'=>'reading_date_time', 'class' => 'form-control', 'placeholder' => 'Reading Date/Time']) !!}
         </div>
     </div>
     <div class="col-md-12 line-break"></div>

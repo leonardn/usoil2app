@@ -34,8 +34,8 @@ class MachineReadingsController extends InfyOmBaseController
     {
         $this->machinereadingsRepository->pushCriteria(new RequestCriteria($request));
         $machinereadings = $this->machinereadingsRepository->paginate(10);
-        
-        /*$machinereadings = \DB::table('machine_readings')
+		
+		/*$machinereadings = \DB::table('machine_readings')
 							->join('machines', 'machine_readings.machine_id', '=', 'machines.id')
 							->join('restaurants', 'machine_readings.restaurant_id', '=', 'restaurants.id')
 							->get();*/
@@ -108,15 +108,16 @@ class MachineReadingsController extends InfyOmBaseController
      */
     public function edit($id)
     {
-        $machinereadings = $this->machinereadingsRepository->findWithoutFail($id);
+		
+        $machinereadings2 = $this->machinereadingsRepository->findWithoutFail($id);
 
-        if (empty($machinereadings)) {
+        if (empty($machinereadings2)) {
             Flash::error('Machine Reading not found');
 
             return redirect(route('machinereadings.index'));
         }
 
-        return view('machinereadings.edit')->with('machinereadings', $machinereadings);
+        return view('machinereadings.edit')->with('machinereadings2', $machinereadings2);
     }
 
     /**

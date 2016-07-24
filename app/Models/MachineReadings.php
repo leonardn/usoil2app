@@ -42,7 +42,6 @@ class MachineReadings extends Model
     use SoftDeletes;
 
     public $table = 'machine_readings';
-    
 
     protected $dates = ['deleted_at'];
 
@@ -63,7 +62,7 @@ class MachineReadings extends Model
         'restaurant_id' => 'integer',
         'machine_id' => 'integer',
         'temperature_reading' => 'float',
-        'reading_date_time' => 'dateTime'
+        'reading_date_time2' => 'dateTime'
     ];
 
     /**
@@ -75,11 +74,16 @@ class MachineReadings extends Model
         'restaurant_id' => 'required',
         'machine_id' => 'required',
         'temperature_reading' => 'required',
-        'reading_date_time' => 'required'
+        'reading_date_time2' => 'required'
     ];
     
-    public function joinMachines() 
-    {
-        return $this->hasMany(Machine::class);
+    public function machines()
+	{
+        return $this->BelongsTo(Machine::class, 'machine_id');
+    }
+	
+	public function restaurants()
+	{
+        return $this->BelongsTo(Restaurant::class, 'restaurant_id');
     }
 }
