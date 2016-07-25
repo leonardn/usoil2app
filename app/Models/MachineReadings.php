@@ -78,7 +78,7 @@ class MachineReadings extends Model
         'reading_date_time' => 'required'
     ];
     
-    public function joinMachines() 
+    public function machines() 
     {
         return $this->hasMany(Machine::class);
     }
