@@ -34,8 +34,16 @@ class YellowGreasePickupController extends InfyOmBaseController
         $this->yellowGreasePickupRepository->pushCriteria(new RequestCriteria($request));
         $yellowGreasePickups = $this->yellowGreasePickupRepository->paginate(10);
 
-        return view('yellowGreasePickups.index')
+        if($request->ajax())
+        {
+           return view('yellowGreasePickups.table')
             ->with('yellowGreasePickups', $yellowGreasePickups);
+        }
+        else
+        {
+            return view('yellowGreasePickups.index')
+                ->with('yellowGreasePickups', $yellowGreasePickups);
+        }
     }
 
     /**
@@ -102,6 +110,10 @@ class YellowGreasePickupController extends InfyOmBaseController
 
             return redirect(route('yellowGreasePickups.index'));
         }
+        // $strDate = date('d/m/Y', strtotime($yellowGreasePickup['pickup_date']));
+        // $yellowGreasePickup['pickup_date_edit'] = $strDate;
+        //return $yellowGreasePickup['pickup_date_edit'];
+        //return $yellowGreasePickup->corporation;
 
         return view('yellowGreasePickups.edit')->with('yellowGreasePickup', $yellowGreasePickup);
     }
