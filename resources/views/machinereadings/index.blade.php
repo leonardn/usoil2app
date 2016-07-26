@@ -80,8 +80,52 @@
 
 
 @section('scripts')
+<link href="{!! asset('css/jquery.datetimepicker.css') !!}" media="all" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{!! asset('js/jquery.datetimepicker.full.min.js') !!}"></script>
 <script type="text/javascript">
+	$("#reading_date_time").datepicker({
+			  dateFormat:'yy-mm-dd',
+			});
+			
 $(".form-control").keyup(function( event ) {
+    if ( event.which == 13 ) {
+        event.preventDefault();
+    }
+   
+    var restaurant_id = $("#restaurant_id").val();
+    var machine_id = $("#machine_id").val();
+    var temperature_reading = $("#temperature_reading").val();
+    var reading_date_time = $("#reading_date_time").val();
+    var urlRequest = 'machinereadings?search='+setDefault(restaurant_id, 'restaurant_id')+''+setDefault(machine_id, 'machine_id')+''+setDefault(temperature_reading, 'temperature_reading')+''+setDefault(reading_date_time, 'reading_date_time');
+
+    //console.log(urlRequest.slice(0, -1));
+
+    if(restaurant_id || machine_id || temperature_reading || reading_date_time)
+    {
+    }
+    else
+    {
+        urlRequest = '/machinereadings;'
+    }
+
+    $.ajax({
+       type: 'get',
+       url: urlRequest.slice(0, -1),
+       success: function (response) {
+       if(response)   
+       {
+            $("#get-machinereadings").html(response);
+            return false;
+       }
+       else 
+       {
+            return false;
+       }
+     }
+   });
+});
+
+$("#reading_date_time").change(function( event ) {
     if ( event.which == 13 ) {
         event.preventDefault();
     }

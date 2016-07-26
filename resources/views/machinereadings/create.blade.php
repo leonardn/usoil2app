@@ -11,6 +11,9 @@
 @endsection
 
 @section('scripts')
+	<link href="{!! asset('css/jquery.datetimepicker.css') !!}" media="all" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{!! asset('js/jquery.datetimepicker.full.min.js') !!}"></script>
+
 	<script type="text/javascript">
 		$( "#autocomplete-machine" ).autocomplete({
 			source: '/get-autocomplete-machines-options',
@@ -28,5 +31,9 @@
 			  	$('#restaurant_id').val(ui.item.id);
 			}
 		});
+		
+		$("#reading_date_time").datetimepicker({
+			  format:'Y-m-d H:i:s',
+			});
 	</script>
 @endsection

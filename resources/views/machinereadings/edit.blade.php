@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        {!! Form::model($machinereadings, ['route' => ['machinereadings.update', $machinereadings->id], 'method' => 'patch']) !!}
+        {!! Form::model($machinereadings2, ['route' => ['machinereadings.update', $machinereadings2->id], 'method' => 'patch']) !!}
 
         @include('machinereadings.fields', ['moduleTitle' => 'EDIT MACHINE READING'])
 
@@ -11,7 +11,14 @@
 @endsection
 
 @section('scripts')
+	<link href="{!! asset('css/jquery.datetimepicker.css') !!}" media="all" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{!! asset('js/jquery.datetimepicker.full.min.js') !!}"></script>
+
 	<script type="text/javascript">
+		
+		$( "#autocomplete-machine" ).val('{!! $machinereadings2->machines->machine_name !!}');
+		$( "#autocomplete-restaurant" ).val('{!! $machinereadings2->restaurants->restaurant_name !!}');
+	
 		$( "#autocomplete-machine" ).autocomplete({
 			source: '/get-autocomplete-machines-options',
 			minLength: 1,
@@ -28,5 +35,9 @@
 			  	$('#restaurant_id').val(ui.item.id);
 			}
 		});
+		
+		$("#reading_date_time").datetimepicker({
+			  format:'Y-m-d H:i:s',
+			});
 	</script>
 @endsection

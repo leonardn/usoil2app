@@ -14,7 +14,7 @@ class MachineReadingsRepository extends BaseRepository
 		'restaurant_id',
         'machine_id',
         'temperature_reading' => 'like',
-        'reading_date_time',
+        'reading_date_time' => 'like',
     ];
 
     /**

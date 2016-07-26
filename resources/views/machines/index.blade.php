@@ -108,6 +108,19 @@
 	   });
 	});
 
+function setDefault(arg, field)
+{
+    return arg != '' ? field + ':'+arg+';' : '';
+}
+//https://github.com/andersao/l5-repository#enabling-in-your-repository
+/*
+ * Enable post ajax
+ * $.ajaxSetup({
+   headers: {
+     'X-CSRF-TOKEN': '{{ csrf_token() }}'
+   }
+ });*/
+</script>
 	$(".select-form-control").change(function() {
 	  
 		var machine_name = $("#machine_name").val();

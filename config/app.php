@@ -39,8 +39,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost/usoil2app/usoil2app'),
-
+    'url' => env('APP_URL', 'http://localhost/usoil2app'),
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

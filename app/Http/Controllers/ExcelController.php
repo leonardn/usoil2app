@@ -89,13 +89,30 @@ class ExcelController extends InfyOmBaseController
 
 	public function getMachineReadingExport(Request $request)
     {
-    	$this->machinereadingsRepository->pushCriteria(new RequestCriteria($request));
+    	/*$this->machinereadingsRepository->pushCriteria(new RequestCriteria($request));
     	$machinereadings = $this->machinereadingsRepository->all();
 
     	Excel::create('Machine Reading Data', function($excel) use($machinereadings){
         	$excel->sheet('Sheet 1', function($sheet) use($machinereadings){
         		$sheet->fromModel($machinereadings);
         	});
-		})->export('xls');
+		})->export('xls');*/
+		
+		$this->machinereadingsRepository->pushCriteria(new RequestCriteria($request));
+    	$machinereadings = $this->machinereadingsRepository->all();
+		Excel::create('Machine Reading Data', function($excel) use($machinereadings){
+			$excel->sheet('Sheet 1', function($sheet) use($machinereadings){
+                $arr =array();
+                foreach($machinereadings as $machinereading) {
+					    $data =  array($machinereading->id,  $machinereading->restaurants->restaurant_name, $machinereading->machines->machine_name, $machinereading->temperature_reading, $machinereading->reading_date_time,
+                            $machinereading->created_at, $machinereading->updated_at, $machinereading->deleted_at);
+                        array_push($arr, $data);
+                }
+                $sheet->fromArray($arr,null,'A1',false,false)->prependRow(
+                array(
+                 'ID', 'Restaurant Name', 'Machine Name', 'Temperature Reading', 'Reading DateTime', 'Created At', 'Updated At', 'Deleted At')
+                );
+            });
+        })->export('xls');
     }
 }
