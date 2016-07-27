@@ -27,11 +27,12 @@
     <div class="row">
 		<div class="col-md-3 row-spacer-top-bot">
             <!-- Restaurant Name Field -->
-            {!! Form::text('restaurant_id', null, ['id' => 'restaurant_id', 'class' => 'form-control', 'placeholder' => 'Restaurant Name']) !!}
+            <input id="autocomplete-restaurant" class="form-control" placeholder="Restaurant Name" type="text">
+            {!! Form::hidden('restaurant_id', null, ['id' => 'restaurant_id']) !!}
         </div>
         <div class="col-md-3 row-spacer-top-bot">
-            <!-- Machine Name Field -->
-            {!! Form::text('machine_id', null, ['id' => 'machine_id', 'class' => 'form-control', 'placeholder' => 'Machine Name']) !!}
+            <input id="autocomplete-machine" class="form-control" placeholder="Machine Name" type="text">
+            {!! Form::hidden('machine_id', null, ['id' => 'machine_id']) !!}
         </div>
         <div class="col-md-2 row-spacer-top-bot">
             <!-- Temperature Reading Name -->
@@ -83,6 +84,8 @@
 <link href="{!! asset('css/jquery.datetimepicker.css') !!}" media="all" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="{!! asset('js/jquery.datetimepicker.full.min.js') !!}"></script>
 <script type="text/javascript">
+	var lastObj = "";
+	
 	$("#reading_date_time").datepicker({
 			  dateFormat:'yy-mm-dd',
 			});
@@ -91,7 +94,8 @@ $(".form-control").keyup(function( event ) {
     if ( event.which == 13 ) {
         event.preventDefault();
     }
-   
+    lastObj = $(this);
+    
     var restaurant_id = $("#restaurant_id").val();
     var machine_id = $("#machine_id").val();
     var temperature_reading = $("#temperature_reading").val();
@@ -129,6 +133,7 @@ $("#reading_date_time").change(function( event ) {
     if ( event.which == 13 ) {
         event.preventDefault();
     }
+    lastObj = $(this);
    
     var restaurant_id = $("#restaurant_id").val();
     var machine_id = $("#machine_id").val();
@@ -177,6 +182,27 @@ $("a#submit").click(function(){
 	var id_to_delete = $(this).attr('id-to-delete');
 	$("#form-delete-"+id_to_delete).submit();
 });
+
+// AUTOCOMPLETE
+$( "#autocomplete-machine" ).autocomplete({
+	source: '/get-autocomplete-machines-options',
+	minLength: 1,
+	select: function(event, ui) {
+		$(this).val(ui.item.value);
+		$('#machine_id').val(ui.item.id);
+		lastObj.keyup();
+	}
+});
+$( "#autocomplete-restaurant" ).autocomplete({
+	source: '/get-autocomplete-restaurants-options',
+	minLength: 1,
+	select: function(event, ui) {
+		$(this).val(ui.item.value);
+		$('#restaurant_id').val(ui.item.id);
+		lastObj.keyup();
+	}
+});
+
     
 //https://github.com/andersao/l5-repository#enabling-in-your-repository
 /*
