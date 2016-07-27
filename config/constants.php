@@ -6,5 +6,8 @@ return [
     ],
     'machine_type' => [
         '' => 'Machine Type', 'RFG' => 'RFG', 'WSM' => 'WSM', 'DSW' => 'DSW'
+    ],
+    'option_type' => [
+        '' => 'Option Type', 'Orders' => 'Orders', 'OrderType' => 'OrderType', 'LogRequest' => 'LogRequest', 'Trash' => 'Trash'
     ]
 ];

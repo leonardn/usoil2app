@@ -90,4 +90,22 @@ class AutoCompleteController extends InfyOmBaseController
 
         return Response::json($results);
     }
+    
+    // LOGOPTION
+    public function getLogOptionAutoComplete(Request $request)
+    {
+    	$term = $request->input('term');
+		$results = array();
+    	
+    	$queries  = DB::table('log_options')
+					->where('option_title', 'LIKE', '%'.$term.'%')
+					->take(6)->get();
+					
+        foreach($queries as $item)
+        {
+        	$results[] = ['value' => $item->option_title, 'id' => $item->id];
+        }
+
+        return Response::json($results);
+    }
 }

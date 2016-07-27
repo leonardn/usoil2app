@@ -34,6 +34,10 @@
     <a href="{!! route('machinereadings.index') !!}">Machine Readings</a>
 </li>
 
+<li class="{{ Request::is('logoptions*') ? 'active' : '' }}">
+    <a href="{!! route('logoptions.index') !!}">Log Options</a>
+</li>
+
 <li>
    <a href="{!! url('/logout') !!}">Logout</a>
 </li>

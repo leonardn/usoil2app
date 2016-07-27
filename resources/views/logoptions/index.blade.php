@@ -4,19 +4,19 @@
 <div class="col-md-12">
     <div class="col-md-12 top-heading">
         <div class="row">
-            <h4>MACHINE SEARCH</h4>
+            <h4>LOG OPTION SEARCH</h4>
         </div>
     </div>
 </div>
 <div class="col-md-12">
 	<div class="row ">
         <div class="col-md-10 row-spacer-top-bot">
-            <h3>Machines Search</h3>
+            <h3>Log Options Search</h3>
         </div>
         <div class="col-md-2 row-spacer-top-bot">
             <div class="row top-right-btn">
                 <div class="col-md-12">
-                    <a href="/machines" class="btn btn-default pull-right">Clear Filter</a>
+                    <a href="/logoptions" class="btn btn-default pull-right">Clear Filter</a>
                 </div>
             </div>
         </div>
@@ -26,12 +26,12 @@
     </div>
     <div class="row">
         <div class="col-md-3 row-spacer-top-bot">
-            <!-- Machine Name Field -->
-            {!! Form::text('machine_name', null, ['id' => 'machine_name', 'class' => 'form-control', 'placeholder' => 'Machine Name']) !!}
+            <!-- Log Option Name Field -->
+            {!! Form::text('option_title', null, ['id' => 'option_title', 'class' => 'form-control', 'placeholder' => 'Log Option Title']) !!}
         </div>
         <div class="col-md-2 row-spacer-top-bot">
-            <!-- Machine Type Field -->
-            {!! Form::select('machine_type', Config::get('constants.machine_type'), null, ['id' => 'machine_type', 'class' => 'select-form-control']) !!}
+            <!-- Log Option Type Field -->
+            {!! Form::select('option_type', Config::get('constants.option_type'), null, ['id' => 'option_type', 'class' => 'select-form-control']) !!}
         </div>
     </div>
     <div class="col-md-12 line-break"></div>
@@ -39,19 +39,19 @@
 <div class="col-md-12">
 	<div class="row">
 		<div class="col-md-4 btn-spacer-top-bot">
-			<a href="{!! url('/get-machine-export') !!}" class="btn btn-primary">
+			<a href="{!! url('/get-logoption-export') !!}" class="btn btn-primary">
                 <i class="fa fa-file-excel-o fa-2 pull-left" aria-hidden="true"></i>
                 Export
             </a>
-			<a href="{!! route('machines.create') !!}" class="btn btn-primary pull-right">
+			<a href="{!! route('logoptions.create') !!}" class="btn btn-primary pull-right">
                 <i class="fa fa-plus-circle fa-2 pull-left" aria-hidden="true"></i>
-                Add New Machine
+                Add New Log Option
             </a>
 		</div>
 	</div>
 </div>
-<div id="get-machine">
-	@include('machines.table')
+<div id="get-logoption">
+	@include('logoptions.table')
 </div>
 
 <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -77,18 +77,18 @@
 			event.preventDefault();
 		}
 	   
-		var machine_name = $("#machine_name").val();
-		var machine_type = $("#machine_type").val();
-		var urlRequest = 'machines?search='+setDefault(machine_name, 'machine_name')+''+setDefault(machine_type, 'machine_type');
+		var option_title = $("#option_title").val();
+		var option_type = $("#option_type").val();
+		var urlRequest = 'logoptions?search='+setDefault(option_title, 'option_title')+''+setDefault(option_type, 'option_type');
 
 		//console.log(urlRequest.slice(0, -1));
 
-		if(machine_name || machine_type)
+		if(option_title || option_type)
 		{
 		}
 		else
 		{
-			urlRequest = '/machines;'
+			urlRequest = '/logoptions;'
 		}
 
 		$.ajax({
@@ -97,7 +97,7 @@
 		   success: function (response) {
 		   if(response)   
 		   {
-				$("#get-machine").html(response);
+				$("#get-logoption").html(response);
 				return false;
 		   }
 		   else 
@@ -120,21 +120,21 @@ function setDefault(arg, field)
      'X-CSRF-TOKEN': '{{ csrf_token() }}'
    }
  });*/
-
+ 
 	$(".select-form-control").change(function() {
 	  
-		var machine_name = $("#machine_name").val();
-		var machine_type = $("#machine_type").val();
-		var urlRequest = 'machines?search='+setDefault(machine_name, 'machine_name')+''+setDefault(machine_type, 'machine_type');
+		var option_title = $("#option_title").val();
+		var option_type = $("#option_type").val();
+		var urlRequest = 'logoptions?search='+setDefault(option_title, 'option_title')+''+setDefault(option_type, 'option_type');
 
 		//console.log(urlRequest.slice(0, -1));
 
-		if(machine_name || machine_type)
+		if(option_title || option_type)
 		{
 		}
 		else
 		{
-			urlRequest = '/machines;'
+			urlRequest = '/logoptions;'
 		}
 
 		$.ajax({
@@ -143,7 +143,7 @@ function setDefault(arg, field)
 		   success: function (response) {
 		   if(response)   
 		   {
-				$("#get-machine").html(response);
+				$("#get-logoption").html(response);
 				return false;
 		   }
 		   else 

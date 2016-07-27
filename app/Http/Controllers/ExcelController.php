@@ -8,6 +8,7 @@ use App\Repositories\CasinoRepository;
 use App\Repositories\RestaurantRepository;
 use App\Repositories\MachineRepository;
 use App\Repositories\MachineReadingsRepository;
+use App\Repositories\LogOptionRepository;
 use App\Http\Controllers\AppBaseController as InfyOmBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -23,8 +24,9 @@ class ExcelController extends InfyOmBaseController
     private $restaurantRepository;
     private $machineRepository;
     private $machinereadingsRepository;
+    private $logoptionRepository;
 
-    public function __construct(CorporationRepository $corporationRepo, CasinoRepository $casinoRepo, RestaurantRepository $restaurantRepo, MachineRepository $machinesRepo, MachineReadingsRepository $machinereadingsRepo)
+    public function __construct(CorporationRepository $corporationRepo, CasinoRepository $casinoRepo, RestaurantRepository $restaurantRepo, MachineRepository $machinesRepo, MachineReadingsRepository $machinereadingsRepo, LogOptionRepository $logoptionsRepo)
     {
     	//$this->middleware('auth');
         $this->corporationRepository = $corporationRepo;
@@ -32,6 +34,7 @@ class ExcelController extends InfyOmBaseController
         $this->restaurantRepository = $restaurantRepo;
         $this->machineRepository = $machinesRepo;
         $this->machinereadingsRepository = $machinereadingsRepo;
+        $this->logoptionRepository = $logoptionsRepo;
     }
 
     public function getCorporationExport(Request $request) 
@@ -115,4 +118,17 @@ class ExcelController extends InfyOmBaseController
             });
         })->export('xls');
     }
+    
+    public function getLogOptionExport(Request $request)
+    {
+    	$this->logoptionRepository->pushCriteria(new RequestCriteria($request));
+    	$logoptions = $this->logoptionRepository->all();
+
+    	Excel::create('Log Option Data', function($excel) use($logoptions){
+        	$excel->sheet('Sheet 1', function($sheet) use($logoptions){
+        		$sheet->fromModel($logoptions);
+        	});
+		})->export('xls');
+    }
+
 }
