@@ -1,74 +1,114 @@
-<!-- Fryer Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('fryer_id', 'Fryer Id:') !!}
-    {!! Form::text('fryer_id', null, ['class' => 'form-control']) !!}
+<div class="col-md-12">
+    <div class="col-md-12 top-heading">
+        <div class="row">
+            <div class="col-md-10 padding-left-none">
+                <h4>{!! $moduleTitle !!}</h4>
+            </div>
+            <div class="col-md-2">
+                <div class="row top-right-btn">
+                    <div class="col-md-6">
+                        <a href="{!! route('fryerTMPSs.index') !!}" class="btn btn-default pull-right">Discard</a>
+                    </div>
+                    <div class="col-md-6">
+                        {!! Form::submit('Save', ['class' => 'btn btn-primary pull-left']) !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="row row-spacer-top-bot">
+        <div class="col-md-10">
+            <h3>Fryer TMPS Details</h3>
+        </div>
+        <div class="col-md-2">
+            <div class="row top-right-btn">
+                <div class="col-md-6">
+                    <a href="#" class="pull-right">Show</a>
+                </div>
+                <div class="col-md-6">
+                    <a href="#" class="">Hide</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @include('core-templates::common.errors')
+    </div>
+    <div class="row">
+        <div class="col-md-4 row-spacer-top-bot">
+            <input value="" id="autocomplete-fryer" class="form-control" placeholder="Fryer Name" type="text">
+            {!! Form::hidden('fryer_id', null, ['class' => 'form-control']) !!}
+        </div>
+        <div class="col-md-8 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
+            <!-- Status Field -->
+            {!! Form::hidden('status', false) !!}
+            {!! Form::checkbox('status', '1', null, ['id' => 'is-active', 'class' => 'styled']) !!} 
+            <label for="is-active" class="checkbox-inline">
+                is Active?
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 row-spacer-top-bot">
+            <!-- Measured Tpm Field -->
+            {!! Form::number('measured_tpm', null, ['class' => 'form-control', 'placeholder' => 'Measured TPM']) !!}
+        </div>
+        <div class="col-md-3 row-spacer-top-bot">
+            <!-- Oil Temp Field -->
+            {!! Form::number('oil_temp', null, ['class' => 'form-control', 'placeholder' => 'Oil Temp']) !!}
+        </div>
+        <div class="col-md-3 row-spacer-top-bot">
+            <!-- Quantity Added Field -->
+            {!! Form::number('quantity_added', null, ['class' => 'form-control', 'placeholder' => 'Quantity Ddded']) !!}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 row-spacer-top-bot">
+            <!-- Creation Date Field -->
+            {!! Form::date('creation_date', null, ['class' => 'form-control', 'placeholder' => 'Creation Date']) !!}
+        </div>
+    </div>
+    <div class="row">
+        <!-- Changed Oil Field -->
+        <div class="col-md-3 col-md-offset-1 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
+            {!! Form::hidden('changed_oil', false) !!}
+            {!! Form::checkbox('changed_oil', '1', null, ['id' => 'is-changed-oil', 'class' => 'styled']) !!}
+            <label for="is-changed-oil" class="checkbox-inline">
+                Oil Changed?
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Oil Moved Field -->
+        <div class="col-md-3 col-md-offset-1 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
+            {!! Form::hidden('oil_moved', false) !!}
+            {!! Form::checkbox('oil_moved', '1', null, ['id' => 'is-oil-moved', 'class' => 'styled']) !!}
+            <label for="is-oil-moved" class="checkbox-inline">
+                Oil Moved?
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 row-spacer-top-bot">
+            <!-- Amount Moved Field -->
+            {!! Form::number('amount_moved', null, ['class' => 'form-control', 'placeholder' => 'Amount Moved']) !!}
+        </div>
+        <div class="col-md-4 row-spacer-top-bot">
+            <!-- Moved To Fryer Id Field -->
+            <input value="" id="autocomplete-fryer" class="form-control" placeholder="Moved to Fryer" type="text">
+            {!! Form::hidden('moved_to_fryer_id', null, ['class' => 'form-control']) !!}
+        </div>
+    </div>
+    <div class="col-md-12 line-break"></div>
 </div>
 
-<!-- Measured Tpm Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('measured_tpm', 'Measured Tpm:') !!}
-    {!! Form::number('measured_tpm', null, ['class' => 'form-control']) !!}
-</div>
 
-<!-- Oil Temp Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('oil_temp', 'Oil Temp:') !!}
-    {!! Form::number('oil_temp', null, ['class' => 'form-control']) !!}
-</div>
 
-<!-- Changed Oil Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('changed_oil', 'Changed Oil:') !!}
-    <label class="checkbox-inline">
-        {!! Form::hidden('changed_oil', false) !!}
-        {!! Form::checkbox('changed_oil', '1', null) !!} 1
-    </label>
-</div>
 
-<!-- Quantity Added Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('quantity_added', 'Quantity Added:') !!}
-    {!! Form::number('quantity_added', null, ['class' => 'form-control']) !!}
-</div>
 
-<!-- Oil Moved Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('oil_moved', 'Oil Moved:') !!}
-    <label class="checkbox-inline">
-        {!! Form::hidden('oil_moved', false) !!}
-        {!! Form::checkbox('oil_moved', '1', null) !!} 1
-    </label>
-</div>
 
-<!-- Amount Moved Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('amount_moved', 'Amount Moved:') !!}
-    {!! Form::number('amount_moved', null, ['class' => 'form-control']) !!}
-</div>
 
-<!-- Moved To Fryer Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('moved_to_fryer_id', 'Moved To Fryer Id:') !!}
-    {!! Form::text('moved_to_fryer_id', null, ['class' => 'form-control']) !!}
-</div>
 
-<!-- Creation Date Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('creation_date', 'Creation Date:') !!}
-    {!! Form::date('creation_date', null, ['class' => 'form-control']) !!}
-</div>
 
-<!-- Status Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('status', 'Status:') !!}
-    <label class="checkbox-inline">
-        {!! Form::hidden('status', false) !!}
-        {!! Form::checkbox('status', '1', null) !!} 1
-    </label>
-</div>
-
-<!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('fryerTMPSs.index') !!}" class="btn btn-default">Cancel</a>
-</div>

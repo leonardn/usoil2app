@@ -26,24 +26,26 @@
     </div>
     <div class="row">
      	<div class="col-md-2 row-spacer-top-bot">
-     		{!! Form::text('fryer_id', null, ['class' => 'form-control']) !!}
+     		{!! Form::text('fryer_id', null, ['class' => 'form-control', 'placeholder' => 'Fryer Name']) !!}
      	</div>
      	<div class="col-md-2 row-spacer-top-bot">
-     		{!! Form::number('measured_tpm', null, ['class' => 'form-control']) !!}
+     		{!! Form::number('measured_tpm', null, ['class' => 'form-control', 'placeholder' => 'Measured TPM']) !!}
      	</div>
      	<div class="col-md-2 row-spacer-top-bot">
-     		{!! Form::number('oil_temp', null, ['class' => 'form-control']) !!}
+     		{!! Form::number('oil_temp', null, ['class' => 'form-control', 'placeholder' => 'Oil Temp.']) !!}
      	</div>
-     	<div class="col-md-2 row-spacer-top-bot">
-		    <label class="checkbox-inline">
-		        {!! Form::hidden('changed_oil', false) !!}
-		        {!! Form::checkbox('changed_oil', '1', null) !!} Oil Changed?
+     	<div class="col-md-2 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
+                {!! Form::hidden('changed_oil', false) !!}
+                {!! Form::checkbox('changed_oil', '1', null, ['id' => 'is-changed-oil', 'class' => 'styled']) !!}
+		    <label for="is-changed-oil" class="checkbox-inline">
+                Oil Changed?
 		    </label>
      	</div>
-     	<div class="col-md-2 row-spacer-top-bot">
-		    <label class="checkbox-inline">
-		        {!! Form::hidden('oil_moved', false) !!}
-		        {!! Form::checkbox('oil_moved', '1', null) !!} Oil Moved?
+     	<div class="col-md-2 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
+                {!! Form::hidden('oil_moved', false) !!}
+                {!! Form::checkbox('oil_moved', '1', null, ['id' => 'is-oil-moved', 'class' => 'styled']) !!} 
+		    <label for="is-oil-moved" class="checkbox-inline">
+                Oil Moved?
 		    </label>
      	</div>
      	<div class="col-md-2 row-spacer-top-bot">
