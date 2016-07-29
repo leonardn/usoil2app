@@ -26,6 +26,18 @@
     <a href="{!! route('fryerTMPSs.index') !!}"><i class="fa fa-angle-right pull-right i-sidebar-chevron" aria-hidden="true"></i>TMPS</a>
 </li>
 
+<li class="{{ Request::is('machines*') ? 'active' : '' }}">
+    <a href="{!! route('machines.index') !!}">Machines</a>
+</li>
+
+<li class="{{ Request::is('machinereadings*') ? 'active' : '' }}">
+    <a href="{!! route('machinereadings.index') !!}">Machine Readings</a>
+</li>
+
+<li class="{{ Request::is('logoptions*') ? 'active' : '' }}">
+    <a href="{!! route('logoptions.index') !!}">Log Options</a>
+</li>
+
 <li>
    <a href="{!! url('/logout') !!}">Logout</a>
 </li>

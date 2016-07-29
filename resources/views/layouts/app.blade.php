@@ -5,11 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!--title>@yield('title', 'Home')</title-->
     <title>@yield('title', 'Home') | USOIL2APP</title>
 
     <!-- Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
-
 
     <!-- DataTable Bootstrap -->
     <!-- <link href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css" rel="stylesheet">
@@ -19,6 +20,11 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="/css/app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.1/css/bootstrap-toggle.min.css">
+    
+    <link href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
+    <script src="http://demo.expertphp.in/js/jquery.js"></script>
+    <script src="http://demo.expertphp.in/js/jquery-ui.min.js"></script>
+    
 </head>
 <body id="app-layout">
 
@@ -62,7 +68,7 @@
 @else
     <div id="wrapper" class="">
         <!-- Sidebar -->
-            @include('layouts.sidebar')
+           @include('layouts.sidebar')
         <!-- /#sidebar-wrapper -->
         <header class="header" style="display:none;">
             <a href="#menu-toggle"

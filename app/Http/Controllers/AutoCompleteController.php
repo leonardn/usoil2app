@@ -54,4 +54,58 @@ class AutoCompleteController extends InfyOmBaseController
 
         return Response::json($results);
     }
+    
+    // MACHINE
+    public function getMachineAutoComplete(Request $request)
+    {
+    	$term = $request->input('term');
+		$results = array();
+    	
+    	$queries  = DB::table('machines')
+					->where('machine_name', 'LIKE', '%'.$term.'%')
+					->take(6)->get();
+					
+        foreach($queries as $item)
+        {
+        	$results[] = ['value' => $item->machine_name, 'id' => $item->id];
+        }
+
+        return Response::json($results);
+    }
+    
+    // RESTAURANT
+    public function getRestaurantAutoComplete(Request $request)
+    {
+    	$term = $request->input('term');
+		$results = array();
+    	
+    	$queries  = DB::table('restaurants')
+					->where('restaurant_name', 'LIKE', '%'.$term.'%')
+					->take(6)->get();
+					
+        foreach($queries as $item)
+        {
+        	$results[] = ['value' => $item->restaurant_name, 'id' => $item->id];
+        }
+
+        return Response::json($results);
+    }
+    
+    // LOGOPTION
+    public function getLogOptionAutoComplete(Request $request)
+    {
+    	$term = $request->input('term');
+		$results = array();
+    	
+    	$queries  = DB::table('log_options')
+					->where('option_title', 'LIKE', '%'.$term.'%')
+					->take(6)->get();
+					
+        foreach($queries as $item)
+        {
+        	$results[] = ['value' => $item->option_title, 'id' => $item->id];
+        }
+
+        return Response::json($results);
+    }
 }

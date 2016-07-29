@@ -39,8 +39,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
-
+    'url' => env('APP_URL', 'http://localhost/usoil2app'),
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -149,7 +148,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+	  
         /*
          * Application Service Providers...
          */
@@ -173,6 +172,8 @@ return [
         Collective\Bus\BusServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
+		//Autocomplete
+		Sukohi\FormAutocomplete\FormAutocompleteServiceProvider::class,
     ],
 
     /*
@@ -221,8 +222,8 @@ return [
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
         'Flash'     => Laracasts\Flash\Flash::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class
-
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'FormAutocomplete' => Sukohi\FormAutocomplete\Facades\FormAutocomplete::class
     ],
 
 ];
