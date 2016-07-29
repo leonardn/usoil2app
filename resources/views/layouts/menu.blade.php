@@ -41,3 +41,7 @@
 <li>
    <a href="{!! url('/logout') !!}">Logout</a>
 </li>
+<li class="{{ Request::is('trashBins*') ? 'active' : '' }}">
+    <a href="{!! route('trashBins.index') !!}">TrashBins</a>
+</li>
+

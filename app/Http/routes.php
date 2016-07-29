@@ -71,3 +71,6 @@ Route::resource('yellowGreasePickups', 'YellowGreasePickupController');
 Route::get('get-autocomplete-corporation-options', 'AutoCompleteController@getCorporationAutoComplete');
 Route::get('get-autocomplete-casino-options', 'AutoCompleteController@getCasinoAutoComplete');
 Route::resource('fryerTMPSs', 'FryerTMPSController');
+
+
+Route::resource('trashBins', 'TrashBinController');
