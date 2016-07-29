@@ -37,7 +37,7 @@
             {!! Form::text('grease', null, ['id' => 'grease', 'class' => 'form-control', 'placeholder' => 'Grease']) !!}
         </div>
         <div class="col-md-3 row-spacer-top-bot">
-            {!! Form::date('pickup_date', null, ['id' => 'pickup_date', 'class' => 'form-control']) !!}
+            {!! Form::text('pickup_date', null, ['id' => 'pickup_date', 'class' => 'form-control', 'placeholder' => 'Pickup Date']) !!}
         </div>
 	</div>
 	<div class="col-md-12 line-break"></div>
@@ -46,7 +46,7 @@
 <div class="col-md-12">
 	<div class="row">
 		<div class="col-md-3 btn-spacer-top-bot">
-			<a href="{!! url('#') !!}" class="btn btn-primary">
+			<a href="{!! url('/get-yellow-grease-pickup-export') !!}" class="btn btn-primary">
                 <i class="fa fa-file-excel-o fa-2 pull-left" aria-hidden="true"></i>
                 Export
             </a>
@@ -80,19 +80,16 @@
 
 @section('scripts')
     <script type="text/javascript">
+    $("#pickup_date").datepicker({
+      dateFormat:'yy-mm-dd',
+    });
+
     var lastObj = "";
     $(".form-control").keyup(function( event ) {
         if ( event.which == 13 ) {
             event.preventDefault();
         }
         lastObj = $(this);
-
-  //   	var fryer_name = $("#fryer_name").val();
-		// var oil_capacity = $("#oil_capacity").val();
-		// var benchmark = $("#benchmark").val();
-		// var make = $("#make").val();
-		// var model = $("#model").val();
-		// var serial_number = $("#serial_number").val();
 
 		var corporation_id = $("#corporation_id").val();
 		var casino_id = $("#casino_id").val();
@@ -124,6 +121,10 @@
            }
          }
        });
+    });
+
+    $("#pickup_date").change(function(){
+        $(".form-control").keyup();
     });
 
     function setDefault(arg, field)

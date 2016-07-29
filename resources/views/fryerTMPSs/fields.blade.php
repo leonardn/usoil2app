@@ -38,8 +38,8 @@
     </div>
     <div class="row">
         <div class="col-md-4 row-spacer-top-bot">
-            <input value="" id="autocomplete-fryer" class="form-control" placeholder="Fryer Name" type="text">
-            {!! Form::hidden('fryer_id', null, ['class' => 'form-control']) !!}
+            <input value="{!! isset($fryerTMPS->fryer->fryer_name) ? $fryerTMPS->fryer->fryer_name : '' !!}" id="autocomplete-fryer" class="form-control" placeholder="Fryer Name" type="text">
+            {!! Form::hidden('fryer_id', null, ['id' => 'fryer_id', 'class' => 'form-control']) !!}
         </div>
         <div class="col-md-8 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
             <!-- Status Field -->
@@ -67,7 +67,7 @@
     <div class="row">
         <div class="col-md-3 row-spacer-top-bot">
             <!-- Creation Date Field -->
-            {!! Form::date('creation_date', null, ['class' => 'form-control', 'placeholder' => 'Creation Date']) !!}
+            {!! Form::text('creation_date', null, ['id' => 'creation_date', 'class' => 'form-control', 'placeholder' => 'Creation Date']) !!}
         </div>
     </div>
     <div class="row">
@@ -90,15 +90,15 @@
             </label>
         </div>
     </div>
-    <div class="row">
+    <div id="is-oil-moved-child" class="row" style="display:none;">
         <div class="col-md-3 row-spacer-top-bot">
             <!-- Amount Moved Field -->
             {!! Form::number('amount_moved', null, ['class' => 'form-control', 'placeholder' => 'Amount Moved']) !!}
         </div>
         <div class="col-md-4 row-spacer-top-bot">
             <!-- Moved To Fryer Id Field -->
-            <input value="" id="autocomplete-fryer" class="form-control" placeholder="Moved to Fryer" type="text">
-            {!! Form::hidden('moved_to_fryer_id', null, ['class' => 'form-control']) !!}
+            <input value="{!! isset($fryerTMPS->moveToFryer->fryer_name) ? $fryerTMPS->moveToFryer->fryer_name : '' !!}" id="autocomplete-move-to-fryer" class="form-control" placeholder="Moved to Fryer" type="text">
+            {!! Form::hidden('moved_to_fryer_id', null, ['id' => 'moved_to_fryer_id', 'class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-md-12 line-break"></div>

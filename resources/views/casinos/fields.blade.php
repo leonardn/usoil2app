@@ -181,7 +181,7 @@
                     @foreach($restaurants as $restaurant)
                         <div class="col-md-12 checkbox checkbox-warning">
                             {!! Form::hidden('restaurant['.$restaurant->custom_index.']', false) !!}
-                            {!! Form::checkbox('restaurant['.$restaurant->custom_index.']', 'id', null, ['id' => 'is-active'.$restaurant->id]) !!} 
+                            {!! Form::checkbox('restaurant['.$restaurant->custom_index.']', $restaurant->id, $restaurant->id_exists, ['id' => 'is-active'.$restaurant->id]) !!} 
                             <label for="is-active{!! $restaurant->id !!}" id="restaurants-id" class="checkbox-inline">
                                 {!! $restaurant->restaurant_name !!}
                             </label>

@@ -61,7 +61,7 @@
             {!! Form::number('grease', null, ['class' => 'form-control', 'placeholder' => 'Grease']) !!}
         </div>
         <div class="col-md-3 row-spacer-top-bot">
-            {!! Form::date('pickup_date', null, ['class' => 'form-control']) !!}
+            {!! Form::text('pickup_date', null, ['id' => 'pickup_date', 'class' => 'form-control', 'placeholder' => 'Pickup Date']) !!}
         </div>
     </div>
     <div class="col-md-12 line-break"></div>

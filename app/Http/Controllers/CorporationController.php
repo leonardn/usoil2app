@@ -14,6 +14,7 @@ use Response;
 
 use App\Repositories\CasinoRepository;
 use App\Models\CorporationCasinoLink;
+use App\Models\Casino;
 class CorporationController extends InfyOmBaseController
 {
     /** @var  CorporationRepository */
@@ -130,7 +131,15 @@ class CorporationController extends InfyOmBaseController
         $corporation = $this->corporationRepository->findWithoutFail($id);
 
         $this->casinoRepository->pushCriteria(new RequestCriteria($request));
-        $casinos = $this->casinoRepository->all();
+        $casinos = Casino::with('restaurantLinks')->get();
+        // foreach($casinos as $casino){
+        //     //echo var_dump($casino);
+        //     foreach($casino->restaurantLinks as $links) {
+        //         echo $links->restaurant->restaurant_name;
+        //     }
+        // }
+        // exit();
+        // return $casinos;
         
         // Assigning index to prevent htmlentities() expects parameter 1 to be string ERROR
         for ($x = 0; $x < count($casinos); $x++) {

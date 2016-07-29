@@ -9,6 +9,9 @@ use App\Repositories\RestaurantRepository;
 use App\Repositories\MachineRepository;
 use App\Repositories\MachineReadingsRepository;
 use App\Repositories\LogOptionRepository;
+use App\Repositories\FryerRepository;
+use App\Repositories\YellowGreasePickupRepository;
+use App\Repositories\FryerTMPSRepository;
 use App\Http\Controllers\AppBaseController as InfyOmBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -25,8 +28,11 @@ class ExcelController extends InfyOmBaseController
     private $machineRepository;
     private $machinereadingsRepository;
     private $logoptionRepository;
+    private $fryerRepository;
+    private $yellowGreasePickupRepository;
+    private $fryerTMPSRepository;
 
-    public function __construct(CorporationRepository $corporationRepo, CasinoRepository $casinoRepo, RestaurantRepository $restaurantRepo, MachineRepository $machinesRepo, MachineReadingsRepository $machinereadingsRepo, LogOptionRepository $logoptionsRepo)
+    public function __construct(CorporationRepository $corporationRepo, CasinoRepository $casinoRepo, RestaurantRepository $restaurantRepo, MachineRepository $machinesRepo, MachineReadingsRepository $machinereadingsRepo, LogOptionRepository $logoptionsRepo, FryerRepository $fryerRepo, YellowGreasePickupRepository $yellowGreasePickupRepo, FryerTMPSRepository $fryerTMPSRepo)
     {
     	//$this->middleware('auth');
         $this->corporationRepository = $corporationRepo;
@@ -35,6 +41,9 @@ class ExcelController extends InfyOmBaseController
         $this->machineRepository = $machinesRepo;
         $this->machinereadingsRepository = $machinereadingsRepo;
         $this->logoptionRepository = $logoptionsRepo;
+        $this->fryerRepository = $fryerRepo;
+        $this->yellowGreasePickupRepository = $yellowGreasePickupRepo;
+        $this->fryerTMPSRepository = $fryerTMPSRepo;
     }
 
     public function getCorporationExport(Request $request) 
@@ -42,11 +51,6 @@ class ExcelController extends InfyOmBaseController
     	$this->corporationRepository->pushCriteria(new RequestCriteria($request));
         $corporations = $this->corporationRepository->all();
 
-        // Excel::create('Corporations Data', function($excel){
-        // 	$excel->sheet('Sheet 1', function($excel){
-        // 		$sheet->fromModel($corporations);
-        // 	});
-        // })->export('xlsx');
         Excel::create('Corporation Data', function($excel) use($corporations){
         	$excel->sheet('Sheet 1', function($sheet) use($corporations){
         		$sheet->fromModel($corporations);
@@ -129,6 +133,55 @@ class ExcelController extends InfyOmBaseController
         		$sheet->fromModel($logoptions);
         	});
 		})->export('xls');
+    }
+
+    public function getFryerExport(Request $request)
+    {
+        $this->fryerRepository->pushCriteria(new RequestCriteria($request));
+        $fryers = $this->fryerRepository->all();
+        
+        Excel::create('Fryer Data', function($excel) use($fryers){
+            $excel->sheet('Sheet 1', function($sheet) use($fryers){
+                $sheet->fromModel($fryers);
+            });
+        })->export('xls');
+    }
+
+    public function getYellowGreasePickupExport(Request $request)
+    {
+        $this->yellowGreasePickupRepository->pushCriteria(new RequestCriteria($request));
+        $yellowGreasePickups = $this->yellowGreasePickupRepository->all();
+        Excel::create('Yellow Grease Pickup Data', function($excel) use($yellowGreasePickups){
+            $excel->sheet('Sheet 1', function($sheet) use($yellowGreasePickups){
+                $arr =array();
+                foreach($yellowGreasePickups as $yellowGreasePickup) {
+                        $data =  array($yellowGreasePickup->id, $yellowGreasePickup->corporation->corporation_name, $yellowGreasePickup->casino->casino_trade_name, $yellowGreasePickup->grease, $yellowGreasePickup->pickup_date, $yellowGreasePickup->status, $yellowGreasePickup->created_at, $yellowGreasePickup->updated_at);
+                        array_push($arr, $data);
+                }
+                $sheet->fromArray($arr,null,'A1',false,false)->prependRow(
+                    array('ID', 'Corporation Name', 'Casino Name', 'Grease', 'Pickup Date', 'Status', 'Created At', 'Updated At')
+                );
+            });
+        })->export('xls');
+    }
+
+    public function getFryerTMPS(Request $request)
+    {
+        $this->fryerTMPSRepository->pushCriteria(new RequestCriteria($request));
+        $fryerTMPSs = $this->fryerTMPSRepository->all();
+        Excel::create('Fryer TMPS Pickup Data', function($excel) use($fryerTMPSs){
+            $excel->sheet('Sheet 1', function($sheet) use($fryerTMPSs){
+                $arr =array();
+                foreach($fryerTMPSs as $tmps) {
+                        $moveToFryer = isset($tmps->moveToFryer->fryer_name) ? $tmps->moveToFryer->fryer_name : '';
+                        $data =  array($tmps->id, $tmps->fryer->fryer_name, $tmps->measured_tpm, $tmps->oil_temp, $tmps->changed_oil, $tmps->quantity_added, $tmps->oil_moved, $tmps->amount_moved, $moveToFryer, $tmps->creation_date, $tmps->status, $tmps->created_at, $tmps->updated_at);
+                        array_push($arr, $data);
+                }
+                $sheet->fromArray($arr,null,'A1',false,false)->prependRow(
+                    array('ID', 'Fryer Name', 'Measured Tpm', 'Oil Temp', 'Changed Oil', 'Quantity Added', 'Oil Moved', 'Amount Moved', 'Moved To Fryer Name', 'Creation Date', 'Status', 'Created At', 'Updated At')
+                );
+            });
+        })->export('xls');
     }
 
 }
