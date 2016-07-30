@@ -117,7 +117,7 @@
         var creation_date = $("#creation_date").val();
 
         var urlRequest = 'fryerTMPSs?search='+setDefault(fryer_id, 'fryer_id')+''+setDefault(measured_tpm, 'measured_tpm')+''+setDefault(oil_temp, 'oil_temp')+''+setDefault(is_changed_oil, 'is_changed_oil')+''+setDefault(is_oil_moved, 'is_oil_moved')+''+setDefault(creation_date, 'creation_date');
-        console.log(urlRequest);
+        //console.log(urlRequest);
 
         if(fryer_id ||
             measured_tpm ||

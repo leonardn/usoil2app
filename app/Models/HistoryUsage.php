@@ -7,11 +7,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="TrashBin",
- *      required={restaurant_id, log_option_id, trash_weight, creation_date},
+ *      definition="HistoryUsage",
+ *      required={corporation_id, casino_id, restaurant_id, usage, month},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="corporation_id",
+ *          description="corporation_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="casino_id",
+ *          description="casino_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -22,16 +34,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="log_option_id",
- *          description="log_option_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="trash_weight",
- *          description="trash_weight",
+ *          property="usage",
+ *          description="usage",
  *          type="number",
  *          format="float"
+ *      ),
+ *      @SWG\Property(
+ *          property="month",
+ *          description="month",
+ *          type="string"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -47,21 +58,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class TrashBin extends Model
+class HistoryUsage extends Model
 {
     use SoftDeletes;
 
-    public $table = 'trash_bins';
+    public $table = 'history_usages';
     
 
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
+        'corporation_id',
+        'casino_id',
         'restaurant_id',
-        'log_option_id',
-        'trash_weight',
-        'creation_date',
+        'usage',
+        'month',
         'status'
     ];
 
@@ -71,10 +83,11 @@ class TrashBin extends Model
      * @var array
      */
     protected $casts = [
+        'corporation_id' => 'integer',
+        'casino_id' => 'integer',
         'restaurant_id' => 'integer',
-        'log_option_id' => 'integer',
-        'trash_weight' => 'float',
-        'creation_date' => 'datetime'
+        'usage' => 'float',
+        'month' => 'string'
     ];
 
     /**
@@ -83,19 +96,26 @@ class TrashBin extends Model
      * @var array
      */
     public static $rules = [
+        'corporation_id' => 'required',
+        'casino_id' => 'required',
         'restaurant_id' => 'required',
-        'log_option_id' => 'required',
-        'trash_weight' => 'required',
-        'creation_date' => 'required'
+        'usage' => 'required',
+        'month' => 'required'
     ];
 
-    public function restaurant() 
+    public function corporation()
+    {
+        return $this->belongsTo(Corporation::class);
+    }
+
+    public function casino()
+    {
+        return $this->belongsTo(Casino::class);
+    }
+
+    public function restaurant()
     {
         return $this->belongsTo(Restaurant::class);
     }
 
-    public function logoption()
-    {
-        return $this->belongsTo(LogOption::class, 'log_option_id');
-    }
 }

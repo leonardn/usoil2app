@@ -12,6 +12,8 @@ use App\Repositories\LogOptionRepository;
 use App\Repositories\FryerRepository;
 use App\Repositories\YellowGreasePickupRepository;
 use App\Repositories\FryerTMPSRepository;
+use App\Repositories\TrashBinRepository;
+use App\Repositories\HistoryUsageRepository;
 use App\Http\Controllers\AppBaseController as InfyOmBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -31,8 +33,10 @@ class ExcelController extends InfyOmBaseController
     private $fryerRepository;
     private $yellowGreasePickupRepository;
     private $fryerTMPSRepository;
+    private $trashBinRepository;
+    private $historyUsageRepository;
 
-    public function __construct(CorporationRepository $corporationRepo, CasinoRepository $casinoRepo, RestaurantRepository $restaurantRepo, MachineRepository $machinesRepo, MachineReadingsRepository $machinereadingsRepo, LogOptionRepository $logoptionsRepo, FryerRepository $fryerRepo, YellowGreasePickupRepository $yellowGreasePickupRepo, FryerTMPSRepository $fryerTMPSRepo)
+    public function __construct(CorporationRepository $corporationRepo, CasinoRepository $casinoRepo, RestaurantRepository $restaurantRepo, MachineRepository $machinesRepo, MachineReadingsRepository $machinereadingsRepo, LogOptionRepository $logoptionsRepo, FryerRepository $fryerRepo, YellowGreasePickupRepository $yellowGreasePickupRepo, FryerTMPSRepository $fryerTMPSRepo, TrashBinRepository $trashBinRepo, HistoryUsageRepository $historyUsageRepo)
     {
     	//$this->middleware('auth');
         $this->corporationRepository = $corporationRepo;
@@ -44,6 +48,8 @@ class ExcelController extends InfyOmBaseController
         $this->fryerRepository = $fryerRepo;
         $this->yellowGreasePickupRepository = $yellowGreasePickupRepo;
         $this->fryerTMPSRepository = $fryerTMPSRepo;
+        $this->trashBinRepository = $trashBinRepo;
+        $this->historyUsageRepository = $historyUsageRepo;
     }
 
     public function getCorporationExport(Request $request) 
@@ -179,6 +185,42 @@ class ExcelController extends InfyOmBaseController
                 }
                 $sheet->fromArray($arr,null,'A1',false,false)->prependRow(
                     array('ID', 'Fryer Name', 'Measured Tpm', 'Oil Temp', 'Changed Oil', 'Quantity Added', 'Oil Moved', 'Amount Moved', 'Moved To Fryer Name', 'Creation Date', 'Status', 'Created At', 'Updated At')
+                );
+            });
+        })->export('xls');
+    }
+
+    public function getTrashBin(Request $request)
+    {
+        $this->trashBinRepository->pushCriteria(new RequestCriteria($request));
+        $trashBins = $this->trashBinRepository->all();
+        Excel::create('Trash Bins Data', function($excel) use($trashBins){
+            $excel->sheet('Sheet 1', function($sheet) use($trashBins){
+                $arr =array();
+                foreach($trashBins as $tb) {
+                    $data = array($tb->id, $tb->restaurant->restaurant_name, $tb->logoption->option_title, $tb->trash_weight, $tb->creation_date, $tb->status, $tb->created_at, $tb->updated_at);
+                        array_push($arr, $data);
+                }
+                $sheet->fromArray($arr,null,'A1',false,false)->prependRow(
+                    array('ID', 'Restaurant Name', 'Log Option', 'Trash Weight', 'Creation Date', 'Status', 'Created At', 'Updated At')
+                );
+            });
+        })->export('xls');
+    }
+
+    public function getHistoryUsage(Request $request)
+    {
+        $this->historyUsageRepository->pushCriteria(new RequestCriteria($request));
+        $historyUsages = $this->historyUsageRepository->all();
+        Excel::create('History Usage Data', function($excel) use($historyUsages){
+            $excel->sheet('Sheet 1', function($sheet) use($historyUsages){
+                $arr =array();
+                foreach($historyUsages as $hu) {
+                    $data = array($hu->id, $hu->corporation->corporation_name, $hu->casino->casino_trade_name, $hu->restaurant->restaurant_name, $hu->usage, $hu->month, $hu->status, $hu->created_at, $hu->updated_at);
+                        array_push($arr, $data);
+                }
+                $sheet->fromArray($arr,null,'A1',false,false)->prependRow(
+                    array('ID', 'Corporation Name', 'Casino Name', 'Restaurant Name', 'Usage', 'Month', 'Status', 'Created At', 'Updated At')
                 );
             });
         })->export('xls');

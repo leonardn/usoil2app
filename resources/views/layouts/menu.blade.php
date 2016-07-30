@@ -38,10 +38,16 @@
     <a href="{!! route('logoptions.index') !!}">Log Options</a>
 </li>
 
+<li class="{{ Request::is('trashBins*') ? 'active' : '' }}">
+    <a href="{!! route('trashBins.index') !!}"><i class="fa fa-angle-right pull-right i-sidebar-chevron" aria-hidden="true"></i>Trash Bins</a>
+</li>
+
+<li class="{{ Request::is('historyUsages*') ? 'active' : '' }}">
+    <a href="{!! route('historyUsages.index') !!}"><i class="fa fa-angle-right pull-right i-sidebar-chevron" aria-hidden="true"></i>History Usage</a>
+</li>
+
 <li>
    <a href="{!! url('/logout') !!}">Logout</a>
 </li>
-<li class="{{ Request::is('trashBins*') ? 'active' : '' }}">
-    <a href="{!! route('trashBins.index') !!}">TrashBins</a>
-</li>
+
 

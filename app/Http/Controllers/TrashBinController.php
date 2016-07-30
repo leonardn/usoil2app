@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Requests\CreateTrashBinRequest;
 use App\Http\Requests\UpdateTrashBinRequest;
 use App\Repositories\TrashBinRepository;
+use App\Repositories\LogOptionRepository;
 use App\Http\Controllers\AppBaseController as InfyOmBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -16,10 +17,13 @@ class TrashBinController extends InfyOmBaseController
 {
     /** @var  TrashBinRepository */
     private $trashBinRepository;
+    private $logoptionRepository;
 
-    public function __construct(TrashBinRepository $trashBinRepo)
+    public function __construct(TrashBinRepository $trashBinRepo, LogOptionRepository $logoptionRepo)
     {
+        $this->middleware('auth');
         $this->trashBinRepository = $trashBinRepo;
+        $this->logoptionRepository = $logoptionRepo;
     }
 
     /**
@@ -31,10 +35,27 @@ class TrashBinController extends InfyOmBaseController
     public function index(Request $request)
     {
         $this->trashBinRepository->pushCriteria(new RequestCriteria($request));
-        $trashBins = $this->trashBinRepository->all();
+        $trashBins = $this->trashBinRepository->paginate(10);
 
-        return view('trashBins.index')
-            ->with('trashBins', $trashBins);
+        $this->logoptionRepository->pushCriteria(new RequestCriteria($request));
+        $logoptions = $this->logoptionRepository->all();
+
+        $options = array('' => 'Select Log Options');
+        foreach ($logoptions as $value) {
+            $options[$value->id] = $value->option_title;
+        }
+
+
+        if($request->ajax())
+        {
+            return view('trashBins.table')
+                ->with('trashBins', $trashBins);
+        }
+        else 
+        {
+            return view('trashBins.index')
+                ->with('trashBins', $trashBins)->with('logoptions', $options);
+        }
     }
 
     /**
@@ -42,9 +63,17 @@ class TrashBinController extends InfyOmBaseController
      *
      * @return Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('trashBins.create');
+        $this->logoptionRepository->pushCriteria(new RequestCriteria($request));
+        $logoptions = $this->logoptionRepository->all();
+
+        $options = array('' => 'Select Log Options');
+        foreach ($logoptions as $value) {
+            $options[$value->id] = $value->option_title;
+        }
+
+        return view('trashBins.create')->with('logoptions', $options);
     }
 
     /**
@@ -92,7 +121,7 @@ class TrashBinController extends InfyOmBaseController
      *
      * @return Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
         $trashBin = $this->trashBinRepository->findWithoutFail($id);
 
@@ -102,7 +131,15 @@ class TrashBinController extends InfyOmBaseController
             return redirect(route('trashBins.index'));
         }
 
-        return view('trashBins.edit')->with('trashBin', $trashBin);
+        $this->logoptionRepository->pushCriteria(new RequestCriteria($request));
+        $logoptions = $this->logoptionRepository->all();
+
+        $options = array('' => 'Select Log Options');
+        foreach ($logoptions as $value) {
+            $options[$value->id] = $value->option_title;
+        }
+
+        return view('trashBins.edit')->with('trashBin', $trashBin)->with('logoptions', $options);
     }
 
     /**

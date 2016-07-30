@@ -2,19 +2,20 @@
 
 namespace App\Repositories;
 
-use App\Models\TrashBin;
+use App\Models\HistoryUsage;
 use InfyOm\Generator\Common\BaseRepository;
 
-class TrashBinRepository extends BaseRepository
+class HistoryUsageRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
+        'corporation_id',
+        'casino_id',
         'restaurant_id',
-        'log_option_id',
-        'trash_weight',
-        'creation_date' => 'like'
+        'usage',
+        'month'
     ];
 
     /**
@@ -22,6 +23,6 @@ class TrashBinRepository extends BaseRepository
      **/
     public function model()
     {
-        return TrashBin::class;
+        return HistoryUsage::class;
     }
 }
