@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b12bb5dde6b9b2139266911e837baaee",
+    "hash": "8d8a05f414cf2b05e6f53ed09454e46d",
     "content-hash": "b46d947715909bc59574589285f7f725",
     "packages": [
         {
@@ -612,12 +612,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/InfyOmLabs/laravel-generator.git",
-                "reference": "4044c8c3e6c1b5541244b7117b0f7677ca7702bb"
+                "reference": "df078d2df753b2c6ce860ca2311873bfaf8167e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/InfyOmLabs/laravel-generator/zipball/4044c8c3e6c1b5541244b7117b0f7677ca7702bb",
-                "reference": "4044c8c3e6c1b5541244b7117b0f7677ca7702bb",
+                "url": "https://api.github.com/repos/InfyOmLabs/laravel-generator/zipball/df078d2df753b2c6ce860ca2311873bfaf8167e8",
+                "reference": "df078d2df753b2c6ce860ca2311873bfaf8167e8",
                 "shasum": ""
             },
             "require": {
@@ -659,7 +659,7 @@
                 "test",
                 "view"
             ],
-            "time": "2016-06-18 07:47:17"
+            "time": "2016-07-23 05:14:46"
         },
         {
             "name": "infyomlabs/swagger-generator",

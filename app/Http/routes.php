@@ -61,3 +61,14 @@ Route::get('get-autocomplete-corporation-options', 'AutoCompleteController@getCo
 Route::get('get-autocomplete-casino-options', 'AutoCompleteController@getCasinoAutoComplete');
 
 Route::resource('fryerTMPSs', 'FryerTMPSController');
+
+
+// Needs revision
+Route::resource('userAccesses', 'UserAccessController');
+
+Route::get('userAccesses/create/{id}', [
+			'as' => 'userAccesses.create',
+			'uses' => 'UserAccessController@create']);
+
+Route::resource('wpUsers', 'wp_usersController');
+

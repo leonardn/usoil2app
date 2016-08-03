@@ -12,6 +12,8 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+//php artisan infyom.api:controller UserAccessController
+
 class RestaurantController extends InfyOmBaseController
 {
     /** @var  RestaurantRepository */

@@ -8023,4 +8023,20 @@ input[type="radio"] .styled:checked + label::after {
 .fa-medium:before {
   content: "\f23a"; }
 
+.center-text{
+  display: block;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.user-access-row {
+  margin-left: 10%;
+  /*margin-right: 10%;*/
+}
+
+.user-access-row > div{
+  min-width: 260px;
+  margin-right: 25px;
+}
 /*# sourceMappingURL=app.css.map */

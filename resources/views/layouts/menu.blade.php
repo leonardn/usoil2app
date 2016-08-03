@@ -14,6 +14,10 @@
     <a href="{!! route('restaurants.index') !!}"><i class="fa fa-angle-right pull-right i-sidebar-chevron" aria-hidden="true"></i>Restaurants</a>
 </li>
 
+<li class="{{ Request::is('userAccesses*') ? 'active' : '' }}">
+    <a href="{!! route('userAccesses.index') !!}">User Access</a>
+</li>
+
 <li class="{{ Request::is('fryers*') ? 'active' : '' }}">
     <a href="{!! route('fryers.index') !!}"><i class="fa fa-angle-right pull-right i-sidebar-chevron" aria-hidden="true"></i>Fryers</a>
 </li>
@@ -29,3 +33,9 @@
 <li>
    <a href="{!! url('/logout') !!}">Logout</a>
 </li>
+{{-- 
+<li class="{{ Request::is('wpUsers*') ? 'active' : '' }}">
+    <a href="{!! route('wpUsers.index') !!}">wp_users</a>
+</li>
+ --}}
+
