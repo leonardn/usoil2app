@@ -17,19 +17,36 @@
 </div>
 
 <div class="row">
-
     @foreach($userinfos as $user)
-        {!! Form::hidden('user_id', $user['user_id']) !!}
-        <div class="col-sm-10 col-xs-10 link-to-checkboxes-bg" style="margin-left: 10%; margin-right: 10%;margin-top: 30px;">
-            <label class="center-text">User Information</label>
-            <label>Username:</label>{!! $user['user_name'] !!}<br>
-            <label>Name:</label>{!! $user['first_name'].' '. $user['last_name'] !!}<br>
-            <label>Email: </label>{!! $user['user_email'] !!}
-            <br><br><br><br>
-        </div>
+        <table class="table table-responsive list-table" id="corporations-table" style="width: 70%;margin-left: auto;margin-right: auto;">
+            {!! Form::hidden('user_id', $user['user_id']) !!}
+            <div class="col-sm-10 col-xs-10" style="margin-left: 10%; margin-right: 10%;margin-top: 30px;">
+                <thead>
+                    <th colspan=2 class="text-center">User Information</label></th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Username</td>
+                        <td>{!! $user['user_name'] !!}</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>{!! $user['first_name'].' '. $user['last_name'] !!}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>{!! $user['user_email'] !!}</td>
+                    </tr>
+                </tbody>
+                <br><br><br><br>
+            </div>
+        </table>
     @endforeach   
 
 </div>
+
+<div class="clearfix"></div>
+<hr>
 
 <div class="clearfix"></div>
 
