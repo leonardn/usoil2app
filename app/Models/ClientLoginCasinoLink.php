@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="CorporationCasinoLink",
- *      required={corporation_id, casino_id},
+ *      definition="ClientLoginCasinoLink",
+ *      required={client_login_id, casino_id},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -16,8 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="corporation_id",
- *          description="corporation_id",
+ *          property="client_login_id",
+ *          description="client_login_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -41,18 +41,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class CorporationCasinoLink extends Model
+class ClientLoginCasinoLink extends Model
 {
     use SoftDeletes;
 
-    public $table = 'corporation_casino_links';
+    public $table = 'client_login_casino_links';
     
 
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
-        'corporation_id',
+        'client_login_id',
         'casino_id'
     ];
 
@@ -62,7 +62,7 @@ class CorporationCasinoLink extends Model
      * @var array
      */
     protected $casts = [
-        'corporation_id' => 'integer',
+        'client_login_id' => 'integer',
         'casino_id' => 'integer'
     ];
 
@@ -72,13 +72,13 @@ class CorporationCasinoLink extends Model
      * @var array
      */
     public static $rules = [
-        'corporation_id' => 'required',
+        'client_login_id' => 'required',
         'casino_id' => 'required'
     ];
 
-    public function corporation()
+    public function clientLogin()
     {
-        return $this->belongsTo(Corporation::class);
+        return $this->belongsTo(ClientLogin::class);
     }
 
     public function casino()

@@ -14,7 +14,6 @@ use Response;
 
 use App\Repositories\CasinoRepository;
 use App\Models\CorporationCasinoLink;
-use App\Models\Casino;
 class CorporationController extends InfyOmBaseController
 {
     /** @var  CorporationRepository */
@@ -131,7 +130,7 @@ class CorporationController extends InfyOmBaseController
         $corporation = $this->corporationRepository->findWithoutFail($id);
 
         $this->casinoRepository->pushCriteria(new RequestCriteria($request));
-        $casinos = Casino::with('restaurantLinks')->get();
+        $casinos = $this->casinoRepository->with('restaurantLinks')->all(); //Casino::with('restaurantLinks')->get();
         // foreach($casinos as $casino){
         //     //echo var_dump($casino);
         //     foreach($casino->restaurantLinks as $links) {

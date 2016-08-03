@@ -78,3 +78,5 @@ Route::resource('fryerTMPSs', 'FryerTMPSController');
 Route::resource('trashBins', 'TrashBinController');
 
 Route::resource('historyUsages', 'HistoryUsageController');
+
+Route::resource('clientLogins', 'ClientLoginController');

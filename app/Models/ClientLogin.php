@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="CorporationCasinoLink",
- *      required={corporation_id, casino_id},
+ *      definition="ClientLogin",
+ *      required={email, password},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -16,16 +16,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="corporation_id",
- *          description="corporation_id",
- *          type="integer",
- *          format="int32"
+ *          property="email",
+ *          description="email",
+ *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="casino_id",
- *          description="casino_id",
- *          type="integer",
- *          format="int32"
+ *          property="password",
+ *          description="password",
+ *          type="string"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -41,19 +39,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class CorporationCasinoLink extends Model
+class ClientLogin extends Model
 {
     use SoftDeletes;
 
-    public $table = 'corporation_casino_links';
+    public $table = 'client_logins';
     
 
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
-        'corporation_id',
-        'casino_id'
+        'email',
+        'password',
+        'status'
     ];
 
     /**
@@ -62,8 +61,8 @@ class CorporationCasinoLink extends Model
      * @var array
      */
     protected $casts = [
-        'corporation_id' => 'integer',
-        'casino_id' => 'integer'
+        'email' => 'string',
+        'password' => 'string'
     ];
 
     /**
@@ -72,17 +71,17 @@ class CorporationCasinoLink extends Model
      * @var array
      */
     public static $rules = [
-        'corporation_id' => 'required',
-        'casino_id' => 'required'
+        'email' => 'required',
+        'password' => 'required'
     ];
 
-    public function corporation()
+    public function casinoLinks() 
     {
-        return $this->belongsTo(Corporation::class);
+        return $this->hasMany(ClientLoginCasinoLink::class);
     }
 
-    public function casino()
+    public function corporationLinks()
     {
-        return $this->belongsTo(Casino::class);
+        return $this->hasMany(ClientLoginCorporationLink::class);
     }
 }
