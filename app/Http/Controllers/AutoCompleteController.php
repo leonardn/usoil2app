@@ -108,4 +108,22 @@ class AutoCompleteController extends InfyOmBaseController
 
         return Response::json($results);
     }
+    
+    // FRYER
+    public function getFryerAutoComplete(Request $request)
+    {
+    	$term = $request->input('term');
+		$results = array();
+    	
+    	$queries  = DB::table('fryers')
+					->where('fryer_name', 'LIKE', '%'.$term.'%')
+					->take(6)->get();
+					
+        foreach($queries as $item)
+        {
+        	$results[] = ['value' => $item->fryer_name, 'id' => $item->id];
+        }
+
+        return Response::json($results);
+    }
 }

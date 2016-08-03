@@ -38,6 +38,10 @@
     <a href="{!! route('logoptions.index') !!}">Log Options</a>
 </li>
 
+<li class="{{ Request::is('logrequests*') ? 'active' : '' }}">
+    <a href="{!! route('logrequests.index') !!}">Log Requests</a>
+</li>
+
 <li>
    <a href="{!! url('/logout') !!}">Logout</a>
 </li>

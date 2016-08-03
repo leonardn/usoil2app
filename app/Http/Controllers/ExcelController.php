@@ -9,6 +9,7 @@ use App\Repositories\RestaurantRepository;
 use App\Repositories\MachineRepository;
 use App\Repositories\MachineReadingsRepository;
 use App\Repositories\LogOptionRepository;
+use App\Repositories\LogRequestsRepository;
 use App\Http\Controllers\AppBaseController as InfyOmBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -25,8 +26,9 @@ class ExcelController extends InfyOmBaseController
     private $machineRepository;
     private $machinereadingsRepository;
     private $logoptionRepository;
+    private $logrequestsRepository;
 
-    public function __construct(CorporationRepository $corporationRepo, CasinoRepository $casinoRepo, RestaurantRepository $restaurantRepo, MachineRepository $machinesRepo, MachineReadingsRepository $machinereadingsRepo, LogOptionRepository $logoptionsRepo)
+    public function __construct(CorporationRepository $corporationRepo, CasinoRepository $casinoRepo, RestaurantRepository $restaurantRepo, MachineRepository $machinesRepo, MachineReadingsRepository $machinereadingsRepo, LogOptionRepository $logoptionsRepo, LogRequestsRepository $logrequestsRepo)
     {
     	//$this->middleware('auth');
         $this->corporationRepository = $corporationRepo;
@@ -35,6 +37,7 @@ class ExcelController extends InfyOmBaseController
         $this->machineRepository = $machinesRepo;
         $this->machinereadingsRepository = $machinereadingsRepo;
         $this->logoptionRepository = $logoptionsRepo;
+        $this->logrequestsRepository = $logrequestsRepo;
     }
 
     public function getCorporationExport(Request $request) 
@@ -131,4 +134,23 @@ class ExcelController extends InfyOmBaseController
 		})->export('xls');
     }
 
+	public function getLogRequestExport(Request $request)
+    {
+    	$this->logrequestsRepository->pushCriteria(new RequestCriteria($request));
+    	$logrequests = $this->logrequestsRepository->all();
+		Excel::create('Log Request Data', function($excel) use($logrequests){
+			$excel->sheet('Sheet 1', function($sheet) use($logrequests){
+                $arr =array();
+                foreach($logrequests as $logrequest) {
+					    $data =  array($logrequest->id,  $logrequest->fryers->fryer_name, $logrequest->logoptions->option_title, $logrequest->creation_date,
+                            $logrequest->status, $logrequest->created_at, $logrequest->updated_at, $logrequest->deleted_at);
+                        array_push($arr, $data);
+                }
+                $sheet->fromArray($arr,null,'A1',false,false)->prependRow(
+                array(
+                 'ID', 'Fryer Name', 'Log Option', 'Creation DateTime', 'Status', 'Created At', 'Updated At', 'Deleted At')
+                );
+            });
+        })->export('xls');
+    }
 }

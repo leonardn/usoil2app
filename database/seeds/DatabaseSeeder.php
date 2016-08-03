@@ -77,5 +77,21 @@ class DatabaseSeeder extends Seeder
 				'status' => '1',
 	        ]);
 		}
+		
+		//DUMMY FRYER DATA
+    	for ($x = 0; $x <= 9; $x++) {
+    		DB::table('fryers')->insert([
+				'fryer_name' => 'Fryer '.$x,
+				'status' => '1',
+	        ]);
+		}
+		
+		//DUMMY LOG OPTION DATA
+    	for ($x = 0; $x <= 9; $x++) {
+    		DB::table('log_options')->insert([
+				'option_title' => 'Log Option '.$x,
+				'status' => '1',
+	        ]);
+		}
     }
 }
