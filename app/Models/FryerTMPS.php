@@ -121,4 +121,15 @@ class FryerTMPS extends Model
         'quantity_added' => 'required',
         'creation_date' => 'required'
     ];
+
+    public function fryer() 
+    {
+        return $this->belongsTo(Fryer::class);
+    }
+
+    public function moveToFryer()
+    {
+        return $this->belongsTo(Fryer::class, 'moved_to_fryer_id');
+    }
+
 }

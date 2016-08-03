@@ -45,10 +45,10 @@ Route::resource('restaurants', 'RestaurantController');
 
 Route::resource('machines', 'MachineController');
 Route::resource('machinereadings', 'MachineReadingsController');
-Route::resource('restaurants', 'RestaurantController');
 Route::resource('logoptions', 'LogOptionController');
+
 Route::resource('logrequests', 'LogRequestsController');
-Route::resource('tests', 'TestController');
+
 
 //Export
 Route::get('get-corporation-export', 'ExcelController@getCorporationExport');
@@ -58,15 +58,29 @@ Route::get('get-machine-export', 'ExcelController@getMachineExport');
 Route::get('get-logoption-export', 'ExcelController@getLogOptionExport');
 Route::get('get-machinereading-export', 'ExcelController@getMachineReadingExport');
 Route::get('get-logrequest-export', 'ExcelController@getLogRequestExport');
+Route::get('get-fryer-export', 'ExcelController@getFryerExport');
+Route::get('get-yellow-grease-pickup-export', 'ExcelController@getYellowGreasePickupExport');
+Route::get('get-fryerTMPS-export', 'ExcelController@getFryerTMPS');
+Route::get('get-trash-bin-export', 'ExcelController@getTrashBin');
+Route::get('get-history-usage-export', 'ExcelController@getHistoryUsage');
 
 //Autocomplete
 Route::get('get-autocomplete-machines-options', 'AutoCompleteController@getMachineAutoComplete');
 Route::get('get-autocomplete-logoptions-options', 'AutoCompleteController@getLogOptionAutoComplete');
 Route::get('get-autocomplete-restaurants-options', 'AutoCompleteController@getRestaurantAutoComplete');
 Route::get('get-autocomplete-fryers-options', 'AutoCompleteController@getFryerAutoComplete');
-
-Route::resource('fryers', 'FryerController');
-Route::resource('yellowGreasePickups', 'YellowGreasePickupController');
+Route::get('get-autocomplete-fryer-options', 'AutoCompleteController@getFryerAutoComplete');
 Route::get('get-autocomplete-corporation-options', 'AutoCompleteController@getCorporationAutoComplete');
 Route::get('get-autocomplete-casino-options', 'AutoCompleteController@getCasinoAutoComplete');
+
+Route::resource('fryers', 'FryerController');
+
+Route::resource('yellowGreasePickups', 'YellowGreasePickupController');
+
 Route::resource('fryerTMPSs', 'FryerTMPSController');
+
+Route::resource('trashBins', 'TrashBinController');
+
+Route::resource('historyUsages', 'HistoryUsageController');
+
+Route::resource('clientLogins', 'ClientLoginController');

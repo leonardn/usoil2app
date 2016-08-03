@@ -75,4 +75,14 @@ class CorporationCasinoLink extends Model
         'corporation_id' => 'required',
         'casino_id' => 'required'
     ];
+
+    public function corporation()
+    {
+        return $this->belongsTo(Corporation::class);
+    }
+
+    public function casino()
+    {
+        return $this->belongsTo(Casino::class);
+    }
 }

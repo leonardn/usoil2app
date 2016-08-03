@@ -5765,7 +5765,8 @@ td.border-right {
   background: #f4f4f4;
   border: 1px solid #f4f4f4;
   box-shadow: none;
-  padding: 20px; }
+  padding: 10px;
+  min-height: 45px; }
 
 .select-form-control {
   background: #f4f4f4;
@@ -5840,6 +5841,9 @@ label.checkbox-inline {
 
 .padding-left-none {
   padding-left: 0px !important; }
+
+.hide-important {
+  display: none !important; }
 
 /*
  * http://cssdeck.com/labs/css3-webkit-vertical-scrollbars/
