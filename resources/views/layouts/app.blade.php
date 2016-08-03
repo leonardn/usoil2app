@@ -44,7 +44,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    USSOIL2APP
+                    USOIL2APP
                 </a>
             </div>
 
