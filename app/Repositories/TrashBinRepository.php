@@ -13,8 +13,8 @@ class TrashBinRepository extends BaseRepository
     protected $fieldSearchable = [
         'restaurant_id',
         'log_option_id',
-        'trash_weight',
-        'creation_date' => 'like'
+        'trash_weight' => 'like',
+        'creation_date'
     ];
 
     /**

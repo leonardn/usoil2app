@@ -144,4 +144,14 @@ class Restaurant extends Model
         'contact_person_last_name' => 'required',
         'activation_date' => 'required'
     ];
+
+    public function fryerLinks()
+    {
+        return $this->hasMany(RestaurantFryerLink::class);
+    }
+
+    public function machineLinks()
+    {
+        return $this->hasMany(RestaurantMachineLink::class);
+    }
 }

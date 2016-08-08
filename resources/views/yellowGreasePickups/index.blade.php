@@ -84,7 +84,7 @@
       dateFormat:'yy-mm-dd',
     });
 
-    var lastObj = "";
+    var lastObj = $("#corporation_id");
     $(".form-control").keyup(function( event ) {
         if ( event.which == 13 ) {
             event.preventDefault();
@@ -95,6 +95,14 @@
 		var casino_id = $("#casino_id").val();
 		var grease = $("#grease").val();
 		var pickup_date = $("#pickup_date").val();
+
+        //AutoComplete
+        var autocomplete_corporation = $("#autocomplete-corporation").val();
+        var autocomplete_casino = $("#autocomplete-casino").val();
+        if(autocomplete_corporation == "")
+            corporation_id = "";
+        if(autocomplete_casino == "")
+            casino_id = "";
 
         var urlRequest = 'yellowGreasePickups?search='+setDefault(corporation_id, 'corporation_id')+''+setDefault(casino_id, 'casino_id')+''+setDefault(grease, 'grease')+''+setDefault(pickup_date, 'pickup_date');
 
@@ -124,12 +132,12 @@
     });
 
     $("#pickup_date").change(function(){
-        $(".form-control").keyup();
+        lastObj.keyup();
     });
 
     function setDefault(arg, field)
     {
-        return arg != '' ? field + ':'+arg+';' : '';
+        return arg != '' ? field + '%3A'+arg+';' : '';
     }
 
      //DELETE

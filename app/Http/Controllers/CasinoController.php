@@ -206,7 +206,7 @@ class CasinoController extends InfyOmBaseController
      */
     public function destroy($id)
     {
-        $casino = $this->casinoRepository->findWithoutFail($id);
+        $casino = $this->casinoRepository->with('restaurantLinks')->findWithoutFail($id);
 
         if (empty($casino)) {
             Flash::error('Casino not found');
@@ -214,7 +214,13 @@ class CasinoController extends InfyOmBaseController
             return redirect(route('casinos.index'));
         }
 
-        $this->casinoRepository->delete($id);
+        if($this->casinoRepository->delete($id)) {
+            foreach($casino->restaurantLinks as $link)
+            {
+                $casinoRestaurantLink = CasinoRestaurantLink::find($link->id);
+                $casinoRestaurantLink->forceDelete();
+            }
+        }
 
         Flash::success('Casino deleted successfully.');
 

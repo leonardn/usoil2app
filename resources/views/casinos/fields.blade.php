@@ -170,30 +170,70 @@
         </div>
     </div>
     <div class="row row-spacer-top-bot">
-        <div class="col-md-4">
+        <div id="restaurants" class="col-md-4">
             <div class="col-md-12">
                 <div class="row">
-                    <h5>Restaurants Linked</h5>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <h5>Restaurants Linked</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-md-12 checkbox checkbox-warning">
+                                <input id="show-linked-restaurant" onclick="return showLinkedRestaurant();" type="checkbox">
+                                <label for="show-linked-restaurant" class="checkbox-inline pull-right" style="padding-left:5px;">
+                                    Show linked only
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-spacer-top-bot">
+                    {!! Form::text('restaurant_search', null, ['class' => 'form-control search', 'placeholder' => 'Filter Restaurant']) !!}
                 </div>
             </div>
             <div class="col-md-12 link-to-checkboxes-bg">
-                <div class="row link-to-checkboxes custom-scrollbar">
+                <div class="row link-to-checkboxes custom-scrollbar list">
                     @foreach($restaurants as $restaurant)
                         <div class="col-md-12 checkbox checkbox-warning">
                             {!! Form::hidden('restaurant['.$restaurant->custom_index.']', false) !!}
-                            {!! Form::checkbox('restaurant['.$restaurant->custom_index.']', $restaurant->id, $restaurant->id_exists, ['id' => 'is-active'.$restaurant->id]) !!} 
-                            <label for="is-active{!! $restaurant->id !!}" id="restaurants-id" class="checkbox-inline">
+                            {!! Form::checkbox('restaurant['.$restaurant->custom_index.']', $restaurant->id, $restaurant->id_exists, ['id' => 'is-active'.$restaurant->id, 'class' => 'restaurant-item-checkbox']) !!} 
+                            <label for="is-active{!! $restaurant->id !!}" id="restaurants-id" class="checkbox-inline restaurant-name">
                                 {!! $restaurant->restaurant_name !!}
                             </label>
                         </div>
                     @endforeach
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="row">
-                    <h5 class="bot-heading">Link Another Restaurants</h5>
-                </div>
-            </div>
         </div>
     </div>
 </div>
+
+
+@section('scripts')
+    <!-- SOURCE http://www.listjs.com/docs/list-api -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.2.0/list.min.js"></script>
+    <script type="text/javascript">
+        var restaurantOptions = {
+            valueNames: ['restaurant-name']
+        }
+        var casinoList = new List('restaurants', restaurantOptions);
+
+        function showLinkedRestaurant() {
+            if($("#show-linked-restaurant").is(':checked'))
+            {
+                $(".restaurant-item-checkbox").each(function(){
+                    if(!$(this).is(':checked'))
+                        $(this).parent().removeClass("hide-important").addClass("hide-important");
+                });
+            }
+            else
+            {
+                $(".restaurant-item-checkbox").each(function(){
+                    $(this).parent().removeClass("hide-important");
+                });
+            }
+        }
+    </script>
+@endsection

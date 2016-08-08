@@ -14,7 +14,7 @@ class HistoryUsageRepository extends BaseRepository
         'corporation_id',
         'casino_id',
         'restaurant_id',
-        'usage',
+        'usage' => 'like',
         'month'
     ];
 

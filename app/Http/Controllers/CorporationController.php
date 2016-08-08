@@ -13,18 +13,22 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
 use App\Repositories\CasinoRepository;
+use App\Repositories\RestaurantRepository;
 use App\Models\CorporationCasinoLink;
+use App\Models\CorporationRestaurantLink;
 class CorporationController extends InfyOmBaseController
 {
     /** @var  CorporationRepository */
     private $corporationRepository;
     private $casinoRepository;
+    private $restaurantRepository;
 
-    public function __construct(CorporationRepository $corporationRepo, CasinoRepository $casinoRepo)
+    public function __construct(CorporationRepository $corporationRepo, CasinoRepository $casinoRepo, RestaurantRepository $restaurantRepo)
     {
         $this->middleware('auth');
         $this->corporationRepository = $corporationRepo;
         $this->casinoRepository = $casinoRepo;
+        $this->restaurantRepository = $restaurantRepo;
     }
 
     /**
@@ -57,14 +61,22 @@ class CorporationController extends InfyOmBaseController
     public function create(Request $request)
     {
         $this->casinoRepository->pushCriteria(new RequestCriteria($request));
-        $casinos = $this->casinoRepository->all();
+        $casinos = $this->casinoRepository->with('restaurantLinks')->all();
+
+        $this->restaurantRepository->pushCriteria(new RequestCriteria($request));
+        $restaurants = $this->restaurantRepository->all();
 
         // Assigning index to prevent htmlentities() expects parameter 1 to be string ERROR
         for ($x = 0; $x < count($casinos); $x++) {
             $casinos[$x]['custom_index'] = $x;
         }
+        for ($i = 0; $i < count($restaurants); $i++) {
+            $restaurants[$i]['custom_index'] = $i;
+        }
+
         return view('corporations.create')
-            ->with('casinos', $casinos);
+            ->with('casinos', $casinos)
+            ->with('restaurants', $restaurants);
     }
 
     /**
@@ -88,6 +100,16 @@ class CorporationController extends InfyOmBaseController
                     $corpCasinoLink = new CorporationCasinoLink;
                     $corpCasinoLink['corporation_id'] = $corporation->id;
                     $corpCasinoLink['casino_id'] = $input['casino'][$x];
+                    $corpCasinoLink->save();
+                }
+            }
+            for ($x = 0; $x < count($input['restaurant']); $x++)
+            {
+                if(!empty($input['restaurant'][$x]))
+                {
+                    $corpCasinoLink = new CorporationRestaurantLink;
+                    $corpCasinoLink['corporation_id'] = $corporation->id;
+                    $corpCasinoLink['restaurant_id'] = $input['restaurant'][$x];
                     $corpCasinoLink->save();
                 }
             }
@@ -127,7 +149,7 @@ class CorporationController extends InfyOmBaseController
      */
     public function edit($id, Request $request)
     {
-        $corporation = $this->corporationRepository->findWithoutFail($id);
+        $corporation = $this->corporationRepository->with('casinoLinks')->with('restaurantLinks')->findWithoutFail($id);
 
         $this->casinoRepository->pushCriteria(new RequestCriteria($request));
         $casinos = $this->casinoRepository->with('restaurantLinks')->all(); //Casino::with('restaurantLinks')->get();
@@ -139,16 +161,23 @@ class CorporationController extends InfyOmBaseController
         // }
         // exit();
         // return $casinos;
+        $this->restaurantRepository->pushCriteria(new RequestCriteria($request));
+        $restaurants = $this->restaurantRepository->all();
         
         // Assigning index to prevent htmlentities() expects parameter 1 to be string ERROR
         for ($x = 0; $x < count($casinos); $x++) {
             $casinos[$x]['custom_index'] = $x;
-        }
-        // Assigning id_exists For checke checked boxes
-        for ($x = 0; $x < count($casinos); $x++) {
             foreach ($corporation->casinoLinks as $corpCasinoLink) {
                 if($casinos[$x]['id'] == $corpCasinoLink->casino_id) {
                     $casinos[$x]['id_exists'] = 1;
+                }
+            }
+        }
+        for ($x = 0; $x < count($restaurants); $x++) {
+            $restaurants[$x]['custom_index'] = $x;
+            foreach ($corporation->restaurantLinks as $restaurantLinks) {
+                if($restaurants[$x]['id'] == $restaurantLinks->restaurant_id) {
+                    $restaurants[$x]['id_exists'] = 1;
                 }
             }
         }
@@ -159,7 +188,7 @@ class CorporationController extends InfyOmBaseController
             return redirect(route('corporations.index'));
         }
 
-        return view('corporations.edit')->with('corporation', $corporation)->with('casinos', $casinos);
+        return view('corporations.edit')->with('corporation', $corporation)->with('casinos', $casinos)->with('restaurants', $restaurants);
     }
 
     /**
@@ -172,7 +201,7 @@ class CorporationController extends InfyOmBaseController
      */
     public function update($id, UpdateCorporationRequest $request)
     {
-        $corporation = $this->corporationRepository->findWithoutFail($id);
+        $corporation = $this->corporationRepository->with('casinoLinks')->with('restaurantLinks')->findWithoutFail($id);
 
         if (empty($corporation)) {
             Flash::error('Corporation not found');
@@ -189,6 +218,11 @@ class CorporationController extends InfyOmBaseController
                 $corpLink = CorporationCasinoLink::find($link->id);
                 $corpLink->forceDelete();
             }
+            foreach($corporation->restaurantLinks as $link)
+            {
+                $resLink = CorporationRestaurantLink::find($link->id);
+                $resLink->forceDelete();
+            }
             for ($x = 0; $x <= count($request['casino']); $x++)
             {
                 if(!empty($request['casino'][$x]))
@@ -196,6 +230,16 @@ class CorporationController extends InfyOmBaseController
                     $corpCasinoLink = new CorporationCasinoLink;
                     $corpCasinoLink['corporation_id'] = $corporation->id;
                     $corpCasinoLink['casino_id'] = $request['casino'][$x];
+                    $corpCasinoLink->save();
+                }
+            }
+            for ($x = 0; $x < count($request['restaurant']); $x++)
+            {
+                if(!empty($request['restaurant'][$x]))
+                {
+                    $corpCasinoLink = new CorporationRestaurantLink;
+                    $corpCasinoLink['corporation_id'] = $corporation->id;
+                    $corpCasinoLink['restaurant_id'] = $request['restaurant'][$x];
                     $corpCasinoLink->save();
                 }
             }
@@ -215,7 +259,7 @@ class CorporationController extends InfyOmBaseController
      */
     public function destroy($id)
     {
-        $corporation = $this->corporationRepository->findWithoutFail($id);
+        $corporation = $this->corporationRepository->with('casinoLinks')->with('restaurantLinks')->findWithoutFail($id);
 
         if (empty($corporation)) {
             Flash::error('Corporation not found');
@@ -228,6 +272,11 @@ class CorporationController extends InfyOmBaseController
             {
                 $corpLink = CorporationCasinoLink::find($link->id);
                 $corpLink->forceDelete();
+            }
+            foreach($corporation->restaurantLinks as $link)
+            {
+                $resLink = CorporationRestaurantLink::find($link->id);
+                $resLink->forceDelete();
             }
         }
 

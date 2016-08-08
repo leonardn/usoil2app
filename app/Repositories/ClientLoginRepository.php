@@ -12,7 +12,7 @@ class ClientLoginRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'email' => 'like',
-        'password'
+        'password' => 'like'
     ];
 
     /**

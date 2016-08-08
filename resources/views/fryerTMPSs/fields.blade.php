@@ -22,16 +22,6 @@
         <div class="col-md-10">
             <h3>Fryer TMPS Details</h3>
         </div>
-        <div class="col-md-2">
-            <div class="row top-right-btn">
-                <div class="col-md-6">
-                    <a href="#" class="pull-right">Show</a>
-                </div>
-                <div class="col-md-6">
-                    <a href="#" class="">Hide</a>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="row">
         @include('core-templates::common.errors')
@@ -61,7 +51,7 @@
         </div>
         <div class="col-md-3 row-spacer-top-bot">
             <!-- Quantity Added Field -->
-            {!! Form::number('quantity_added', null, ['class' => 'form-control', 'placeholder' => 'Quantity Ddded']) !!}
+            {!! Form::number('quantity_added', null, ['class' => 'form-control', 'placeholder' => 'Quantity Added']) !!}
         </div>
     </div>
     <div class="row">
@@ -109,6 +99,20 @@
     <link href="{!! asset('css/jquery.datetimepicker.css') !!}" media="all" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="{!! asset('js/jquery.datetimepicker.full.min.js') !!}"></script>
     <script type="text/javascript">
+        $(".form-control").keyup(function( event ) {
+            if ( event.which == 13 ) {
+                event.preventDefault();
+            }
+
+            var autocomplete_fryer = $("#autocomplete-fryer").val();
+            var autocomplete_move_to_fryer = $("#autocomplete-move-to-fryer").val();
+            if(autocomplete_fryer == "")
+                $('#fryer_id').val("");
+            if(autocomplete_move_to_fryer == "")
+                $("#moved_to_fryer_id").val("");
+
+        });
+
         $( "#autocomplete-fryer" ).autocomplete({
             source: '/get-autocomplete-fryer-options',
             minLength: 1,

@@ -58,7 +58,7 @@
                     @foreach($corporations as $corporation)
                         <div class="col-md-12 checkbox checkbox-warning">
                             {!! Form::hidden('corporations['.$corporation->custom_index.']', false) !!}
-                            {!! Form::checkbox('corporations['.$corporation->custom_index.']', $corporation->id, $corporation->id_exists, ['id' => 'is-active'.$corporation->id, 'class' => 'corp-item-checkbox', 'onclick' => 'return showCasino(".casino-list'.$corporation->id.'");', 'class-data-collection' => '.casino-list'.$corporation->id]) !!}
+                            {!! Form::checkbox('corporations['.$corporation->custom_index.']', $corporation->id, $corporation->id_exists, ['id' => 'is-active'.$corporation->id, 'class' => 'corp-item-checkbox', 'onclick' => 'return showCasino();', 'class-data-collection' => '.casino-list'.$corporation->id]) !!}
                             <label for="is-active{!! $corporation->id !!}" id="corporation{!! $corporation->id !!}" class="checkbox-inline corp-name">
                                 {!! $corporation->corporation_name !!}
                             </label>
@@ -115,7 +115,7 @@
     var casinoList = new List('casinos', casinoOptions);
 
     // CHECKBOX
-    function showCasino(checbox) 
+    function showCasino() 
     {
         notSelectedCorpHideCasino();
     }
