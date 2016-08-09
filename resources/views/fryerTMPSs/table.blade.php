@@ -6,10 +6,10 @@
                     <th>Fryer Name</th>
                     <th>Measured Tpm</th>
                     <th>Oil Temp</th>
-                    <th>Changed Oil</th>
+                    <th>Changed Oil?</th>
                     <th>Quantity Added</th>
-                    <th>Oil Moved</th>
-                    <th>Moved To Fryer Id</th>
+                    <th>Oil Amount Moved</th>
+                    <th>Moved To Fryer</th>
                     <th colspan="3">Action</th>
                 </thead>
                 <tbody>
@@ -18,9 +18,9 @@
                         <td>{!! $fryerTMPS->fryer->fryer_name !!}</td>
                         <td>{!! $fryerTMPS->measured_tpm !!}</td>
                         <td>{!! $fryerTMPS->oil_temp !!}</td>
-                        <td>{!! $fryerTMPS->changed_oil !!}</td>
+                        <td class="text-center">{!! ($fryerTMPS->changed_oil) ? 'Yes' : 'No' !!}</td>
                         <td>{!! $fryerTMPS->quantity_added !!}</td>
-                        <td>{!! $fryerTMPS->oil_moved !!}</td>
+                        <td>{!! $fryerTMPS->amount_moved !!}</td>
                         <td>{!! isset($fryerTMPS->moveToFryer->fryer_name) ? $fryerTMPS->moveToFryer->fryer_name : '' !!}</td>
                         <td class="text-center border-right">
                             {!! Form::open(['route' => ['fryerTMPSs.destroy', $fryerTMPS->id], 'method' => 'delete', 'id' => 'form-delete-'.$fryerTMPS->id]) !!}

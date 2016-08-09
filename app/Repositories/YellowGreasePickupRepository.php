@@ -13,7 +13,7 @@ class YellowGreasePickupRepository extends BaseRepository
     protected $fieldSearchable = [
         'corporation_id',
         'casino_id',
-        'grease',
+        'grease' => 'like',
         'pickup_date'
     ];
 

@@ -20,17 +20,7 @@
 <div class="col-md-12">
     <div class="row row-spacer-top-bot">
         <div class="col-md-10">
-            <h3>Trash Bins Details</h3>
-        </div>
-        <div class="col-md-2">
-            <div class="row top-right-btn">
-                <div class="col-md-6">
-                    <a href="#" class="pull-right">Show</a>
-                </div>
-                <div class="col-md-6">
-                    <a href="#" class="">Hide</a>
-                </div>
-            </div>
+            <h3>History Usage Details</h3>
         </div>
     </div>
     <div class="row">

@@ -150,7 +150,7 @@
 
     function setDefault(arg, field)
     {
-        return arg != '' ? field + ':'+arg+';' : '';
+        return arg != '' ? field + '%3A'+arg+';' : '';
     }
 
     //DELETE

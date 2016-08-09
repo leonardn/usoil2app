@@ -33,7 +33,7 @@
      		{!! Form::select('log_option_id', $logoptions, null, ['id' => 'log_option_id', 'class' => 'form-control']) !!}
      	</div>
      	<div class="col-md-3 row-spacer-top-bot">
-     		{!! Form::number('trash_weight', null, ['id' => 'trash_weight', 'class' => 'form-control', 'placeholder' => 'Trash Weight']) !!}
+     		{!! Form::text('trash_weight', null, ['id' => 'trash_weight', 'class' => 'form-control', 'placeholder' => 'Trash Weight']) !!}
      	</div>
      	<div class="col-md-3 row-spacer-top-bot">
             {!! Form::text('creation_date', null, ['id' => 'creation_date', 'class' => 'form-control', 'placeholder' => 'Creation Date']) !!}
@@ -94,6 +94,10 @@
 		var trash_weight = $('#trash_weight').val();
 		var creation_date = $('#creation_date').val();
 
+        var autocomplete_restaurant = $('#autocomplete-restaurant').val();
+        if(autocomplete_restaurant == "")
+            restaurant_id = "";
+
         var urlRequest = 'trashBins?search='+setDefault(restaurant_id, 'restaurant_id')+''+setDefault(log_option_id, 'log_option_id')+''+setDefault(trash_weight, 'trash_weight')+''+setDefault(creation_date, 'creation_date');
         //console.log(urlRequest);
 
@@ -127,7 +131,7 @@
 
     function setDefault(arg, field)
     {
-        return arg != '' ? field + ':'+arg+';' : '';
+        return arg != '' ? field + '%3A'+arg+';' : '';
     }
 
      //DELETE

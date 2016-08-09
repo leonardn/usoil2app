@@ -62,6 +62,7 @@ Route::get('get-yellow-grease-pickup-export', 'ExcelController@getYellowGreasePi
 Route::get('get-fryerTMPS-export', 'ExcelController@getFryerTMPS');
 Route::get('get-trash-bin-export', 'ExcelController@getTrashBin');
 Route::get('get-history-usage-export', 'ExcelController@getHistoryUsage');
+Route::get('get-client-login-export', 'ExcelController@getClientLoginExport');
 
 //Autocomplete
 Route::get('get-autocomplete-machines-options', 'AutoCompleteController@getMachineAutoComplete');
@@ -77,3 +78,4 @@ Route::resource('yellowGreasePickups', 'YellowGreasePickupController');
 Route::resource('fryerTMPSs', 'FryerTMPSController');
 Route::resource('trashBins', 'TrashBinController');
 Route::resource('historyUsages', 'HistoryUsageController');
+Route::resource('clientLogins', 'ClientLoginController');

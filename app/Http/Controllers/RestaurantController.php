@@ -6,21 +6,30 @@ use App\Http\Requests;
 use App\Http\Requests\CreateRestaurantRequest;
 use App\Http\Requests\UpdateRestaurantRequest;
 use App\Repositories\RestaurantRepository;
+use App\Repositories\FryerRepository;
+use App\Repositories\MachineRepository;
 use App\Http\Controllers\AppBaseController as InfyOmBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use App\Models\RestaurantFryerLink;
+use App\Models\RestaurantMachineLink;
+
 class RestaurantController extends InfyOmBaseController
 {
     /** @var  RestaurantRepository */
     private $restaurantRepository;
+    private $fryerRepository;
+    private $machineRepository;
 
-    public function __construct(RestaurantRepository $restaurantRepo)
+    public function __construct(RestaurantRepository $restaurantRepo, FryerRepository $fryerRepo, MachineRepository $machineRepo)
     {
         $this->middleware('auth');
         $this->restaurantRepository = $restaurantRepo;
+        $this->fryerRepository = $fryerRepo;
+        $this->machineRepository = $machineRepo;
     }
 
     /**
@@ -51,9 +60,23 @@ class RestaurantController extends InfyOmBaseController
      *
      * @return Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('restaurants.create');
+        $this->fryerRepository->pushCriteria(new RequestCriteria($request));
+        $fryers = $this->fryerRepository->all();
+
+        $this->machineRepository->pushCriteria(new RequestCriteria($request));
+        $machines = $this->machineRepository->all();
+
+        // Assigning index to prevent htmlentities() expects parameter 1 to be string ERROR
+        for ($x = 0; $x < count($fryers); $x++) {
+            $fryers[$x]['custom_index'] = $x;
+        }
+        for ($x = 0; $x < count($machines); $x++) {
+            $machines[$x]['custom_index'] = $x;
+        }
+
+        return view('restaurants.create')->with('fryers', $fryers)->with('machines', $machines);
     }
 
     /**
@@ -66,9 +89,32 @@ class RestaurantController extends InfyOmBaseController
     public function store(CreateRestaurantRequest $request)
     {
         $input = $request->all();
-        return $input;
+        //return $input;
 
         $restaurant = $this->restaurantRepository->create($input);
+
+        if($restaurant) {
+            for ($x = 0; $x < count($input['fryer']); $x++)
+            {
+                if(!empty($input['fryer'][$x]))
+                {
+                    $resFryerLink = new RestaurantFryerLink;
+                    $resFryerLink['restaurant_id'] = $restaurant->id;
+                    $resFryerLink['fryer_id'] = $input['fryer'][$x];
+                    $resFryerLink->save();
+                }
+            }
+            for ($x = 0; $x < count($input['machine']); $x++)
+            {
+                if(!empty($input['machine'][$x]))
+                {
+                    $resMachineLink = new RestaurantMachineLink;
+                    $resMachineLink['restaurant_id'] = $restaurant->id;
+                    $resMachineLink['machine_id'] = $input['machine'][$x];
+                    $resMachineLink->save();
+                }
+            }
+        }
 
         Flash::success('Restaurant saved successfully.');
 
@@ -102,9 +148,33 @@ class RestaurantController extends InfyOmBaseController
      *
      * @return Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        $restaurant = $this->restaurantRepository->findWithoutFail($id);
+        $restaurant = $this->restaurantRepository->with('fryerLinks')->with('machineLinks')->findWithoutFail($id);
+
+        $this->fryerRepository->pushCriteria(new RequestCriteria($request));
+        $fryers = $this->fryerRepository->all();
+
+        $this->machineRepository->pushCriteria(new RequestCriteria($request));
+        $machines = $this->machineRepository->all();
+
+        // Assigning index to prevent htmlentities() expects parameter 1 to be string ERROR
+        for ($x = 0; $x < count($fryers); $x++) {
+            $fryers[$x]['custom_index'] = $x;
+            foreach ($restaurant->fryerLinks as $resFreyerLink) {
+                if($fryers[$x]['id'] == $resFreyerLink->fryer_id) {
+                    $fryers[$x]['id_exists'] = 1;
+                }
+            }
+        }
+        for ($x = 0; $x < count($machines); $x++) {
+            $machines[$x]['custom_index'] = $x;
+            foreach ($restaurant->machineLinks as $resMachineLink) {
+                if($machines[$x]['id'] == $resMachineLink->machine_id) {
+                    $machines[$x]['id_exists'] = 1;
+                }
+            }
+        }
 
         if (empty($restaurant)) {
             Flash::error('Restaurant not found');
@@ -112,7 +182,7 @@ class RestaurantController extends InfyOmBaseController
             return redirect(route('restaurants.index'));
         }
 
-        return view('restaurants.edit')->with('restaurant', $restaurant);
+        return view('restaurants.edit')->with('restaurant', $restaurant)->with('fryers', $fryers)->with('machines', $machines);
     }
 
     /**
@@ -125,7 +195,41 @@ class RestaurantController extends InfyOmBaseController
      */
     public function update($id, UpdateRestaurantRequest $request)
     {
-        $restaurant = $this->restaurantRepository->findWithoutFail($id);
+        $restaurant = $this->restaurantRepository->with('fryerLinks')->with('machineLinks')->findWithoutFail($id);
+
+        if($restaurant) {
+            foreach($restaurant->fryerLinks as $link)
+            {
+                $RestaurantLink = RestaurantFryerLink::find($link->id);
+                $RestaurantLink->forceDelete();
+            }
+            foreach($restaurant->machineLinks as $link)
+            {
+                $RestaurantLink = RestaurantMachineLink::find($link->id);
+                $RestaurantLink->forceDelete();
+            }
+
+            for ($x = 0; $x < count($request['fryer']); $x++)
+            {
+                if(!empty($request['fryer'][$x]))
+                {
+                    $resFryerLink = new RestaurantFryerLink;
+                    $resFryerLink['restaurant_id'] = $restaurant->id;
+                    $resFryerLink['fryer_id'] = $request['fryer'][$x];
+                    $resFryerLink->save();
+                }
+            }
+            for ($x = 0; $x < count($request['machine']); $x++)
+            {
+                if(!empty($request['machine'][$x]))
+                {
+                    $resMachineLink = new RestaurantMachineLink;
+                    $resMachineLink['restaurant_id'] = $restaurant->id;
+                    $resMachineLink['machine_id'] = $request['machine'][$x];
+                    $resMachineLink->save();
+                }
+            }
+        }
 
         if (empty($restaurant)) {
             Flash::error('Restaurant not found');

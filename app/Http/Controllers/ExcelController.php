@@ -15,6 +15,7 @@ use App\Repositories\YellowGreasePickupRepository;
 use App\Repositories\FryerTMPSRepository;
 use App\Repositories\TrashBinRepository;
 use App\Repositories\HistoryUsageRepository;
+use App\Repositories\ClientLoginRepository;
 use App\Http\Controllers\AppBaseController as InfyOmBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -37,8 +38,9 @@ class ExcelController extends InfyOmBaseController
     private $fryerTMPSRepository;
     private $trashBinRepository;
     private $historyUsageRepository;
+    private $clientLoginRepository;
 
-    public function __construct(CorporationRepository $corporationRepo, CasinoRepository $casinoRepo, RestaurantRepository $restaurantRepo, MachineRepository $machinesRepo, MachineReadingsRepository $machinereadingsRepo, LogOptionRepository $logoptionsRepo, FryerRepository $fryerRepo, YellowGreasePickupRepository $yellowGreasePickupRepo, FryerTMPSRepository $fryerTMPSRepo, TrashBinRepository $trashBinRepo, HistoryUsageRepository $historyUsageRepo)
+    public function __construct(CorporationRepository $corporationRepo, CasinoRepository $casinoRepo, RestaurantRepository $restaurantRepo, MachineRepository $machinesRepo, MachineReadingsRepository $machinereadingsRepo, LogOptionRepository $logoptionsRepo, FryerRepository $fryerRepo, YellowGreasePickupRepository $yellowGreasePickupRepo, FryerTMPSRepository $fryerTMPSRepo, TrashBinRepository $trashBinRepo, HistoryUsageRepository $historyUsageRepo, LogRequestsRepository $logrequestsRepo, ClientLoginRepository $clientLoginRepo)
     {
     	//$this->middleware('auth');
         $this->corporationRepository = $corporationRepo;
@@ -53,6 +55,7 @@ class ExcelController extends InfyOmBaseController
         $this->fryerTMPSRepository = $fryerTMPSRepo;
         $this->trashBinRepository = $trashBinRepo;
         $this->historyUsageRepository = $historyUsageRepo;
+        $this->clientLoginRepository = $clientLoginRepo;
     }
 
     public function getCorporationExport(Request $request) 
@@ -146,23 +149,23 @@ class ExcelController extends InfyOmBaseController
 
 	public function getLogRequestExport(Request $request)
     {
-    	$this->logrequestsRepository->pushCriteria(new RequestCriteria($request));
-    	$logrequests = $this->logrequestsRepository->all();
-		Excel::create('Log Request Data', function($excel) use($logrequests){
-			$excel->sheet('Sheet 1', function($sheet) use($logrequests){
-                $arr =array();
-                foreach($logrequests as $logrequest) {
-					    $data =  array($logrequest->id,  $logrequest->fryers->fryer_name, $logrequest->logoptions->option_title, $logrequest->creation_date,
-                            $logrequest->status, $logrequest->created_at, $logrequest->updated_at, $logrequest->deleted_at);
-                        array_push($arr, $data);
-                }
-                $sheet->fromArray($arr,null,'A1',false,false)->prependRow(
-                array(
-                 'ID', 'Fryer Name', 'Log Option', 'Creation DateTime', 'Status', 'Created At', 'Updated At', 'Deleted At')
-                );
-            });
-        })->export('xls');
-    }
+       $this->logrequestsRepository->pushCriteria(new RequestCriteria($request));
+       $logrequests = $this->logrequestsRepository->all();
+       Excel::create('Log Request Data', function($excel) use($logrequests){
+           $excel->sheet('Sheet 1', function($sheet) use($logrequests){
+                 $arr =array();
+                 foreach($logrequests as $logrequest) {
+                       $data =  array($logrequest->id,  $logrequest->fryers->fryer_name, $logrequest->logoptions->option_title, $logrequest->creation_date,
+                             $logrequest->status, $logrequest->created_at, $logrequest->updated_at, $logrequest->deleted_at);
+                         array_push($arr, $data);
+                 }
+                 $sheet->fromArray($arr,null,'A1',false,false)->prependRow(
+                 array(
+                  'ID', 'Fryer Name', 'Log Option', 'Creation DateTime', 'Status', 'Created At', 'Updated At', 'Deleted At')
+                 );
+             });
+         })->export('xls');
+     }
 
     public function getFryerExport(Request $request)
     {
@@ -198,16 +201,16 @@ class ExcelController extends InfyOmBaseController
     {
         $this->fryerTMPSRepository->pushCriteria(new RequestCriteria($request));
         $fryerTMPSs = $this->fryerTMPSRepository->all();
-        Excel::create('Fryer TMPS Pickup Data', function($excel) use($fryerTMPSs){
+        Excel::create('Fryer TMPS Data', function($excel) use($fryerTMPSs){
             $excel->sheet('Sheet 1', function($sheet) use($fryerTMPSs){
                 $arr =array();
                 foreach($fryerTMPSs as $tmps) {
                         $moveToFryer = isset($tmps->moveToFryer->fryer_name) ? $tmps->moveToFryer->fryer_name : '';
-                        $data =  array($tmps->id, $tmps->fryer->fryer_name, $tmps->measured_tpm, $tmps->oil_temp, $tmps->changed_oil, $tmps->quantity_added, $tmps->oil_moved, $tmps->amount_moved, $moveToFryer, $tmps->creation_date, $tmps->status, $tmps->created_at, $tmps->updated_at);
+                        $data =  array($tmps->id, $tmps->fryer->fryer_name, $tmps->measured_tpm, $tmps->oil_temp, ($tmps->changed_oil) ? 'YES': 'NO', $tmps->quantity_added, ($tmps->oil_moved) ? 'YES':'NO', $tmps->amount_moved, $moveToFryer, $tmps->creation_date, $tmps->status, $tmps->created_at, $tmps->updated_at);
                         array_push($arr, $data);
                 }
                 $sheet->fromArray($arr,null,'A1',false,false)->prependRow(
-                    array('ID', 'Fryer Name', 'Measured Tpm', 'Oil Temp', 'Changed Oil', 'Quantity Added', 'Oil Moved', 'Amount Moved', 'Moved To Fryer Name', 'Creation Date', 'Status', 'Created At', 'Updated At')
+                    array('ID', 'Fryer Name', 'Measured Tpm', 'Oil Temp', 'Oil Changed?', 'Quantity Added', 'Oil Moved', 'Oil Amount Moved', 'Moved To Fryer', 'Creation Date', 'Status', 'Created At', 'Updated At')
                 );
             });
         })->export('xls');
@@ -245,6 +248,18 @@ class ExcelController extends InfyOmBaseController
                 $sheet->fromArray($arr,null,'A1',false,false)->prependRow(
                     array('ID', 'Corporation Name', 'Casino Name', 'Restaurant Name', 'Usage', 'Month', 'Status', 'Created At', 'Updated At')
                 );
+            });
+        })->export('xls');
+    }
+
+    public function getClientLoginExport(Request $request) 
+    {
+        $this->clientLoginRepository->pushCriteria(new RequestCriteria($request));
+        $clientlogins = $this->clientLoginRepository->all();
+
+        Excel::create('Client Login Data', function($excel) use($clientlogins){
+            $excel->sheet('Sheet 1', function($sheet) use($clientlogins){
+                $sheet->fromModel($clientlogins);
             });
         })->export('xls');
     }

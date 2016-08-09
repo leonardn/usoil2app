@@ -171,6 +171,11 @@ class Corporation extends Model
         return $this->hasMany(CorporationCasinoLink::class);
     }
 
+    public function restaurantLinks()
+    {
+        return $this->hasMany(CorporationRestaurantLink::class);
+    }
+
     public function forceCasinoLinksDelete(CorporationCasinoLink $casinoLinks)
     {
         return $this->casinoLinks->forceDelete();

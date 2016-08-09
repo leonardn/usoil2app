@@ -97,17 +97,12 @@
       dateFormat:'yy-mm-dd',
     });
 
-    var lastObj = "";
+    var lastObj = $("#fryer_id");
     $(".form-control").keyup(function( event ) {
         if ( event.which == 13 ) {
             event.preventDefault();
         }
         lastObj = $(this);
-
-        // var corporation_id = $("#corporation_id").val();
-        // var casino_id = $("#casino_id").val();
-        // var grease = $("#grease").val();
-        // var pickup_date = $("#pickup_date").val();
 
         var fryer_id = $("#fryer_id").val();
         var measured_tpm = $("#measured_tpm").val();
@@ -116,8 +111,11 @@
         var is_oil_moved = $("#is-oil-moved").val();
         var creation_date = $("#creation_date").val();
 
-        var urlRequest = 'fryerTMPSs?search='+setDefault(fryer_id, 'fryer_id')+''+setDefault(measured_tpm, 'measured_tpm')+''+setDefault(oil_temp, 'oil_temp')+''+setDefault(is_changed_oil, 'is_changed_oil')+''+setDefault(is_oil_moved, 'is_oil_moved')+''+setDefault(creation_date, 'creation_date');
-        //console.log(urlRequest);
+        var autocomplete_fryer = $("#autocomplete-fryer").val();
+        if(autocomplete_fryer == "")
+          fryer_id = "";
+
+        var urlRequest = 'fryerTMPSs?search='+setDefault(fryer_id, 'fryer_id')+''+setDefault(measured_tpm, 'measured_tpm')+''+setDefault(oil_temp, 'oil_temp')+''+setDefault(is_changed_oil, 'changed_oil')+''+setDefault(is_oil_moved, 'oil_moved')+''+setDefault(creation_date, 'creation_date');
 
         if(fryer_id ||
             measured_tpm ||
@@ -128,6 +126,7 @@
         } else {
             urlRequest = '/fryerTMPSs;'
         }
+        console.log(urlRequest);
 
         $.ajax({
            type: 'get',
@@ -152,13 +151,13 @@
         if( $(this).is(':checked') )
             $(this).val('1');
         else
-            $(this).val('0');
-        $(".form-control").keyup();
+            $(this).val('');
+        lastObj.keyup();
     });
 
     function setDefault(arg, field)
     {
-        return arg != '' ? field + ':'+arg+';' : '';
+        return arg != '' ? field + '%3A'+arg+';' : '';
     }
 
      //DELETE
@@ -178,7 +177,7 @@
         select: function(event, ui) {
             $(this).val(ui.item.value);
             $('#fryer_id').val(ui.item.id);
-            $(".form-control").keyup();
+            lastObj.keyup();
         }
     });
     $("#creation_date").datepicker({

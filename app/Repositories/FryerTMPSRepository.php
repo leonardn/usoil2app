@@ -12,12 +12,12 @@ class FryerTMPSRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'fryer_id',
-        'measured_tpm',
-        'oil_temp',
-        'changed_oil',
-        'quantity_added',
-        'oil_moved',
-        'amount_moved',
+        'measured_tpm' => 'like',
+        'oil_temp' => 'like',
+        'changed_oil' => 'like',
+        'quantity_added' => 'like',
+        'oil_moved' => 'like',
+        'amount_moved' => 'like',
         'moved_to_fryer_id',
         'creation_date',
         'status'

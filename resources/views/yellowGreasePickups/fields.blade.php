@@ -22,16 +22,6 @@
         <div class="col-md-10">
             <h3>Yellow Grease Pickup Details</h3>
         </div>
-        <div class="col-md-2">
-            <div class="row top-right-btn">
-                <div class="col-md-6">
-                    <a href="#" class="pull-right">Show</a>
-                </div>
-                <div class="col-md-6">
-                    <a href="#" class="">Hide</a>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="row">
         @include('core-templates::common.errors')
@@ -66,3 +56,44 @@
     </div>
     <div class="col-md-12 line-break"></div>
 </div>
+
+
+@section('scripts')
+    <link href="{!! asset('css/jquery.datetimepicker.css') !!}" media="all" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{!! asset('js/jquery.datetimepicker.full.min.js') !!}"></script>
+    <script type="text/javascript">
+        $(".form-control").keyup(function( event ) {
+            if ( event.which == 13 ) {
+                event.preventDefault();
+            }
+
+            var autocomplete_corporation = $("#autocomplete-corporation").val();
+            var autocomplete_casino = $("#autocomplete-casino").val();
+            if(autocomplete_corporation == "")
+                $('#corporation_id').val("");
+            if(autocomplete_casino == "")
+                $("#casino_id").val("");
+
+        });
+
+        $( "#autocomplete-corporation" ).autocomplete({
+            source: '/get-autocomplete-corporation-options',
+            minLength: 1,
+            select: function(event, ui) {
+                $(this).val(ui.item.value);
+                $('#corporation_id').val(ui.item.id);
+            }
+        });
+        $( "#autocomplete-casino" ).autocomplete({
+            source: '/get-autocomplete-casino-options',
+            minLength: 1,
+            select: function(event, ui) {
+                $(this).val(ui.item.value);
+                $('#casino_id').val(ui.item.id);
+            }
+        });
+        $("#pickup_date").datetimepicker({
+          format:'Y-m-d H:i:s',
+        });
+    </script>
+@endsection
