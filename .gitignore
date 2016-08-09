@@ -11,3 +11,16 @@ node_modules.fail/
 /node_modules.fail/
 node_modules.old/
 /node_modules.old/
+app/Http/Controllers/TestController.php
+app/Http/Requests/CreateTestRequest.php
+app/Http/Requests/UpdateTestRequest.php
+app/Models/Test.php
+app/Repositories/TestRepository.php
+database/migrations/2016_07_19_071755_create_tests_table.php
+resources/views/tests/create.blade.php
+resources/views/tests/edit.blade.php
+resources/views/tests/fields.blade.php
+resources/views/tests/index.blade.php
+resources/views/tests/show.blade.php
+resources/views/tests/show_fields.blade.php
+resources/views/tests/table.blade.php

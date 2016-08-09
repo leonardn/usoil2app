@@ -39,11 +39,49 @@ Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 Route::get('/home', 'HomeController@index');
-
 Route::resource('corporations', 'CorporationController');
-
 Route::resource('casinos', 'CasinoController');
-
 Route::resource('restaurants', 'RestaurantController');
 
-Route::resource('tests', 'TestController');
+Route::resource('machines', 'MachineController');
+Route::resource('machinereadings', 'MachineReadingsController');
+Route::resource('logoptions', 'LogOptionController');
+
+Route::resource('logrequests', 'LogRequestsController');
+
+
+//Export
+Route::get('get-corporation-export', 'ExcelController@getCorporationExport');
+Route::get('get-casino-export', 'ExcelController@getCasinoExport');
+Route::get('get-restaurant-export', 'ExcelController@getRestaurantExport');
+Route::get('get-machine-export', 'ExcelController@getMachineExport');
+Route::get('get-logoption-export', 'ExcelController@getLogOptionExport');
+Route::get('get-machinereading-export', 'ExcelController@getMachineReadingExport');
+Route::get('get-logrequest-export', 'ExcelController@getLogRequestExport');
+Route::get('get-fryer-export', 'ExcelController@getFryerExport');
+Route::get('get-yellow-grease-pickup-export', 'ExcelController@getYellowGreasePickupExport');
+Route::get('get-fryerTMPS-export', 'ExcelController@getFryerTMPS');
+Route::get('get-trash-bin-export', 'ExcelController@getTrashBin');
+Route::get('get-history-usage-export', 'ExcelController@getHistoryUsage');
+Route::get('get-client-login-export', 'ExcelController@getClientLoginExport');
+
+//Autocomplete
+Route::get('get-autocomplete-machines-options', 'AutoCompleteController@getMachineAutoComplete');
+Route::get('get-autocomplete-logoptions-options', 'AutoCompleteController@getLogOptionAutoComplete');
+Route::get('get-autocomplete-restaurants-options', 'AutoCompleteController@getRestaurantAutoComplete');
+Route::get('get-autocomplete-fryers-options', 'AutoCompleteController@getFryerAutoComplete');
+Route::get('get-autocomplete-fryer-options', 'AutoCompleteController@getFryerAutoComplete');
+Route::get('get-autocomplete-corporation-options', 'AutoCompleteController@getCorporationAutoComplete');
+Route::get('get-autocomplete-casino-options', 'AutoCompleteController@getCasinoAutoComplete');
+
+Route::resource('fryers', 'FryerController');
+
+Route::resource('yellowGreasePickups', 'YellowGreasePickupController');
+
+Route::resource('fryerTMPSs', 'FryerTMPSController');
+
+Route::resource('trashBins', 'TrashBinController');
+
+Route::resource('historyUsages', 'HistoryUsageController');
+
+Route::resource('clientLogins', 'ClientLoginController');
