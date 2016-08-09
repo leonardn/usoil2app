@@ -46,9 +46,8 @@ Route::resource('restaurants', 'RestaurantController');
 Route::resource('machines', 'MachineController');
 Route::resource('machinereadings', 'MachineReadingsController');
 Route::resource('logoptions', 'LogOptionController');
-
 Route::resource('logrequests', 'LogRequestsController');
-
+Route::resource('tests', 'TestController');
 
 //Export
 Route::get('get-corporation-export', 'ExcelController@getCorporationExport');
@@ -75,13 +74,8 @@ Route::get('get-autocomplete-corporation-options', 'AutoCompleteController@getCo
 Route::get('get-autocomplete-casino-options', 'AutoCompleteController@getCasinoAutoComplete');
 
 Route::resource('fryers', 'FryerController');
-
 Route::resource('yellowGreasePickups', 'YellowGreasePickupController');
-
 Route::resource('fryerTMPSs', 'FryerTMPSController');
-
 Route::resource('trashBins', 'TrashBinController');
-
 Route::resource('historyUsages', 'HistoryUsageController');
-
 Route::resource('clientLogins', 'ClientLoginController');

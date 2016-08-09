@@ -53,7 +53,6 @@
 <li class="{{ Request::is('clientLogins*') ? 'active' : '' }}">
     <a href="{!! route('clientLogins.index') !!}"><i class="fa fa-angle-right pull-right i-sidebar-chevron" aria-hidden="true"></i>Client Login</a>
 </li>
-
 <li>
    <a href="{!! url('/logout') !!}">Logout</a>
 </li>
