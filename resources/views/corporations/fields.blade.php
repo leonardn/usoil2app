@@ -164,11 +164,22 @@
                     @foreach($casinos as $casino)
                         <div class="col-md-12 checkbox checkbox-warning">
                             {!! Form::hidden('casino['.$casino->custom_index.']', false) !!}
-                            {!! Form::checkbox('casino['.$casino->custom_index.']', $casino->id, $casino->id_exists, ['id' => 'is-active'.$casino->id]) !!}
+                            {!! Form::checkbox('casino['.$casino->custom_index.']', $casino->id, $casino->id_exists, ['id' => 'is-active'.$casino->id, 'onclick' => 'return showRestaurant(".restaurant-list'.$casino->id.'");']) !!}
                             <label for="is-active{!! $casino->id !!}" id="casino{!! $casino->id !!}" class="checkbox-inline">
                                 {!! $casino->casino_trade_name !!}
                             </label>
                         </div>
+                        @foreach($casino->restaurantLinks as $links)
+                            <div class="hide">
+                                <div class="col-md-12 checkbox checkbox-warning restaurant-list{!! $casino->id !!}">
+                                    {!! Form::checkbox($links->id, $links->id, 1, ['id' => 'restaurant'.$links->id, 'disabled']) !!}
+                                    <label for="restaurant{!! $links->id !!}" class="checkbox-inline">
+                                        {!! $links->restaurant->restaurant_name; !!}
+                                    </label>
+                                </div>
+                            </div>
+                        @endforeach
+
                     @endforeach
                 </div>
             </div>
@@ -186,8 +197,10 @@
                     <h5>Linked Restaurants</h5>
                 </div>
             </div>
-            <div class="col-md-12 link-to-checkboxes">
+            <div class="col-md-12 link-to-checkboxes-bg">
+                <div id="linked-restaurants" class="row link-to-checkboxes custom-scrollbar">
 
+                </div>
             </diV>
             <div class="col-md-12">
                 <div class="row">

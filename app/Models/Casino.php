@@ -190,6 +190,16 @@ class Casino extends Model
         'contact_person_last_name' => 'required'
     ];
 
+    public function restaurantLinks() 
+    {
+        return $this->hasMany(CasinoRestaurantLink::class);
+    }
+
+    public function forceRestaurantLinksDelete(CasinoRestaurantLink $restaurantLinks)
+    {
+        return $this->restaurantLinks->forceDelete();
+    }
+
     public function yellowGreasePickup()
     {
         return $this->hasOne(YellowGreasePickup::class);   

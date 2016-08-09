@@ -13,7 +13,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
 use App\Repositories\RestaurantRepository;
-
+use App\Models\CasinoRestaurantLink;
 class CasinoController extends InfyOmBaseController
 {
     /** @var  CasinoRepository */
@@ -80,6 +80,19 @@ class CasinoController extends InfyOmBaseController
 
         $casino = $this->casinoRepository->create($input);
 
+        if($casino->id) {
+            for ($x = 0; $x < count($input['restaurant']); $x++)
+            {
+                if(!empty($input['restaurant'][$x]))
+                {
+                    $casinoRestaurantLink = new CasinoRestaurantLink;
+                    $casinoRestaurantLink['casino_id'] = $casino->id;
+                    $casinoRestaurantLink['restaurant_id'] = $input['restaurant'][$x];
+                    $casinoRestaurantLink->save();
+                }
+            }
+        }
+
         Flash::success('Casino saved successfully.');
 
         return redirect(route('casinos.index'));
@@ -124,13 +137,13 @@ class CasinoController extends InfyOmBaseController
             $restaurants[$x]['custom_index'] = $x;
         }
         // Assigning id_exists For checke checked boxes
-        // for ($x = 0; $x < count($casinos); $x++) {
-        //     foreach ($corporation->casinoLinks as $corpCasinoLink) {
-        //         if($casinos[$x]['id'] == $corpCasinoLink->casino_id) {
-        //             $casinos[$x]['id_exists'] = 1;
-        //         }
-        //     }
-        // }
+        for ($x = 0; $x < count($restaurants); $x++) {
+            foreach ($casino->restaurantLinks as $casinoRestaurantLink) {
+                if($restaurants[$x]['id'] == $casinoRestaurantLink->restaurant_id) {
+                    $restaurants[$x]['id_exists'] = 1;
+                }
+            }
+        }
 
         if (empty($casino)) {
             Flash::error('Casino not found');
@@ -160,6 +173,24 @@ class CasinoController extends InfyOmBaseController
         }
 
         $casino = $this->casinoRepository->update($request->all(), $id);
+
+        if($casino) {
+            foreach($casino->restaurantLinks as $link)
+            {
+                $casinoRestaurantLink = CasinoRestaurantLink::find($link->id);
+                $casinoRestaurantLink->forceDelete();
+            }
+            for ($x = 0; $x < count($request['restaurant']); $x++)
+            {
+                if(!empty($request['restaurant'][$x]))
+                {
+                    $casinoRestaurantLink = new CasinoRestaurantLink;
+                    $casinoRestaurantLink['casino_id'] = $casino->id;
+                    $casinoRestaurantLink['restaurant_id'] = $request['restaurant'][$x];
+                    $casinoRestaurantLink->save();
+                }
+            }
+        }
 
         Flash::success('Casino updated successfully.');
 

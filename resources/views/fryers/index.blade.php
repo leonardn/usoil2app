@@ -50,7 +50,7 @@
 <div class="col-md-12">
 	<div class="row">
 		<div class="col-md-3 btn-spacer-top-bot">
-			<a href="{!! url('#') !!}" class="btn btn-primary">
+			<a href="{!! url('/get-fryer-export') !!}" class="btn btn-primary">
                 <i class="fa fa-file-excel-o fa-2 pull-left" aria-hidden="true"></i>
                 Export
             </a>

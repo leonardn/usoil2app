@@ -9,3 +9,18 @@
         {!! Form::close() !!}
     </div>
 @endsection
+
+@section('scripts')
+	<script type="text/javascript">
+	function showRestaurant(checbox) 
+	{
+		$("#linked-restaurants").html('');
+		if($(checbox).length) {
+			$(checbox).each(function(i){
+				$(this).clone().appendTo("#linked-restaurants");
+				//$("#linked-restaurants").append($(this));
+			});
+		}
+	}
+	</script>
+@endsection

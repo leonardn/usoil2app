@@ -4,19 +4,19 @@
 <div class="col-md-12">
     <div class="col-md-12 top-heading">
         <div class="row">
-            <h4>YELLOW GREASE PICKUP SEARCH</h4>
+            <h4>TRASH BIN SEARCH</h4>
         </div>
     </div>
 </div>
 <div class="col-md-12">
 	<div class="row ">
         <div class="col-md-10 row-spacer-top-bot">
-            <h3>Yellow Grease Pickup Search</h3>
+            <h3>Trash Bin Search</h3>
         </div>
         <div class="col-md-2 row-spacer-top-bot">
             <div class="row top-right-btn">
                 <div class="col-md-12">
-                    <a href="/yellowGreasePickups" class="btn btn-default pull-right">Clear Filter</a>
+                    <a href="/trashBins" class="btn btn-default pull-right">Clear Filter</a>
                 </div>
             </div>
         </div>
@@ -24,33 +24,33 @@
     <div class="row">
         @include('flash::message')
     </div>
-     <div class="row">
+    <div class="row">
      	<div class="col-md-3 row-spacer-top-bot">
-     		<input id="autocomplete-corporation" class="form-control" placeholder="Corporation Name" type="text">
-            {!! Form::hidden('corporation_id', null, ['id' => 'corporation_id']) !!}
-		</div>
-		<div class="col-md-3 row-spacer-top-bot">
-     		<input id="autocomplete-casino" class="form-control" placeholder="Casino Name" type="text">
-            {!! Form::hidden('casino_id', null, ['id' => 'casino_id']) !!}
-		</div>
-		<div class="col-md-3 row-spacer-top-bot">
-            {!! Form::text('grease', null, ['id' => 'grease', 'class' => 'form-control', 'placeholder' => 'Grease']) !!}
-        </div>
-        <div class="col-md-3 row-spacer-top-bot">
-            {!! Form::text('pickup_date', null, ['id' => 'pickup_date', 'class' => 'form-control', 'placeholder' => 'Pickup Date']) !!}
-        </div>
-	</div>
-	<div class="col-md-12 line-break"></div>
+     		<input value="" id="autocomplete-restaurant" class="form-control" placeholder="Restaurant Name" type="text">
+            {!! Form::hidden('restaurant_id', null, ['id' => 'restaurant_id', 'class' => 'form-control']) !!}
+     	</div>
+     	<div class="col-md-3 row-spacer-top-bot">
+     		{!! Form::select('log_option_id', $logoptions, null, ['id' => 'log_option_id', 'class' => 'form-control']) !!}
+     	</div>
+     	<div class="col-md-3 row-spacer-top-bot">
+     		{!! Form::number('trash_weight', null, ['id' => 'trash_weight', 'class' => 'form-control', 'placeholder' => 'Trash Weight']) !!}
+     	</div>
+     	<div class="col-md-3 row-spacer-top-bot">
+            {!! Form::text('creation_date', null, ['id' => 'creation_date', 'class' => 'form-control', 'placeholder' => 'Creation Date']) !!}
+     	</div>
+     </div>
+    <div class="col-md-12 line-break"></div>
 </div>
 
+        
 <div class="col-md-12">
 	<div class="row">
 		<div class="col-md-3 btn-spacer-top-bot">
-			<a href="{!! url('/get-yellow-grease-pickup-export') !!}" class="btn btn-primary">
+			<a href="{!! url('/get-trash-bin-export') !!}" class="btn btn-primary">
                 <i class="fa fa-file-excel-o fa-2 pull-left" aria-hidden="true"></i>
                 Export
             </a>
-			<a href="{!! route('yellowGreasePickups.create') !!}" class="btn btn-primary pull-right">
+			<a href="{!! route('trashBins.create') !!}" class="btn btn-primary pull-right">
                 <i class="fa fa-plus-circle fa-2 pull-left" aria-hidden="true"></i>
                 Add New
             </a>
@@ -58,8 +58,8 @@
 	</div>
 </div>
 
-<div id="get-yellowGreasePickups">
-	@include('yellowGreasePickups.table')
+<div id="get-trashBins">
+	@include('trashBins.table')
 </div>
 
 <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -75,35 +75,34 @@
         </div>
     </div>
 </div>
-
+        
 @endsection
+
 
 @section('scripts')
     <script type="text/javascript">
-    $("#pickup_date").datepicker({
-      dateFormat:'yy-mm-dd',
-    });
+    var lastObj = $('#restaurant_id'); //SetDefault
 
-    var lastObj = "";
     $(".form-control").keyup(function( event ) {
         if ( event.which == 13 ) {
             event.preventDefault();
         }
         lastObj = $(this);
 
-		var corporation_id = $("#corporation_id").val();
-		var casino_id = $("#casino_id").val();
-		var grease = $("#grease").val();
-		var pickup_date = $("#pickup_date").val();
+        var restaurant_id = $('#restaurant_id').val();
+		var log_option_id = $('#log_option_id').val();
+		var trash_weight = $('#trash_weight').val();
+		var creation_date = $('#creation_date').val();
 
-        var urlRequest = 'yellowGreasePickups?search='+setDefault(corporation_id, 'corporation_id')+''+setDefault(casino_id, 'casino_id')+''+setDefault(grease, 'grease')+''+setDefault(pickup_date, 'pickup_date');
+        var urlRequest = 'trashBins?search='+setDefault(restaurant_id, 'restaurant_id')+''+setDefault(log_option_id, 'log_option_id')+''+setDefault(trash_weight, 'trash_weight')+''+setDefault(creation_date, 'creation_date');
+        //console.log(urlRequest);
 
-        if(corporation_id ||
-            casino_id ||
-            grease ||
-            pickup_date){
+        if(restaurant_id ||
+            log_option_id ||
+            trash_weight ||
+            creation_date){
         } else {
-            urlRequest = '/yellowGreasePickups;'
+            urlRequest = '/trashBins;'
         }
 
         $.ajax({
@@ -112,7 +111,7 @@
            success: function (response) {
            if(response)   
            {
-                $("#get-yellowGreasePickups").html(response);
+                $("#get-trashBins").html(response);
                 return false;
            }
            else 
@@ -122,9 +121,8 @@
          }
        });
     });
-
-    $("#pickup_date").change(function(){
-        $(".form-control").keyup();
+    $("#creation_date, #log_option_id").change(function(){
+        lastObj.keyup();
     });
 
     function setDefault(arg, field)
@@ -143,23 +141,18 @@
     });
 
     // AUTOCOMPLETE
-    $( "#autocomplete-corporation" ).autocomplete({
-		source: '/get-autocomplete-corporation-options',
-		minLength: 1,
-		select: function(event, ui) {
-		  	$(this).val(ui.item.value);
-		  	$('#corporation_id').val(ui.item.id);
-		  	lastObj.keyup();
-		}
-	});
-	$( "#autocomplete-casino" ).autocomplete({
-		source: '/get-autocomplete-casino-options',
-		minLength: 1,
-		select: function(event, ui) {
-		  	$(this).val(ui.item.value);
-		  	$('#casino_id').val(ui.item.id);
-		  	lastObj.keyup();
-		}
-	});
+   $( "#autocomplete-restaurant" ).autocomplete({
+        source: '/get-autocomplete-restaurants-options',
+        minLength: 1,
+        select: function(event, ui) {
+            $(this).val(ui.item.value);
+            $('#restaurant_id').val(ui.item.id);
+            lastObj.keyup();
+        }
+    });
+
+    $("#creation_date").datepicker({
+      dateFormat:'yy-mm-dd',
+    });
     </script>
 @endsection

@@ -34,8 +34,16 @@ class FryerTMPSController extends InfyOmBaseController
         $this->fryerTMPSRepository->pushCriteria(new RequestCriteria($request));
         $fryerTMPSs = $this->fryerTMPSRepository->paginate(10);
 
-        return view('fryerTMPSs.index')
-            ->with('fryerTMPSs', $fryerTMPSs);
+        if($request->ajax())
+        {
+            return view('fryerTMPSs.table')
+                ->with('fryerTMPSs', $fryerTMPSs);
+        }
+        else
+        {
+            return view('fryerTMPSs.index')
+                ->with('fryerTMPSs', $fryerTMPSs);
+        }
     }
 
     /**
