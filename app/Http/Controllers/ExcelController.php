@@ -147,7 +147,6 @@ class ExcelController extends InfyOmBaseController
 		})->export('xls');
     }
 
-
 	public function getLogRequestExport(Request $request)
     {
        $this->logrequestsRepository->pushCriteria(new RequestCriteria($request));
@@ -264,5 +263,4 @@ class ExcelController extends InfyOmBaseController
             });
         })->export('xls');
     }
-    
 }
