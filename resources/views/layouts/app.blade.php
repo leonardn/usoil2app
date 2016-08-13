@@ -7,6 +7,9 @@
 
     <!--title>@yield('title', 'Home')</title-->
     <title>@yield('title', 'Home') | USOIL2APP</title>
+	
+	<link href="http://cdn.muicss.com/mui-0.6.9/css/mui.min.css" rel="stylesheet" type="text/css" />
+	<script src="http://cdn.muicss.com/mui-0.6.9/js/mui.min.js"></script>
 
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>

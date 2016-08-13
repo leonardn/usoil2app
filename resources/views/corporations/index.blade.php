@@ -25,39 +25,47 @@
         @include('flash::message')
     </div>
     <div class="row">
-        <div class="col-md-3 row-spacer-top-bot">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Corporation Name Field -->
-            {!! Form::text('corporation_name', null, ['id' => 'corporation_name', 'class' => 'form-control', 'placeholder' => 'Corporation Name']) !!}
+            {!! Form::text('corporation_name', null, ['id' => 'corporation_name', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label>Corporation Name</label>
         </div>
-        <div class="col-md-3 row-spacer-top-bot">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Corporation Phone Field -->
-            {!! Form::text('corporation_phone', null, ['id' => 'corporation_phone', 'class' => 'form-control', 'placeholder' => 'Phone No.']) !!}
+            {!! Form::text('corporation_phone', null, ['id' => 'corporation_phone', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label>Phone No.</label>
         </div>
-        <div class="col-md-3 row-spacer-top-bot">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Contact Person First Name Field -->
-            {!! Form::text('contact_person_first_name', null, ['id' => 'contact_person_first_name', 'class' => 'form-control', 'placeholder' => 'Contact Person Name']) !!}
+            {!! Form::text('contact_person_first_name', null, ['id' => 'contact_person_first_name', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label>Contact Person Name</label>
         </div>
-        <div class="col-md-3 row-spacer-top-bot">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Contact Person Email Field -->
-            {!! Form::email('contact_person_email', null, ['id' => 'contact_person_email', 'class' => 'form-control', 'placeholder' => 'Email']) !!}
+            {!! Form::email('contact_person_email', null, ['id' => 'contact_person_email', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label>Email</label>
         </div>
     </div>
     <div class="row">
-    	<div class="col-md-6 row-spacer-top-bot">
+    	<div class="col-md-6 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Corporation Address1 Field -->
-            {!! Form::text('corporation_address1', null, ['id' => 'corporation_address1', 'class' => 'form-control', 'placeholder' => 'Address 1']) !!}
+            {!! Form::text('corporation_address1', null, ['id' => 'corporation_address1', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label>Address 1</label>
         </div>
-        <div class="col-md-2 row-spacer-top-bot">
+        <div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Corporation City Field -->
-            {!! Form::text('corporation_city', null, ['id' => 'corporation_city', 'class' => 'form-control', 'placeholder' => 'City']) !!}
+            {!! Form::text('corporation_city', null, ['id' => 'corporation_city', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label>City</label>
         </div>
-        <div class="col-md-2 row-spacer-top-bot">
+        <div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Corporation State Field -->
-            {!! Form::text('corporation_state', null, ['id' => 'corporation_state', 'class' => 'form-control', 'placeholder' => 'State']) !!}
+            {!! Form::text('corporation_state', null, ['id' => 'corporation_state', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label>State</label>
         </div>
-        <div class="col-md-2 row-spacer-top-bot">
+        <div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Corporation Zipcode Field -->
-            {!! Form::text('corporation_zipcode', null, ['id' => 'corporation_zipcode', 'class' => 'form-control', 'placeholder' => 'Zip Code']) !!}
+            {!! Form::text('corporation_zipcode', null, ['id' => 'corporation_zipcode', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label>Zip Code</label>
         </div>
     </div>
     <div class="col-md-12 line-break"></div>
