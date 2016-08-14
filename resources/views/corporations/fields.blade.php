@@ -25,10 +25,10 @@
         <div class="col-md-2">
             <div class="row top-right-btn">
                 <div class="col-md-6 pull-right">
-                    <a href="javascript: void(0);" id="show_1">Show</a>
+                    <a href="javascript: void(0);" id="show_1" tabindex="-1">Show</a>
                 <!--/div>
                 <div class="col-md-6"-->
-                    <a href="javascript: void(0);" id="hide_1">Hide</a>
+                    <a href="javascript: void(0);" id="hide_1" tabindex="-1">Hide</a>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
 			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Corporation Name Field -->
 				{!! Form::text('corporation_name', null, ['class' => 'form-control', 'placeholder' => '']) !!}
-				<label>Corporation Name</label>
+				<label tabindex="-1">Corporation Name</label>
 			</div>
 			<div class="col-md-8 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
 				<!-- Status Field -->
@@ -56,19 +56,19 @@
 			<div class="col-md-6 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Corporation Address1 Field -->
 				{!! Form::text('corporation_address1', null, ['class' => 'form-control', 'placeholder' => '']) !!}
-				<label>Address 1</label>
+				<label tabindex="-1">Address 1</label>
 			</div>
 			<div class="col-md-6 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Corporation Address2 Field -->
 				{!! Form::text('corporation_address2', null, ['class' => 'form-control', 'placeholder' => '']) !!}
-				<label>Address 2</label>
+				<label tabindex="-1">Address 2</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Corporation City Field -->
 				{!! Form::text('corporation_city', null, ['class' => 'form-control', 'placeholder' => '']) !!}
-				<label>City</label>
+				<label tabindex="-1">City</label>
 			</div>
 			<div class="col-md-3 row-spacer-top-bot">
 				<!-- Corporation State Field -->
@@ -77,19 +77,19 @@
 			<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Corporation Zipcode Field -->
 				{!! Form::text('corporation_zipcode', null, ['class' => 'form-control', 'placeholder' => '']) !!}
-				<label>Zip Code</label>
+				<label tabindex="-1">Zip Code</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Corporation Phone Field -->
 				{!! Form::text('corporation_phone', null, ['class' => 'form-control', 'placeholder' => '']) !!}
-				<label>Phone No.</label>
+				<label tabindex="-1">Phone No.</label>
 			</div>
 			<div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Corporation Phone Ext Field -->
 				{!! Form::text('corporation_phone_ext', null, ['class' => 'form-control', 'placeholder' => '']) !!}
-				<label>Ext</label>
+				<label tabindex="-1">Ext</label>
 			</div>
 		</div>
 		<div class="col-md-12 line-break"></div>
@@ -104,10 +104,10 @@
         <div class="col-md-2">
             <div class="row top-right-btn">
                 <div class="col-md-6 pull-right">
-                    <a href="javascript: void(0);" id="show_2">Show</a>
+                    <a href="javascript: void(0);" id="show_2" tabindex="-1">Show</a>
                 <!--/div>
                 <div class="col-md-6"-->
-                    <a href="javascript: void(0);" id="hide_2">Hide</a>
+                    <a href="javascript: void(0);" id="hide_2" tabindex="-1">Hide</a>
                 </div>
             </div>
         </div>
@@ -117,36 +117,36 @@
 			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Contact Person Title Field -->
 				{!! Form::text('contact_person_title', null, ['class' => 'form-control', 'placeholder' => '']) !!}
-				<label>Job Title</label>
+				<label tabindex="-1">Job Title</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Contact Person First Name Field -->
 				{!! Form::text('contact_person_first_name', null, ['class' => 'form-control', 'placeholder' => '']) !!}
-				<label>First Name</label>
+				<label tabindex="-1">First Name</label>
 			</div>
 			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Contact Person Last Name Field -->
 				{!! Form::text('contact_person_last_name', null, ['class' => 'form-control', 'placeholder' => '']) !!}
-				<label>Last Name</label>
+				<label tabindex="-1">Last Name</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Contact Person Email Field -->
 				{!! Form::email('contact_person_email', null, ['class' => 'form-control', 'placeholder' => '']) !!}
-				<label>Email</label>
+				<label tabindex="-1">Email</label>
 			</div>
 			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Contact Person Phone Field -->
 				{!! Form::text('contact_person_phone', null, ['class' => 'form-control', 'placeholder' => '']) !!}
-				<label>Phone</label>
+				<label tabindex="-1">Phone</label>
 			</div>
 			<div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Contact Person Phone Ext Field -->
 				{!! Form::text('contact_person_phone_ext', null, ['class' => 'form-control', 'placeholder' => '']) !!}
-				<label>Ext</label>
+				<label tabindex="-1">Ext</label>
 			</div>
 		</div>
 		<div class="col-md-12 line-break"></div>
@@ -161,10 +161,10 @@
         <div class="col-md-2">
             <div class="row top-right-btn">
                 <div class="col-md-6 pull-right">
-                    <a href="javascript: void(0);" id="show_3">Show</a>
+                    <a href="javascript: void(0);" id="show_3" tabindex="-1">Show</a>
                 <!--/div>
                 <div class="col-md-6"-->
-                    <a href="javascript: void(0);" id="hide_3">Hide</a>
+                    <a href="javascript: void(0);" id="hide_3" tabindex="-1">Hide</a>
                 </div>
             </div>
         </div>
@@ -192,7 +192,7 @@
 					</div>
 					<div class="row row-spacer-top-bot mui-textfield mui-textfield--float-label">
 						{!! Form::text('casino_search', null, ['class' => 'form-control search', 'placeholder' => '']) !!}
-						<label>Filter Casino</label>
+						<label tabindex="-1">Filter Casino</label>
 					</div>
 				</div>
 				<div class="col-md-12 link-to-checkboxes-bg">
@@ -237,7 +237,7 @@
 					</div>
 					<div class="row row-spacer-top-bot mui-textfield mui-textfield--float-label">
 						{!! Form::text('restaurant_search', null, ['class' => 'form-control search', 'placeholder' => '']) !!}
-						<label>Filter Restaurant</label>
+						<label tabindex="-1">Filter Restaurant</label>
 					</div>
 				</div>
 				<div class="col-md-12 link-to-checkboxes-bg">

@@ -8374,11 +8374,13 @@ fieldset {
 
 /**Material Design**/
 .mui-textfield {padding-top:0 !important;}
-.mui-textfield > input, .mui-textfield > textarea {border:1px solid #f4f4f4 !important; background:#f4f4f4 none repeat scroll 0 0 !important; border-radius:4px !important; padding-left:5px !important;}
-.mui-textfield > label {width: 94% !important; padding-left:5px !important; color: #999999 !important;}
-.mui-textfield > input:focus ~ label, .mui-textfield > textarea:focus ~ label {color: #707070 !important;}
+.mui-textfield > input, .mui-textfield > textarea {border:1px solid #f4f4f4 !important; background:#f4f4f4 none repeat scroll 0 0 !important; border-radius:4px !important; padding-left:9px !important;}
+.mui-textfield > label {width: 94% !important; padding-left:10px !important; color: #999999 !important;}
+.mui-textfield > input:focus ~ label, .mui-textfield > textarea:focus ~ label {color: #999999 !important;}
 .mui-textfield--float-label > label {font-size:14px !important;}
-.mui-textfield--float-label > input:focus ~ label, .mui-textfield--float-label > textarea:focus ~ label {font-size:11px !important;}
-.mui-textfield--float-label > input.mui--is-not-empty:not(:focus) ~ label, .mui-textfield--float-label > input:not(:focus):not(:empty):not(.mui--is-empty):not(.mui--is-not-empty) ~ label, .mui-textfield--float-label > input[value]:not(:focus):not([value=""]):not(.mui--is-empty):not(.mui--is-not-empty) ~ label, .mui-textfield--float-label > textarea.mui--is-not-empty:not(:focus) ~ label, .mui-textfield--float-label > textarea:not(:focus):not(:empty):not(.mui--is-empty):not(.mui--is-not-empty) ~ label, .mui-textfield--float-label > textarea[value]:not(:focus):not([value=""]):not(.mui--is-empty):not(.mui--is-not-empty) ~ label {font-size:11px !important;}
-.form-control {padding-top:15px !important;}
-.form-control:focus {box-shadow:none !important;}
+.mui-textfield--float-label > input:focus ~ label, .mui-textfield--float-label > textarea:focus ~ label {font-size:13px !important; padding-top:5px !important;}
+.mui-textfield--float-label > input.mui--is-not-empty:not(:focus) ~ label, .mui-textfield--float-label > input:not(:focus):not(:empty):not(.mui--is-empty):not(.mui--is-not-empty) ~ label, .mui-textfield--float-label > input[value]:not(:focus):not([value=""]):not(.mui--is-empty):not(.mui--is-not-empty) ~ label, .mui-textfield--float-label > textarea.mui--is-not-empty:not(:focus) ~ label, .mui-textfield--float-label > textarea:not(:focus):not(:empty):not(.mui--is-empty):not(.mui--is-not-empty) ~ label, .mui-textfield--float-label > textarea[value]:not(:focus):not([value=""]):not(.mui--is-empty):not(.mui--is-not-empty) ~ label {font-size:13px !important; padding-top:5px !important;}
+.form-control {padding-top:15px !important; color:#000000 !important;}
+.form-control:focus {box-shadow:none !important; color: #999999 !important; border:2px solid #75BD6C !important; color:#000000 !important;}
+.mui-textfield > input.mui--is-not-empty, .mui-textfield > textarea.mui--is-not-empty {border:2px solid #75BD6C !important; color:#000000 !important;}
+.mui-textfield > input.mui--is-not-empty:focus ~ label, .mui-textfield > textarea.mui--is-not-empty:focus ~ label {color: #999999 !important; padding-left:10px !important; }
