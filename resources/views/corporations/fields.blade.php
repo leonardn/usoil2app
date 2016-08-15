@@ -182,7 +182,7 @@
 						<div class="col-md-7">
 							<div class="row">
 								<div class="col-md-12 checkbox checkbox-warning">
-									<input id="show-linked-casino" onclick="return showLinkedCasino();" type="checkbox">
+									<input id="show-linked-casino" onclick="return showLinkedCasino();" type="checkbox" checked>
 									<label for="show-linked-casino" class="checkbox-inline pull-right" style="padding-left:5px;">
 										Show linked only
 									</label>
@@ -201,7 +201,7 @@
 							<div class="col-md-12 checkbox checkbox-warning">
 								{!! Form::hidden('casino['.$casino->custom_index.']', false) !!}
 								{!! Form::checkbox('casino['.$casino->custom_index.']', $casino->id, $casino->id_exists, ['id' => 'is-active'.$casino->id, 'class' => 'casino-item-checkbox', 'onclick' => 'return showRestaurant();', 'class-data-collection' => '.restaurant-list'.$casino->id]) !!}
-								<label for="is-active{!! $casino->id !!}" id="casino{!! $casino->id !!}" class="checkbox-inline casino-name">
+								<label id="casino{!! $casino->id !!}" class="checkbox-inline casino-name">
 									{!! $casino->casino_trade_name !!}
 								</label>
 								<div class="hide">
@@ -227,7 +227,7 @@
 						<div class="col-md-7">
 							<div class="row">
 								<div class="col-md-12 checkbox checkbox-warning">
-									<input id="show-linked-restaurant" onclick="return showLinkedRestaurant();" type="checkbox">
+									<input id="show-linked-restaurant" onclick="return showLinkedRestaurant();" type="checkbox" checked>
 									<label for="show-linked-restaurant" class="checkbox-inline pull-right" style="padding-left:5px;">
 										Show linked only
 									</label>
@@ -246,7 +246,7 @@
 							<div id="restaurant-checkbox-container{!! $restaurant->id !!}" class="col-md-12 checkbox checkbox-warning hide-important">
 								{!! Form::hidden('restaurant['.$restaurant->custom_index.']', false) !!}
 								{!! Form::checkbox('restaurant['.$restaurant->custom_index.']', $restaurant->id, $restaurant->id_exists, ['id' => 'is-active-restaurant'.$restaurant->id, 'class' => 'restaurant-item-checkbox']) !!}
-								<label for="is-active-restaurant{!! $restaurant->id !!}" id="restaurant{!! $restaurant->id !!}" class="checkbox-inline restaurant-name">
+								<label id="restaurant{!! $restaurant->id !!}" class="checkbox-inline restaurant-name">
 									{!! $restaurant->restaurant_name !!}
 								</label>
 							</div>
@@ -264,12 +264,12 @@
     <script type="text/javascript">
         var casinoOptions = {
             valueNames: ['casino-name']
-        }
+        };
         var casinoList = new List('casinos', casinoOptions);
 
         var restaurantOptions = {
             valueNames: ['restaurant-name']
-        }
+        };
         var restaurantList = new List('restaurants', restaurantOptions);
 
         function showRestaurant()
@@ -290,7 +290,7 @@
                 }
             }).promise().done(function() {
                 selectedCasinoShowCasino();
-            });;
+            });
         }
         function selectedCasinoShowCasino() {
             $(".casino-item-checkbox").each(function(){
@@ -337,11 +337,13 @@
         }
 
         window.onload = function(e) {
+			showLinkedCasino();
             selectedCasinoShowCasino();
+			showLinkedRestaurant();
             $("#show_1").hide();
             $("#show_2").hide();
             $("#show_3").hide();
-        }
+        };
         
         $("#hide_1").click(function(){
 			$("#show_1").show();
