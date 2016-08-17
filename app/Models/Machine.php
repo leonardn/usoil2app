@@ -32,14 +32,14 @@ class Machine extends Model
     use SoftDeletes;
 
     public $table = 'machines';
-    
 
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
         'machine_name',
-        'machine_type'
+        'machine_type',
+        'status'
     ];
 
     /**

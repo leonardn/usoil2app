@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMachinesTable extends Migration
+class CreateLogRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,14 @@ class CreateMachinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('machines', function (Blueprint $table) {
+        Schema::create('log_requests', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('machine_name');
-            $table->string('machine_type');
-            $table->timestamps();
-            $table->softDeletes();
+			$table->integer('fryer_id');
+			$table->integer('log_option_id');
+			$table->dateTime('creation_date');
+			$table->tinyInteger('status');
+			$table->timestamps();
+			$table->softDeletes();
         });
     }
 
@@ -28,6 +30,6 @@ class CreateMachinesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('machines');
+        Schema::drop('log_requests');
     }
 }

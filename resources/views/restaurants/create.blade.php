@@ -2,17 +2,9 @@
 
 @section('content')
     <div class="row">
-        <div class="col-sm-12">
-            <h1 class="pull-left">Create New Restaurant</h1>
-        </div>
-    </div>
-
-    @include('core-templates::common.errors')
-
-    <div class="row">
         {!! Form::open(['route' => 'restaurants.store']) !!}
 
-            @include('restaurants.fields')
+            @include('restaurants.fields', ['moduleTitle' => 'ADD NEW RESTAURANT'])
 
         {!! Form::close() !!}
     </div>

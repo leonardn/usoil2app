@@ -60,5 +60,38 @@ class DatabaseSeeder extends Seeder
 				'status' => '1',
 	        ]);
 		}
+		
+		//DUMMY MACHINES DATA
+    	for ($x = 0; $x <= 9; $x++) {
+    		DB::table('machines')->insert([
+				'machine_name' => str_random(5).' Machine',
+				'machine_type' => str_random(5).' Type',
+				'status' => '1',
+	        ]);
+		}
+		
+		//DUMMY CORPORATION DATA
+    	for ($x = 0; $x <= 9; $x++) {
+    		DB::table('corporations')->insert([
+				'corporation_name' => str_random(5).' Corp',
+				'status' => '1',
+	        ]);
+		}
+		
+		//DUMMY FRYER DATA
+    	for ($x = 0; $x <= 9; $x++) {
+    		DB::table('fryers')->insert([
+				'fryer_name' => 'Fryer '.$x,
+				'status' => '1',
+	        ]);
+		}
+		
+		//DUMMY LOG OPTION DATA
+    	for ($x = 0; $x <= 9; $x++) {
+    		DB::table('log_options')->insert([
+				'option_title' => 'Log Option '.$x,
+				'status' => '1',
+	        ]);
+		}
     }
 }
