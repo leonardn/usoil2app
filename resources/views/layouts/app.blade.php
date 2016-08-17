@@ -63,7 +63,7 @@
 @else
     <div id="wrapper" class="">
         <!-- Sidebar -->
-            @include('layouts.sidebar')
+           @include('layouts.sidebar') 
         <!-- /#sidebar-wrapper -->
         <header class="header" style="display:none;">
             <a href="#menu-toggle"
