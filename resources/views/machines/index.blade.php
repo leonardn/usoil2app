@@ -25,13 +25,14 @@
         @include('flash::message')
     </div>
     <div class="row">
-        <div class="col-md-3 row-spacer-top-bot">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Machine Name Field -->
-            {!! Form::text('machine_name', null, ['id' => 'machine_name', 'class' => 'form-control', 'placeholder' => 'Machine Name']) !!}
+            {!! Form::text('machine_name', null, ['id' => 'machine_name', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Machine Name</label>
         </div>
-        <div class="col-md-2 row-spacer-top-bot">
+        <div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Machine Type Field -->
-            {!! Form::select('machine_type', Config::get('constants.machine_type'), null, ['id' => 'machine_type', 'class' => 'select-form-control']) !!}
+            {!! Form::select('machine_type', Config::get('constants.machine_type'), null, ['id' => 'machine_type', 'class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-md-12 line-break"></div>

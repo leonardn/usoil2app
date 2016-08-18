@@ -27,8 +27,9 @@
         @include('core-templates::common.errors')
     </div>
     <div class="row">
-        <div class="col-md-4 row-spacer-top-bot">
-            {!! Form::text('fryer_name', null, ['class' => 'form-control', 'placeholder' => 'Fryer Name']) !!}
+        <div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+            {!! Form::text('fryer_name', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Fryer Name</label>
         </div>
         <div class="col-md-8 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
             <!-- Status Field -->
@@ -40,27 +41,32 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4 row-spacer-top-bot">
+        <div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Make Field -->
-            {!! Form::text('make', null, ['class' => 'form-control', 'placeholder' => 'Make']) !!}
+            {!! Form::text('make', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Make</label>
         </div>
-        <div class="col-md-4 row-spacer-top-bot">
+        <div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Model Field -->
-            {!! Form::text('model', null, ['class' => 'form-control', 'placeholder' => 'Model']) !!}
+            {!! Form::text('model', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Model</label>
         </div>
-        <div class="col-md-4 row-spacer-top-bot">
+        <div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Serial Number Field -->
-            {!! Form::text('serial_number', null, ['class' => 'form-control', 'placeholder' => 'Serial Number']) !!}
+            {!! Form::text('serial_number', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Serial Number</label>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4 row-spacer-top-bot">
+        <div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Oil Capacity Field -->
-            {!! Form::number('oil_capacity', null, ['class' => 'form-control', 'placeholder' => 'Oil Capacity']) !!}
+            {!! Form::number('oil_capacity', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Oil Capacity</label>
         </div>
-        <div class="col-md-4 row-spacer-top-bot">
+        <div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Benchmark Field -->
-            {!! Form::number('benchmark', null, ['class' => 'form-control', 'placeholder' => 'Benchmark']) !!}
+            {!! Form::number('benchmark', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Benchmark</label>
         </div>
     </div>
     <div class="col-md-12 line-break"></div>

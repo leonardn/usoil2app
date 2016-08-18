@@ -70,9 +70,9 @@
 				{!! Form::text('corporation_city', null, ['class' => 'form-control', 'placeholder' => '']) !!}
 				<label tabindex="-1">City</label>
 			</div>
-			<div class="col-md-3 row-spacer-top-bot">
+			<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Corporation State Field -->
-				{!! Form::select('corporation_state', Config::get('constants.state_en'), null, ['class' => 'select-form-control']) !!}
+				{!! Form::select('corporation_state', Config::get('constants.state_en'), null, ['class' => 'form-control']) !!}
 			</div>
 			<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Corporation Zipcode Field -->
@@ -245,7 +245,7 @@
 						@foreach($restaurants as $restaurant)
 							<div id="restaurant-checkbox-container{!! $restaurant->id !!}" class="col-md-12 checkbox checkbox-warning hide-important">
 								{!! Form::hidden('restaurant['.$restaurant->custom_index.']', false) !!}
-								{!! Form::checkbox('restaurant['.$restaurant->custom_index.']', $restaurant->id, $restaurant->id_exists, ['id' => 'is-active-restaurant'.$restaurant->id, 'class' => 'restaurant-item-checkbox']) !!}
+								{!! Form::checkbox('restaurant['.$restaurant->custom_index.']', $restaurant->id, $restaurant->id_exists, ['id' => 'is-active-restaurant'.$restaurant->id, 'onclick' => 'toggleColor(this.value,this.checked);', 'class' => 'restaurant-item-checkbox']) !!}
 								<label id="restaurant{!! $restaurant->id !!}" class="checkbox-inline restaurant-name">
 									{!! $restaurant->restaurant_name !!}
 								</label>
@@ -276,40 +276,73 @@
         {
             notSelectedCasinoHideCasino();
         }
+		
+		function toggleColor(val,chk)
+		{
+			if(chk)
+			{
+				$("#restaurant"+val).css("color", "#A88C13");
+			}
+			else
+			{
+				$("#restaurant"+val).css("color", "#8D8D8D");
+			}
+		}
 
         function notSelectedCasinoHideCasino(){
-            $(".casino-item-checkbox").each(function(){
+		     $(".casino-item-checkbox").each(function(){
+				var checkval = this.value;
                 var restaurant_class = $(this).attr('class-data-collection');
                 //console.log(casino_class);
                 if(!$(this).is(':checked')) {
                     $(restaurant_class).each(function(){
                         var value = $(this).val();
                         $(value +"> input[type='checkbox']").removeAttr('checked');
-                        $(value).removeClass("hide-important").addClass("hide-important");
-                    });
+						$(value).removeClass("hide-important").addClass("hide-important");
+						$("#casino"+checkval).css("color", "#555555");
+						$(value +"> input[type='checkbox'] + label").css("color", "#8D8D8D");
+					});
                 }
+				else
+				{
+					$("#casino"+checkval).css("color", "#A88C13");
+				}
             }).promise().done(function() {
                 selectedCasinoShowCasino();
             });
         }
         function selectedCasinoShowCasino() {
-            $(".casino-item-checkbox").each(function(){
+		     $(".casino-item-checkbox").each(function(){
+				var checkval = this.value;
                 var restaurant_class = $(this).attr('class-data-collection');
                 if($(this).is(':checked')) {
                     $(restaurant_class).each(function(){
                         var value = $(this).val();
                         $(value).removeClass("hide-important");
+						$("#casino"+checkval).css("color", "#A88C13");
                     });
                 }
+				else
+				{
+					$("#casino"+checkval).css("color", "#555555");
+				}
             });
         }
 
         function showLinkedCasino() {
-            if($("#show-linked-casino").is(':checked'))
+		    if($("#show-linked-casino").is(':checked'))
             {
                 $(".casino-item-checkbox").each(function(){
+					var checkval = this.value;
                     if(!$(this).is(':checked'))
+					{
                         $(this).parent().removeClass("hide-important").addClass("hide-important");
+						$("#casino"+checkval).css("color", "#555555");
+					}
+					else
+					{
+						$("#casino"+checkval).css("color", "#A88C13");
+					}
                 });
             }
             else
@@ -321,11 +354,19 @@
         }
 
         function showLinkedRestaurant() {
-            if($("#show-linked-restaurant").is(':checked'))
+		     if($("#show-linked-restaurant").is(':checked'))
             {
                 $(".restaurant-item-checkbox").each(function(){
+					var checkval = this.value;
                     if(!$(this).is(':checked'))
+					{
                         $(this).parent().removeClass("hide-important").addClass("hide-important");
+						$("#restaurant"+checkval).css("color", "#8D8D8D");
+					}
+					else
+					{
+						$("#restaurant"+checkval).css("color", "#A88C13");
+					}
                 });
             }
             else

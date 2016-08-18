@@ -25,10 +25,10 @@
         <div class="col-md-2">
             <div class="row top-right-btn">
                 <div class="col-md-6 pull-right">
-                    <a href="javascript: void(0);" id="show_1">Show</a>
+                    <a href="javascript: void(0);" id="show_1" tabindex="-1">Show</a>
                 <!--/div>
                 <div class="col-md-6"-->
-                    <a href="javascript: void(0);" id="hide_1">Hide</a>
+                    <a href="javascript: void(0);" id="hide_1" tabindex="-1">Hide</a>
                 </div>
             </div>
         </div>
@@ -38,10 +38,11 @@
     </div>
     <div id="rest-details">
 		<div class="row">
-			<div class="col-md-4 row-spacer-top-bot">
+			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- https://codepen.io/jonnitto/pen/OVmvPB -->
 				<!-- Restaurant Name Field -->
-				{!! Form::text('restaurant_name', null, ['class' => 'form-control', 'placeholder' => 'Restaurant Name']) !!}
+				{!! Form::text('restaurant_name', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Restaurant Name</label>
 			</div>
 			<div class="col-md-8 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
 				<!-- Status Field -->
@@ -53,28 +54,33 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-3 row-spacer-top-bot">
-				<input id="activation_date" class="form-control" placeholder="Activation Date" name="activation_date" type="text" value="{!! isset($restaurant->activation_date) ? $restaurant->activation_date : '' !!}">
+			<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+				<input id="activation_date" class="form-control" placeholder="" name="activation_date" type="text" value="{!! isset($restaurant->activation_date) ? $restaurant->activation_date : '' !!}">
+				<label tabindex="-1">Activation Date</label>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-3 row-spacer-top-bot">
+			<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Restaurant Location Code Field -->
-				{!! Form::text('restaurant_location_code', null, ['class' => 'form-control', 'placeholder' => 'Location Code']) !!}
+				{!! Form::text('restaurant_location_code', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Location Code</label>
 			</div>
-			<div class="col-md-9 row-spacer-top-bot">
+			<div class="col-md-9 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Restaurant Location Field -->
-				{!! Form::text('restaurant_location', null, ['class' => 'form-control', 'placeholder' => 'Location']) !!}
+				{!! Form::text('restaurant_location', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Location</label>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-3 row-spacer-top-bot">
+			<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Restaurant Location Lati Field -->
-				{!! Form::text('restaurant_location_lati', null, ['class' => 'form-control', 'placeholder' => 'Latitude']) !!}
+				{!! Form::text('restaurant_location_lati', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Latitude</label>
 			</div>
-			<div class="col-md-3 row-spacer-top-bot">
+			<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Restaurant Location Long Field -->
-				{!! Form::text('restaurant_location_long', null, ['class' => 'form-control', 'placeholder' => 'longitude']) !!}
+				{!! Form::text('restaurant_location_long', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Longitude</label>
 			</div>
 		</div>
 		<div class="col-md-12 line-break"></div>
@@ -88,43 +94,49 @@
         <div class="col-md-2">
             <div class="row top-right-btn">
                 <div class="col-md-6 pull-right">
-                    <a href="javascript: void(0);" id="show_2">Show</a>
+                    <a href="javascript: void(0);" id="show_2" tabindex="-1">Show</a>
                 <!--/div>
                 <div class="col-md-6"-->
-                    <a href="javascript: void(0);" id="hide_2">Hide</a>
+                    <a href="javascript: void(0);" id="hide_2" tabindex="-1">Hide</a>
                 </div>
             </div>
         </div>
     </div>
     <div id="contact-details">
 		<div class="row">
-			<div class="col-md-4 row-spacer-top-bot">
+			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Contact Person Title Field -->
-				{!! Form::text('contact_person_title', null, ['class' => 'form-control', 'placeholder' => 'Contact Person Title']) !!}
+				{!! Form::text('contact_person_title', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Contact Person Title</label>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-4 row-spacer-top-bot">
+			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Contact Person First Name Field -->
-				{!! Form::text('contact_person_first_name', null, ['class' => 'form-control', 'placeholder' => 'Contact Person First Name']) !!}
+				{!! Form::text('contact_person_first_name', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Contact Person First Name</label>
 			</div>
-			<div class="col-md-4 row-spacer-top-bot">
+			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Contact Person Last Name Field -->
-				{!! Form::text('contact_person_last_name', null, ['class' => 'form-control', 'placeholder' => 'Contact Person Last Name']) !!}
+				{!! Form::text('contact_person_last_name', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Contact Person Last Name</label>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-4 row-spacer-top-bot">
+			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Contact Person Email Field -->
-				{!! Form::text('contact_person_email', null, ['class' => 'form-control', 'placeholder' => 'Contact Person Email']) !!}
+				{!! Form::text('contact_person_email', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Contact Person Email</label>
 			</div>
-			<div class="col-md-4 row-spacer-top-bot">
+			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Contact Person Phone Field -->
-				{!! Form::text('contact_person_phone', null, ['class' => 'form-control', 'placeholder' => 'Contact Person Phone']) !!}
+				{!! Form::text('contact_person_phone', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Contact Person Phone</label>
 			</div>
-			<div class="col-md-2 row-spacer-top-bot">
+			<div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Contact Person Phone Ext Field -->
-				{!! Form::text('contact_person_phone_ext', null, ['class' => 'form-control', 'placeholder' => 'Ext']) !!}
+				{!! Form::text('contact_person_phone_ext', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Ext</label>
 			</div>
 		</div>
 		<div class="col-md-12 line-break"></div>
@@ -139,10 +151,10 @@
         <div class="col-md-2">
             <div class="row top-right-btn">
                 <div class="col-md-6 pull-right">
-                    <a href="javascript: void(0);" id="show_3">Show</a>
+                    <a href="javascript: void(0);" id="show_3" tabindex="-1">Show</a>
                 <!--/div>
                 <div class="col-md-6"-->
-                    <a href="javascript: void(0);" id="hide_3">Hide</a>
+                    <a href="javascript: void(0);" id="hide_3" tabindex="-1">Hide</a>
                 </div>
             </div>
         </div>
@@ -168,8 +180,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="row row-spacer-top-bot">
-						{!! Form::text('fryer_search', null, ['class' => 'form-control search', 'placeholder' => 'Filter Fryer']) !!}
+					<div class="row row-spacer-top-bot mui-textfield mui-textfield--float-label">
+						{!! Form::text('fryer_search', null, ['class' => 'form-control search', 'placeholder' => '']) !!}
+						<label tabindex="-1">Filter Fryer</label>
 					</div>
 				</div>
 				<div class="col-md-12 link-to-checkboxes-bg">
@@ -207,8 +220,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="row row-spacer-top-bot">
-						{!! Form::text('machine_search', null, ['class' => 'form-control search', 'placeholder' => 'Filter Machine']) !!}
+					<div class="row row-spacer-top-bot mui-textfield mui-textfield--float-label">
+						{!! Form::text('machine_search', null, ['class' => 'form-control search', 'placeholder' => '']) !!}
+						<label tabindex="-1">Filter Machine</label>
 					</div>
 				</div>
 				<div class="col-md-12 link-to-checkboxes-bg">

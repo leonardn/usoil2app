@@ -7,7 +7,7 @@ use InfyOm\Generator\Common\BaseRepository;
 
 class FryerTMPSRepository extends BaseRepository
 {
-    /**
+	/**
      * @var array
      */
     protected $fieldSearchable = [
@@ -22,7 +22,7 @@ class FryerTMPSRepository extends BaseRepository
         'creation_date',
         'status'
     ];
-
+	
     /**
      * Configure the Model
      **/

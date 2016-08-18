@@ -32,7 +32,7 @@ class FryerTMPSController extends InfyOmBaseController
     public function index(Request $request)
     {
         $this->fryerTMPSRepository->pushCriteria(new RequestCriteria($request));
-        $fryerTMPSs = $this->fryerTMPSRepository->paginate(10);
+		$fryerTMPSs = $this->fryerTMPSRepository->paginate(10);
 
         if($request->ajax())
         {
@@ -69,7 +69,7 @@ class FryerTMPSController extends InfyOmBaseController
 
         $fryerTMPS = $this->fryerTMPSRepository->create($input);
 
-        Flash::success('FryerTMPS saved successfully.');
+        Flash::success('FryerTPMS saved successfully.');
 
         return redirect(route('fryerTMPSs.index'));
     }
@@ -86,7 +86,7 @@ class FryerTMPSController extends InfyOmBaseController
         $fryerTMPS = $this->fryerTMPSRepository->findWithoutFail($id);
 
         if (empty($fryerTMPS)) {
-            Flash::error('FryerTMPS not found');
+            Flash::error('FryerTPMS not found');
 
             return redirect(route('fryerTMPSs.index'));
         }
@@ -106,7 +106,7 @@ class FryerTMPSController extends InfyOmBaseController
         $fryerTMPS = $this->fryerTMPSRepository->findWithoutFail($id);
 
         if (empty($fryerTMPS)) {
-            Flash::error('FryerTMPS not found');
+            Flash::error('FryerTPMS not found');
 
             return redirect(route('fryerTMPSs.index'));
         }
@@ -127,14 +127,14 @@ class FryerTMPSController extends InfyOmBaseController
         $fryerTMPS = $this->fryerTMPSRepository->findWithoutFail($id);
 
         if (empty($fryerTMPS)) {
-            Flash::error('FryerTMPS not found');
+            Flash::error('FryerTPMS not found');
 
             return redirect(route('fryerTMPSs.index'));
         }
 
         $fryerTMPS = $this->fryerTMPSRepository->update($request->all(), $id);
 
-        Flash::success('FryerTMPS updated successfully.');
+        Flash::success('FryerTPMS updated successfully.');
 
         return redirect(route('fryerTMPSs.index'));
     }
@@ -151,14 +151,14 @@ class FryerTMPSController extends InfyOmBaseController
         $fryerTMPS = $this->fryerTMPSRepository->findWithoutFail($id);
 
         if (empty($fryerTMPS)) {
-            Flash::error('FryerTMPS not found');
+            Flash::error('FryerTPMS not found');
 
             return redirect(route('fryerTMPSs.index'));
         }
 
         $this->fryerTMPSRepository->delete($id);
 
-        Flash::success('FryerTMPS deleted successfully.');
+        Flash::success('FryerTPMS deleted successfully.');
 
         return redirect(route('fryerTMPSs.index'));
     }

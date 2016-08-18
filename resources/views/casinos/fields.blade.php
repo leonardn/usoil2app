@@ -25,10 +25,10 @@
         <div class="col-md-2">
             <div class="row top-right-btn">
                 <div class="col-md-6 pull-right">
-                    <a href="javascript: void(0);" id="show_1">Show</a>
+                    <a href="javascript: void(0);" id="show_1" tabindex="-1">Show</a>
                 <!--/div>
                 <div class="col-md-6"-->
-                    <a href="javascript: void(0);" id="hide_1">Hide</a>
+                    <a href="javascript: void(0);" id="hide_1" tabindex="-1">Hide</a>
                 </div>
             </div>
         </div>
@@ -38,9 +38,10 @@
     </div>
     <div id="casino-details">
 		<div class="row">
-			<div class="col-md-4 row-spacer-top-bot">
+			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Casino Trade Name Field -->
-				{!! Form::text('casino_trade_name', null, ['class' => 'form-control', 'placeholder' => 'Casino Trade Name']) !!}
+				{!! Form::text('casino_trade_name', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Casino Trade Name</label>
 			</div>
 			<div class="col-md-8 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
 				<!-- Status Field -->
@@ -52,55 +53,64 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-4 row-spacer-top-bot">
+			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Casino Email Field -->
-				{!! Form::email('casino_email', null, ['class' => 'form-control', 'placeholder' => 'Casino Email']) !!}
+				{!! Form::email('casino_email', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Casino Email</label>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-2 row-spacer-top-bot">
+			<div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Casino Ein Field -->
-				{!! Form::text('casino_ein', null, ['class' => 'form-control', 'placeholder' => 'EIN']) !!}
+				{!! Form::text('casino_ein', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">EIN</label>
 			</div>
-			<div class="col-md-10 row-spacer-top-bot">
+			<div class="col-md-10 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Account Payable Name Field -->
-				{!! Form::text('account_payable_name', null, ['class' => 'form-control', 'placeholder' => 'Account Payable Name']) !!}
+				{!! Form::text('account_payable_name', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Account Payable Name</label>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12 row-spacer-top-bot">
+			<div class="col-md-12 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Casino Address1 Field -->
-				{!! Form::text('casino_address1', null, ['class' => 'form-control', 'placeholder' => 'Address 1']) !!}
+				{!! Form::text('casino_address1', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Address 1</label>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12 row-spacer-top-bot">
+			<div class="col-md-12 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Casino Address2 Field -->
-				{!! Form::text('casino_address2', null, ['class' => 'form-control', 'placeholder' => 'Address 2']) !!}
+				{!! Form::text('casino_address2', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Address 2</label>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-3 row-spacer-top-bot">
+			<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Casino City Field -->
-				{!! Form::text('casino_city', null, ['class' => 'form-control', 'placeholder' => 'City']) !!}
+				{!! Form::text('casino_city', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">City</label>
 			</div>
-			<div class="col-md-3 row-spacer-top-bot">
+			<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Casino State Field -->
-				{!! Form::select('casino_state', Config::get('constants.state_en'), null, ['class' => 'select-form-control']) !!}
+				{!! Form::select('casino_state', Config::get('constants.state_en'), null, ['class' => 'form-control']) !!}
 			</div>
-			<div class="col-md-3 row-spacer-top-bot">
+			<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Casino Zipcode Field -->
-				{!! Form::text('casino_zipcode', null, ['class' => 'form-control', 'placeholder' => 'Zip Code']) !!}
+				{!! Form::text('casino_zipcode', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Zip Code</label>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-3 row-spacer-top-bot">
+			<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Casino Phone Field -->
-				{!! Form::text('casino_phone', null, ['class' => 'form-control', 'placeholder' => 'Phone Number']) !!}
+				{!! Form::text('casino_phone', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Phone Number</label>
 			</div>
-			<div class="col-md-2 row-spacer-top-bot">
+			<div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Casino Phone Ext Field -->
-				{!! Form::text('casino_phone_ext', null, ['class' => 'form-control', 'placeholder' => 'Ext']) !!}
+				{!! Form::text('casino_phone_ext', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Ext</label>
 			</div>
 		</div>
 		<div class="col-md-12 line-break"></div>
@@ -114,43 +124,49 @@
         <div class="col-md-2">
             <div class="row top-right-btn">
                 <div class="col-md-6 pull-right">
-                    <a href="javascript: void(0);" id="show_2">Show</a>
+                    <a href="javascript: void(0);" id="show_2" tabindex="-1">Show</a>
                 <!--/div>
                 <div class="col-md-6"-->
-                    <a href="javascript: void(0);" id="hide_2">Hide</a>
+                    <a href="javascript: void(0);" id="hide_2" tabindex="-1">Hide</a>
                 </div>
             </div>
         </div>
     </div>
     <div id="contact-details">
 		<div class="row">
-			<div class="col-md-4 row-spacer-top-bot">
+			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Contact Person Title Field -->
-				{!! Form::text('contact_person_title', null, ['class' => 'form-control', 'placeholder' => 'Contact Person Title']) !!}
+				{!! Form::text('contact_person_title', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Contact Person Title</label>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-4 row-spacer-top-bot">
+			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Contact Person First Name Field -->
-				{!! Form::text('contact_person_first_name', null, ['class' => 'form-control', 'placeholder' => 'Contact Person First Name']) !!}
+				{!! Form::text('contact_person_first_name', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Contact Person First Name</label>
 			</div>
-			<div class="col-md-4 row-spacer-top-bot">
+			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Contact Person Last Name Field -->
-				{!! Form::text('contact_person_last_name', null, ['class' => 'form-control', 'placeholder' => 'Contact Person Last Name']) !!}
+				{!! Form::text('contact_person_last_name', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Contact Person Last Name</label>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-4 row-spacer-top-bot">
+			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Contact Person Email Field -->
-				{!! Form::text('contact_person_email', null, ['class' => 'form-control', 'placeholder' => 'Contact Person Email']) !!}
+				{!! Form::text('contact_person_email', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Contact Person Email</label>
 			</div>
-			<div class="col-md-4 row-spacer-top-bot">
+			<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Contact Person Phone Field -->
-				{!! Form::text('contact_person_phone', null, ['class' => 'form-control', 'placeholder' => 'Contact Person Phone']) !!}
+				{!! Form::text('contact_person_phone', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Contact Person Phone</label>
 			</div>
-			<div class="col-md-2 row-spacer-top-bot">
+			<div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
 				<!-- Contact Person Phone Ext Field -->
-				{!! Form::text('contact_person_phone_ext', null, ['class' => 'form-control', 'placeholder' => 'Ext']) !!}
+				{!! Form::text('contact_person_phone_ext', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				<label tabindex="-1">Ext</label>
 			</div>
 		</div>
 		<div class="col-md-12 line-break"></div>
@@ -165,10 +181,10 @@
         <div class="col-md-2">
             <div class="row top-right-btn">
                 <div class="col-md-6 pull-right">
-                    <a href="javascript: void(0);" id="show_3">Show</a>
+                    <a href="javascript: void(0);" id="show_3" tabindex="-1">Show</a>
                 <!--/div>
                 <div class="col-md-6"-->
-                    <a href="javascript: void(0);" id="hide_3">Hide</a>
+                    <a href="javascript: void(0);" id="hide_3" tabindex="-1">Hide</a>
                 </div>
             </div>
         </div>
@@ -194,8 +210,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="row row-spacer-top-bot">
-						{!! Form::text('restaurant_search', null, ['class' => 'form-control search', 'placeholder' => 'Filter Restaurant']) !!}
+					<div class="row row-spacer-top-bot mui-textfield mui-textfield--float-label">
+						{!! Form::text('restaurant_search', null, ['class' => 'form-control search', 'placeholder' => '']) !!}
+						<label tabindex="-1">Filter Restaurant</label>
 					</div>
 				</div>
 				<div class="col-md-12 link-to-checkboxes-bg">

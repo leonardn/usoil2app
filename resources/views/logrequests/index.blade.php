@@ -25,18 +25,21 @@
         @include('flash::message')
     </div>
     <div class="row">
-		<div class="col-md-3 row-spacer-top-bot">
+		<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Fryer Name Field -->
-            <input id="autocomplete-fryer" class="form-control" placeholder="Fryer Name" type="text">
+            <input id="autocomplete-fryer" class="form-control" placeholder="" type="text">
+			<label tabindex="-1">Fryer Name</label>
             {!! Form::hidden('fryer_id', null, ['id' => 'fryer_id']) !!}
         </div>
-        <div class="col-md-3 row-spacer-top-bot">
-            <input id="autocomplete-logoption" class="form-control" placeholder="Log Option" type="text">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+            <input id="autocomplete-logoption" class="form-control" placeholder="" type="text">
+			<label tabindex="-1">Log Option</label>
             {!! Form::hidden('log_option_id', null, ['id' => 'log_option_id']) !!}
         </div>
-        <div class="col-md-3 row-spacer-top-bot">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Creation Date/Time Field -->
-            {!! Form::text('creation_date', null, ['id' => 'creation_date', 'class' => 'form-control', 'placeholder' => 'Creation Date/Time']) !!}
+            {!! Form::text('creation_date', null, ['id' => 'creation_date', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Creation Date</label>
         </div>
     </div>
     <div class="col-md-12 line-break"></div>

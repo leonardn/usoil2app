@@ -25,13 +25,15 @@
         @include('flash::message')
     </div>
     <div class="row">
-     	<div class="col-md-4 row-spacer-top-bot">
+     	<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Email Field -->
-            {!! Form::email('email', null, ['id' => 'email', 'class' => 'form-control', 'placeholder' => 'Email']) !!}
+            {!! Form::email('email', null, ['id' => 'email', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Email</label>
         </div>
-        <div class="col-md-4 row-spacer-top-bot">
+        <div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Password Field -->
-            {!! Form::text('password', null, ['id' => 'password', 'class' => 'form-control', 'placeholder' => 'Password']) !!}
+            {!! Form::text('password', null, ['id' => 'password', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Password</label>
         </div>
      </div>
      <div class="col-md-12 line-break"></div>

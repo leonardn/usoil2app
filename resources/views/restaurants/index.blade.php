@@ -25,25 +25,31 @@
         @include('flash::message')
     </div>
     <div class="row">
-        <div class="col-md-3 row-spacer-top-bot">
-            {!! Form::text('restaurant_name', null, ['id' => 'restaurant_name', 'class' => 'form-control', 'placeholder' => 'Restaurant Name']) !!}
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+            {!! Form::text('restaurant_name', null, ['id' => 'restaurant_name', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Restaurant Name</label>
         </div>
-        <div class="col-md-3 row-spacer-top-bot">
-    		{!! Form::text('contact_person_phone', null, ['id' => 'contact_person_phone', 'class' => 'form-control', 'placeholder' => 'Phone']) !!}
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+    		{!! Form::text('contact_person_phone', null, ['id' => 'contact_person_phone', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Phone</label>
         </div>
-        <div class="col-md-3 row-spacer-top-bot">
-    		{!! Form::text('contact_person_first_name', null, ['id' => 'contact_person_first_name', 'class' => 'form-control', 'placeholder' => 'Contact Person Name']) !!}
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+    		{!! Form::text('contact_person_first_name', null, ['id' => 'contact_person_first_name', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Contact Person Name</label>
         </div>
-        <div class="col-md-3 row-spacer-top-bot">
-    		{!! Form::text('contact_person_email', null, ['id' => 'contact_person_email', 'class' => 'form-control', 'placeholder' => 'Email']) !!}
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+    		{!! Form::text('contact_person_email', null, ['id' => 'contact_person_email', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Email</label>
         </div>
     </div>
     <div class="row">
-    	<div class="col-md-6 row-spacer-top-bot">
-    		{!! Form::text('restaurant_location', null, ['id' => 'restaurant_location', 'class' => 'form-control', 'placeholder' => 'Location']) !!}
+    	<div class="col-md-6 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+    		{!! Form::text('restaurant_location', null, ['id' => 'restaurant_location', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Location</label>
         </div>
-        <div class="col-md-2 row-spacer-top-bot">
-    		{!! Form::text('restaurant_location_code', null, ['id' => 'restaurant_location_code', 'class' => 'form-control', 'placeholder' => 'Location Code']) !!}
+        <div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+    		{!! Form::text('restaurant_location_code', null, ['id' => 'restaurant_location_code', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Location Code</label>
         </div>
     </div>
     <div class="col-md-12 line-break"></div>

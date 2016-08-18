@@ -25,15 +25,18 @@
         @include('flash::message')
     </div>
     <div class="row">
-     	<div class="col-md-2 row-spacer-top-bot">
-            <input value="" id="autocomplete-fryer" class="form-control" placeholder="Fryer Name" type="text">
+     	<div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+            <input value="" id="autocomplete-fryer" class="form-control" placeholder="" type="text">
+			<label tabindex="-1">Fryer Name</label>
             {!! Form::hidden('fryer_id', null, ['id' => 'fryer_id', 'class' => 'form-control']) !!}
      	</div>
-     	<div class="col-md-2 row-spacer-top-bot">
-     		{!! Form::text('measured_tpm', null, ['id' => 'measured_tpm', 'class' => 'form-control', 'placeholder' => 'Measured TPM']) !!}
+     	<div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+     		{!! Form::text('measured_tpm', null, ['id' => 'measured_tpm', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Measured TPM</label>
      	</div>
-     	<div class="col-md-2 row-spacer-top-bot">
-     		{!! Form::text('oil_temp', null, ['id' => 'oil_temp', 'class' => 'form-control', 'placeholder' => 'Oil Temp.']) !!}
+     	<div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+     		{!! Form::text('oil_temp', null, ['id' => 'oil_temp', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Oil Temp.</label>
      	</div>
      	<div class="col-md-2 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
                 {!! Form::hidden('changed_oil', false) !!}
@@ -49,8 +52,9 @@
                 Oil Moved?
 		    </label>
      	</div>
-     	<div class="col-md-2 row-spacer-top-bot">
-            {!! Form::text('creation_date', null, ['id' => 'creation_date', 'class' => 'form-control', 'placeholder' => 'Creation Date']) !!}
+     	<div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+            {!! Form::text('creation_date', null, ['id' => 'creation_date', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Creation Date</label>
      	</div>
      </div>
     <div class="col-md-12 line-break"></div>

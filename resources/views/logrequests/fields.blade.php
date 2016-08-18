@@ -22,9 +22,10 @@
         @include('core-templates::common.errors')
     </div>
     <div class="row">
-		<div class="col-md-4 row-spacer-top-bot">
+		<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Fryer Name Field -->
-            <input id="autocomplete-fryer" class="form-control" placeholder="Fryer Name" type="text">
+            <input id="autocomplete-fryer" class="form-control" placeholder="" type="text">
+			<label tabindex="-1">Fryer Name</label>
             {!! Form::hidden('fryer_id', null, ['id' => 'fryer_id']) !!}
         </div>
         <div class="col-md-8 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
@@ -37,14 +38,16 @@
         </div>
     </div>
     <div class="row">
-		<div class="col-md-4 row-spacer-top-bot">
+		<div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Log Option Title Field -->
-            <input id="autocomplete-logoption" class="form-control" placeholder="Log Option" type="text">
+            <input id="autocomplete-logoption" class="form-control" placeholder="" type="text">
+			<label tabindex="-1">Log Option</label>
             {!! Form::hidden('log_option_id', null, ['id' => 'log_option_id']) !!}
         </div>
-        <div class="col-md-3 row-spacer-top-bot">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Creation Date/Time Field -->
-			{!! Form::text('creation_date', null, ['id'=>'creation_date', 'class' => 'form-control', 'placeholder' => 'Creation Date/Time']) !!}
+			{!! Form::text('creation_date', null, ['id'=>'creation_date', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Creation Date/Time</label>
         </div>
     </div>
     <div class="col-md-12 line-break"></div>

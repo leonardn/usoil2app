@@ -25,23 +25,29 @@
         @include('flash::message')
     </div>
      <div class="row">
-     	<div class="col-md-2 row-spacer-top-bot">
-	     	{!! Form::text('fryer_name', null, ['id' => 'fryer_name', 'class' => 'form-control', 'placeholder' => 'Fryer Name']) !!}
+     	<div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+	     	{!! Form::text('fryer_name', null, ['id' => 'fryer_name', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Fryer Name</label>
 	     </div>
-	     <div class="col-md-2 row-spacer-top-bot">
-	     	{!! Form::text('oil_capacity', null, ['id' => 'oil_capacity', 'class' => 'form-control', 'placeholder' => 'Oil Capacity']) !!}
+	     <div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+	     	{!! Form::text('oil_capacity', null, ['id' => 'oil_capacity', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Oil Capacity</label>
 	     </div>
-	     <div class="col-md-2 row-spacer-top-bot">
-	     	{!! Form::text('benchmark', null, ['id' => 'benchmark', 'class' => 'form-control', 'placeholder' => 'Benchmark']) !!}
+	     <div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+	     	{!! Form::text('benchmark', null, ['id' => 'benchmark', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Benchmark</label>
 	     </div>
-	     <div class="col-md-2 row-spacer-top-bot">
-	     	{!! Form::text('make', null, ['id' => 'make', 'class' => 'form-control', 'placeholder' => 'Make']) !!}
+	     <div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+	     	{!! Form::text('make', null, ['id' => 'make', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Make</label>
 	     </div>
-	     <div class="col-md-2 row-spacer-top-bot">
-	     	{!! Form::text('model', null, ['id' => 'model', 'class' => 'form-control', 'placeholder' => 'Model']) !!}
+	     <div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+	     	{!! Form::text('model', null, ['id' => 'model', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Model</label>
 	     </div>
-	     <div class="col-md-2 row-spacer-top-bot">
-	     	{!! Form::text('serial_number', null, ['id' => 'serial_number', 'class' => 'form-control', 'placeholder' => 'Serial Number']) !!}
+	     <div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+	     	{!! Form::text('serial_number', null, ['id' => 'serial_number', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Serial Number</label>
 	     </div>
      </div>
     <div class="col-md-12 line-break"></div>

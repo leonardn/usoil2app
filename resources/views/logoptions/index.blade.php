@@ -25,13 +25,14 @@
         @include('flash::message')
     </div>
     <div class="row">
-        <div class="col-md-3 row-spacer-top-bot">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Log Option Name Field -->
-            {!! Form::text('option_title', null, ['id' => 'option_title', 'class' => 'form-control', 'placeholder' => 'Log Option Title']) !!}
+            {!! Form::text('option_title', null, ['id' => 'option_title', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Log Option Title</label>
         </div>
-        <div class="col-md-2 row-spacer-top-bot">
+        <div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Log Option Type Field -->
-            {!! Form::select('option_type', Config::get('constants.option_type'), null, ['id' => 'option_type', 'class' => 'select-form-control']) !!}
+            {!! Form::select('option_type', Config::get('constants.option_type'), null, ['id' => 'option_type', 'class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-md-12 line-break"></div>

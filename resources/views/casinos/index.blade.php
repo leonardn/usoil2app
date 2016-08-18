@@ -25,39 +25,47 @@
         @include('flash::message')
     </div>
     <div class="row">
-        <div class="col-md-3 row-spacer-top-bot">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
         	<!-- Casino Trade Name Field -->
-            {!! Form::text('casino_trade_name', null, ['id' => 'casino_trade_name', 'class' => 'form-control', 'placeholder' => 'Casino Trade Name']) !!}
+            {!! Form::text('casino_trade_name', null, ['id' => 'casino_trade_name', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Casino Trade Name</label>
         </div>
-        <div class="col-md-3 row-spacer-top-bot">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
         	<!-- Casino Phone Field -->
-    		{!! Form::text('casino_phone', null, ['id' => 'casino_phone', 'class' => 'form-control', 'placeholder' => 'Phone']) !!}
+    		{!! Form::text('casino_phone', null, ['id' => 'casino_phone', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Phone</label>
         </div>
-        <div class="col-md-3 row-spacer-top-bot">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
         	<!-- Contact Person First Name Field -->
-    		{!! Form::text('contact_person_first_name', null, ['id' => 'contact_person_first_name', 'class' => 'form-control', 'placeholder' => 'Contact Person Name']) !!}
+    		{!! Form::text('contact_person_first_name', null, ['id' => 'contact_person_first_name', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Contact Person Name</label>
         </div>
-        <div class="col-md-3 row-spacer-top-bot">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
         	<!-- Contact Person Email Field -->
-    		{!! Form::text('contact_person_email', null, ['id' => 'contact_person_email', 'class' => 'form-control', 'placeholder' => 'Email']) !!}
+    		{!! Form::text('contact_person_email', null, ['id' => 'contact_person_email', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Email</label>
         </div>
     </div>
     <div class="row">
-    	<div class="col-md-6 row-spacer-top-bot">
+    	<div class="col-md-6 row-spacer-top-bot mui-textfield mui-textfield--float-label">
     		<!-- Casino Address1 Field -->
-    		{!! Form::text('casino_address1', null, ['id' => 'casino_address1', 'class' => 'form-control', 'placeholder' => 'Address']) !!}
+    		{!! Form::text('casino_address1', null, ['id' => 'casino_address1', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Address</label>
         </div>
-        <div class="col-md-2 row-spacer-top-bot">
+        <div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
         	<!-- Casino City Field -->
-    		{!! Form::text('casino_city', null, ['id' => 'casino_city', 'class' => 'form-control', 'placeholder' => 'City']) !!}
+    		{!! Form::text('casino_city', null, ['id' => 'casino_city', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">City</label>
         </div>
-        <div class="col-md-2 row-spacer-top-bot">
+        <div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
         	<!-- Casino State Field -->
-    		{!! Form::text('casino_state', null, ['id' => 'casino_state', 'class' => 'form-control', 'placeholder' => 'State']) !!}
+    		{!! Form::text('casino_state', null, ['id' => 'casino_state', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">State</label>
         </div>
-        <div class="col-md-2 row-spacer-top-bot">
+        <div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Casino Zipcode Field -->
-    		{!! Form::text('casino_zipcode', null, ['id' => 'casino_zipcode', 'class' => 'form-control', 'placeholder' => 'Zip Code']) !!}
+    		{!! Form::text('casino_zipcode', null, ['id' => 'casino_zipcode', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Zip Code</label>
         </div>
     </div>
     <div class="col-md-12 line-break"></div>

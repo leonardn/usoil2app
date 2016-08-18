@@ -26,13 +26,15 @@
         @include('core-templates::common.errors')
     </div>
     <div class="row">
-        <div class="col-md-4 row-spacer-top-bot">
+        <div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Email Field -->
-            {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email']) !!}
+            {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Email</label>
         </div>
-        <div class="col-md-4 row-spacer-top-bot">
+        <div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Password Field -->
-            {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password']) !!}
+            {!! Form::password('password', ['class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Password</label>
         </div>
         <div class="col-md-4 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
             <!-- Status Field -->
@@ -49,8 +51,9 @@
                 <div class="row">
                     <h5>Select Corporation(s):</h5>
                 </div>
-                <div class="row row-spacer-top-bot">
-                    {!! Form::text('corporation_search', null, ['class' => 'form-control search', 'placeholder' => 'Filter Corporation']) !!}
+                <div class="row row-spacer-top-bot mui-textfield mui-textfield--float-label">
+                    {!! Form::text('corporation_search', null, ['class' => 'form-control search', 'placeholder' => '']) !!}
+					<label tabindex="-1">Filter Corporation</label>
                 </div>
             </div>
             <div class="col-md-12 link-to-checkboxes-bg">
@@ -79,8 +82,9 @@
                 <div class="row">
                     <h5>Select Casino(s):</h5>
                 </div>
-                <div class="row row-spacer-top-bot">
-                    {!! Form::text('casino_search', null, ['class' => 'form-control search', 'placeholder' => 'Filter Casino']) !!}
+                <div class="row row-spacer-top-bot mui-textfield mui-textfield--float-label">
+                    {!! Form::text('casino_search', null, ['class' => 'form-control search', 'placeholder' => '']) !!}
+					<label tabindex="-1">Filter Casino</label>
                 </div>
             </div>
             <div class="col-md-12 link-to-checkboxes-bg">

@@ -36,6 +36,7 @@
                 </tbody>
             </table>
             @include('core-templates::common.paginate', ['records' => $corporations])
+			
         </div>
     </div>
 </div>

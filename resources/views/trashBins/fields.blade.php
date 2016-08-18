@@ -27,9 +27,10 @@
         @include('core-templates::common.errors')
     </div>
     <div class="row">
-        <div class="col-md-4 row-spacer-top-bot">
+        <div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Restaurant Id Field -->
-            <input value="{!! isset($trashBin->restaurant->restaurant_name) ? $trashBin->restaurant->restaurant_name : '' !!}" id="autocomplete-restaurant" class="form-control" placeholder="Restaurant Name" type="text">
+            <input value="{!! isset($trashBin->restaurant->restaurant_name) ? $trashBin->restaurant->restaurant_name : '' !!}" id="autocomplete-restaurant" class="form-control" placeholder="" type="text">
+			<label tabindex="-1">Restaurant Name</label>
             {!! Form::hidden('restaurant_id', null, ['id' => 'restaurant_id', 'class' => 'form-control']) !!}
         </div>
         <div class="col-md-8 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
@@ -42,17 +43,19 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3 row-spacer-top-bot">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Log Option Id Field -->
             {!! Form::select('log_option_id', $logoptions, null, ['class' => 'form-control']) !!}
         </div>
-        <div class="col-md-3 row-spacer-top-bot">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Trash Weight Field -->
-            {!! Form::number('trash_weight', null, ['class' => 'form-control', 'placeholder' => 'Trash Weight']) !!}
+            {!! Form::number('trash_weight', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Trash Weight</label>
         </div>
-        <div class="col-md-3 row-spacer-top-bot">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Creation Date Field -->
-            <input id="creation_date" class="form-control" placeholder="Creation Date" name="creation_date" type="text" value="{!! isset($trashBin->creation_date) ? $trashBin->creation_date : '' !!}">
+            <input id="creation_date" class="form-control" placeholder="" name="creation_date" type="text" value="{!! isset($trashBin->creation_date) ? $trashBin->creation_date : '' !!}">
+			<label tabindex="-1">Creation Date</label>
         </div>
     </div>
 </div>

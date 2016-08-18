@@ -39,9 +39,9 @@ class CorporationController extends InfyOmBaseController
      */
     public function index(Request $request)
     {
-        $this->corporationRepository->pushCriteria(new RequestCriteria($request));
-        $corporations = $this->corporationRepository->paginate(10);
-        
+		$this->corporationRepository->pushCriteria(new RequestCriteria($request));
+       	$corporations = $this->corporationRepository->paginate(10);
+		
         if($request->ajax())
         {
             return view('corporations.table')->with('corporations', $corporations);

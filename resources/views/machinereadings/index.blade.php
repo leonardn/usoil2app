@@ -25,22 +25,26 @@
         @include('flash::message')
     </div>
     <div class="row">
-		<div class="col-md-3 row-spacer-top-bot">
+		<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Restaurant Name Field -->
-            <input id="autocomplete-restaurant" class="form-control" placeholder="Restaurant Name" type="text">
+            <input id="autocomplete-restaurant" class="form-control" placeholder="" type="text">
+			<label tabindex="-1">Restaurant Name</label>
             {!! Form::hidden('restaurant_id', null, ['id' => 'restaurant_id']) !!}
         </div>
-        <div class="col-md-3 row-spacer-top-bot">
-            <input id="autocomplete-machine" class="form-control" placeholder="Machine Name" type="text">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+            <input id="autocomplete-machine" class="form-control" placeholder="" type="text">
+			<label tabindex="-1">Machine Name</label>
             {!! Form::hidden('machine_id', null, ['id' => 'machine_id']) !!}
         </div>
-        <div class="col-md-2 row-spacer-top-bot">
+        <div class="col-md-2 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Temperature Reading Name -->
-            {!! Form::text('temperature_reading', null, ['id' => 'temperature_reading', 'class' => 'form-control', 'placeholder' => 'Temperature Reading']) !!}
+            {!! Form::text('temperature_reading', null, ['id' => 'temperature_reading', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Temperature Reading</label>
         </div>
-        <div class="col-md-3 row-spacer-top-bot">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Reading Date/Time Field -->
-            {!! Form::text('reading_date_time', null, ['id' => 'reading_date_time', 'class' => 'form-control', 'placeholder' => 'Reading Date/Time']) !!}
+            {!! Form::text('reading_date_time', null, ['id' => 'reading_date_time', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Reading Date</label>
         </div>
     </div>
     <div class="col-md-12 line-break"></div>

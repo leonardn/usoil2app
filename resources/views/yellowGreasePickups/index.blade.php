@@ -25,19 +25,23 @@
         @include('flash::message')
     </div>
      <div class="row">
-     	<div class="col-md-3 row-spacer-top-bot">
-     		<input id="autocomplete-corporation" class="form-control" placeholder="Corporation Name" type="text">
+     	<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+     		<input id="autocomplete-corporation" class="form-control" placeholder="" type="text">
+			<label tabindex="-1">Corporation Name</label>
             {!! Form::hidden('corporation_id', null, ['id' => 'corporation_id']) !!}
 		</div>
-		<div class="col-md-3 row-spacer-top-bot">
-     		<input id="autocomplete-casino" class="form-control" placeholder="Casino Name" type="text">
+		<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+     		<input id="autocomplete-casino" class="form-control" placeholder="" type="text">
+			<label tabindex="-1">Casino Name</label>
             {!! Form::hidden('casino_id', null, ['id' => 'casino_id']) !!}
 		</div>
-		<div class="col-md-3 row-spacer-top-bot">
-            {!! Form::text('grease', null, ['id' => 'grease', 'class' => 'form-control', 'placeholder' => 'Grease']) !!}
+		<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+            {!! Form::text('grease', null, ['id' => 'grease', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Grease</label>
         </div>
-        <div class="col-md-3 row-spacer-top-bot">
-            {!! Form::text('pickup_date', null, ['id' => 'pickup_date', 'class' => 'form-control', 'placeholder' => 'Pickup Date']) !!}
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+            {!! Form::text('pickup_date', null, ['id' => 'pickup_date', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Pickup Date</label>
         </div>
 	</div>
 	<div class="col-md-12 line-break"></div>

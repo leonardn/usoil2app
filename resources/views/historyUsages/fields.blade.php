@@ -27,8 +27,9 @@
         @include('core-templates::common.errors')
     </div>
     <div class="row">
-        <div class="col-md-4 row-spacer-top-bot">
-            <input value="{!! isset($historyUsage->corporation->corporation_name) ? $historyUsage->corporation->corporation_name : '' !!}" id="autocomplete-corporation" class="form-control" placeholder="Corporation Name" type="text">
+        <div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+            <input value="{!! isset($historyUsage->corporation->corporation_name) ? $historyUsage->corporation->corporation_name : '' !!}" id="autocomplete-corporation" class="form-control" placeholder="" type="text">
+			<label tabindex="-1">Corporation Name</label>
             {!! Form::hidden('corporation_id', null, ['id' => 'corporation_id', 'class' => 'form-control']) !!}
         </div>
         <div class="col-md-8 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
@@ -41,20 +42,23 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4 row-spacer-top-bot">
-            <input value="{!! isset($historyUsage->casino->casino_trade_name) ? $historyUsage->casino->casino_trade_name : '' !!}" id="autocomplete-casino" class="form-control" placeholder="Casino Name" type="text">
+        <div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+            <input value="{!! isset($historyUsage->casino->casino_trade_name) ? $historyUsage->casino->casino_trade_name : '' !!}" id="autocomplete-casino" class="form-control" placeholder="" type="text">
+			<label tabindex="-1">Casino Name</label>
             {!! Form::hidden('casino_id', null, ['id' => 'casino_id', 'class' => 'form-control']) !!}
         </div>
-        <div class="col-md-4 row-spacer-top-bot">
-            <input value="{!! isset($historyUsage->restaurant->restaurant_name) ? $historyUsage->restaurant->restaurant_name : '' !!}" id="autocomplete-restaurant" class="form-control" placeholder="Restaurant Name" type="text">
+        <div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+            <input value="{!! isset($historyUsage->restaurant->restaurant_name) ? $historyUsage->restaurant->restaurant_name : '' !!}" id="autocomplete-restaurant" class="form-control" placeholder="" type="text">
             {!! Form::hidden('restaurant_id', null, ['id' => 'restaurant_id', 'class' => 'form-control']) !!}
+			<label tabindex="-1">Restaurant Name</label>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3 row-spacer-top-bot">
-            {!! Form::number('usage', null, ['class' => 'form-control', 'placeholder' => 'Usage']) !!}
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+            {!! Form::number('usage', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Usage</label>
         </div>
-        <div class="col-md-3 row-spacer-top-bot">
+        <div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             {!! Form::select('month', array('' => 'Select Month', 'January' => 'January', 'February' => 'February', 'March' => 'March', 'April' => 'April', 'May' => 'May', 'June' => 'June', 'July' => 'July', 'August' => 'August', 'September' => 'September', 'October' => 'October', 'November' => 'November', 'December' => 'December'), null, ['class' => 'form-control']) !!}
         </div>
     </div>

@@ -25,18 +25,21 @@
         @include('flash::message')
     </div>
     <div class="row">
-     	<div class="col-md-3 row-spacer-top-bot">
-     		<input value="" id="autocomplete-restaurant" class="form-control" placeholder="Restaurant Name" type="text">
+     	<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+     		<input value="" id="autocomplete-restaurant" class="form-control" placeholder="" type="text">
+			<label tabindex="-1">Restaurant Name</label>
             {!! Form::hidden('restaurant_id', null, ['id' => 'restaurant_id', 'class' => 'form-control']) !!}
      	</div>
-     	<div class="col-md-3 row-spacer-top-bot">
+     	<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
      		{!! Form::select('log_option_id', $logoptions, null, ['id' => 'log_option_id', 'class' => 'form-control']) !!}
      	</div>
-     	<div class="col-md-3 row-spacer-top-bot">
-     		{!! Form::text('trash_weight', null, ['id' => 'trash_weight', 'class' => 'form-control', 'placeholder' => 'Trash Weight']) !!}
+     	<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+     		{!! Form::text('trash_weight', null, ['id' => 'trash_weight', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Trash Weight</label>
      	</div>
-     	<div class="col-md-3 row-spacer-top-bot">
-            {!! Form::text('creation_date', null, ['id' => 'creation_date', 'class' => 'form-control', 'placeholder' => 'Creation Date']) !!}
+     	<div class="col-md-3 row-spacer-top-bot mui-textfield mui-textfield--float-label">
+            {!! Form::text('creation_date', null, ['id' => 'creation_date', 'class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Creation Date</label>
      	</div>
      </div>
     <div class="col-md-12 line-break"></div>

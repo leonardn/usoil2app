@@ -22,9 +22,10 @@
         @include('core-templates::common.errors')
     </div>
     <div class="row">
-        <div class="col-md-4 row-spacer-top-bot">
+        <div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Option Title Field -->
-            {!! Form::text('option_title', null, ['class' => 'form-control', 'placeholder' => 'Log Option Title']) !!}
+            {!! Form::text('option_title', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			<label tabindex="-1">Log Option Title</label>
         </div>
         <div class="col-md-8 row-spacer-top-bot checkbox checkbox-warning cb-padding-top">
             <!-- Status Field -->
@@ -36,9 +37,9 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4 row-spacer-top-bot">
+        <div class="col-md-4 row-spacer-top-bot mui-textfield mui-textfield--float-label">
             <!-- Option Type Field -->
-            {!! Form::select('option_type', Config::get('constants.option_type'), null, ['class' => 'select-form-control']) !!}
+            {!! Form::select('option_type', Config::get('constants.option_type'), null, ['class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-md-12 line-break"></div>
