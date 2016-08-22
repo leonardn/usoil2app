@@ -37,12 +37,16 @@
             </table>
 	    </div>
 		<div class="col-md-12">
-			 <div class="col-md-2 row-spacer-top-bot">
-				<label>Records Per Page</label>
-				{!! Form::select('pagesize', Config::get('constants.pagesize'), $pagesize, ['class' => 'form-control', 'id' => 'pagesize']) !!}
+			<div class="col-md-5 row-spacer-top-bot" style="line-height:15px;padding-right:0">
+				<label>Records Per Page:</label>&nbsp;&nbsp;
+				{!! Form::select('pagesize', Config::get('constants.pagesize'), $pagesize, ['class' => 'form-control2', 'id' => 'pagesize']) !!}
 			</div>
-			<strong>Total Records Found:</strong> {!! $corporations->total() !!}
-			@include('core-templates::common.paginate', ['records' => $corporations])
+			<div class="col-md-3 row-spacer-top-bot" style="line-height:30px;padding-right:0">
+				<strong>Total Records Found:</strong> {!! $corporations->total() !!}
+			</div>
+			<div class="col-md-4 row-spacer-top-bot pagi">
+				@include('core-templates::common.paginate', ['records' => $corporations])
+			</div>
 		</div>
     </div>
 </div>

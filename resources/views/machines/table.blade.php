@@ -3,14 +3,14 @@
         <div class="col-md-12">
             <table class="table table-responsive list-table" id="casinos-table">
                 <thead>
-                    <th>Machine Name</th>
+					<th>Machine Name</th>
 					<th>Machine Type</th>
 					<th colspan="3" class="text-center">Action</th>
                 </thead>
                 <tbody>
                 @foreach($machines as $machine)
                     <tr>
-                        <td>{!! $machine->machine_name !!}</td>
+						<td>{!! $machine->machine_name !!}</td>
                         <td>{!! $machine->machine_type !!}</td>
                         <td class="text-center border-right">
                             {!! Form::open(['route' => ['machines.destroy', $machine->id], 'method' => 'delete', 'id' => 'form-delete-'.$machine->id]) !!}

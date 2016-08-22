@@ -147,6 +147,10 @@
            if(response)   
            {
                 $("#get-corporation").html(response);
+                 $("#pagesize").change(function() {
+					var urlRequest = 'corporations?ps='+$(this).val();
+					window.location = urlRequest;
+				});
 			    return false;
            }
            else 
@@ -182,9 +186,9 @@
      });*/
 	 
 	 $("#pagesize").change(function() {
-	 		var urlRequest = 'corporations?ps='+$(this).val();
+			var urlRequest = 'corporations?ps='+$(this).val();
 			window.location = urlRequest;
 		});
-    </script>
+	</script>
 
 @endsection

@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Http\Requests;
 use App\Http\Requests\CreateMachineReadingsRequest;
 use App\Http\Requests\UpdateMachineReadingsRequest;
@@ -10,15 +12,18 @@ use App\MachineReadings;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+
 class MachineReadingsController extends InfyOmBaseController
 {
     /** @var  MachineReadingsRepository */
     private $machinereadingsRepository;
+
     public function __construct(MachineReadingsRepository $machinereadingsRepo)
     {
         $this->middleware('auth');
         $this->machinereadingsRepository = $machinereadingsRepo;
     }
+
     /**
      * Display a listing of the MachineReadings.
      *
@@ -27,12 +32,11 @@ class MachineReadingsController extends InfyOmBaseController
      */
     public function index(Request $request)
     {
-//        $this->machinereadingsRepository->pushCriteria(new RequestCriteria($request));
-        $machinereadings = $this->machinereadingsRepository->paginate(10);
-        if($request->search){
-            $machinereadings    = $this->machinereadingsRepository->search($request)->paginate(10);
-        }
-//        $machinereadings = $this->machinereadingsRepository->paginate(10);
+        $this->machinereadingsRepository->pushCriteria(new RequestCriteria($request));
+        //$machinereadings = $this->machinereadingsRepository->paginate(10);
+        
+        $machinereadings = MachineReadings::all()->paginate(10);
+		
 		/*$machinereadings = \DB::table('machine_readings')
 							->join('machines', 'machine_readings.machine_id', '=', 'machines.id')
 							->join('restaurants', 'machine_readings.restaurant_id', '=', 'restaurants.id')
@@ -48,6 +52,7 @@ class MachineReadingsController extends InfyOmBaseController
             ->with('machinereadings', $machinereadings);
         }
     }
+
     /**
      * Show the form for creating a new MachineReadings.
      *
@@ -57,6 +62,7 @@ class MachineReadingsController extends InfyOmBaseController
     {
         return view('machinereadings.create');
     }
+
     /**
      * Store a newly created MachineReadings in storage.
      *
@@ -67,10 +73,14 @@ class MachineReadingsController extends InfyOmBaseController
     public function store(CreateMachineReadingsRequest $request)
     {
         $input = $request->all();
+
         $machinereadings = $this->machinereadingsRepository->create($input);
+
         Flash::success('Machine Reading saved successfully.');
+
         return redirect(route('machinereadings.index'));
     }
+
     /**
      * Display the specified Machine Readings.
      *
@@ -81,12 +91,16 @@ class MachineReadingsController extends InfyOmBaseController
     public function show($id)
     {
         $machinereadings = $this->machinereadingsRepository->findWithoutFail($id);
+
         if (empty($machinereadings)) {
             Flash::error('Machine Reading not found');
+
             return redirect(route('machinereadings.index'));
         }
+
         return view('machinereadings.show')->with('machinereadings', $machinereadings);
     }
+
     /**
      * Show the form for editing the specified Machine Readings.
      *
@@ -98,12 +112,16 @@ class MachineReadingsController extends InfyOmBaseController
     {
 		
         $machinereadings2 = $this->machinereadingsRepository->findWithoutFail($id);
+
         if (empty($machinereadings2)) {
             Flash::error('Machine Reading not found');
+
             return redirect(route('machinereadings.index'));
         }
+
         return view('machinereadings.edit')->with('machinereadings2', $machinereadings2);
     }
+
     /**
      * Update the specified Machine Reading in storage.
      *
@@ -115,14 +133,20 @@ class MachineReadingsController extends InfyOmBaseController
     public function update($id, UpdateMachineReadingsRequest $request)
     {
         $machinereadings = $this->machinereadingsRepository->findWithoutFail($id);
+
         if (empty($machinereadings)) {
             Flash::error('Machine Reading not found');
+
             return redirect(route('machinereadings.index'));
         }
+
         $machinereadings = $this->machinereadingsRepository->update($request->all(), $id);
+
         Flash::success('Machine Reading updated successfully.');
+
         return redirect(route('machinereadings.index'));
     }
+
     /**
      * Remove the specified Machine Reading from storage.
      *
@@ -133,12 +157,17 @@ class MachineReadingsController extends InfyOmBaseController
     public function destroy($id)
     {
         $machinereadings = $this->machinereadingsRepository->findWithoutFail($id);
+
         if (empty($machinereadings)) {
             Flash::error('Machine Reading not found');
+
             return redirect(route('machinereadings.index'));
         }
+
         $this->machinereadingsRepository->delete($id);
+
         Flash::success('Machine Reading deleted successfully.');
+
         return redirect(route('machinereadings.index'));
     }
 }

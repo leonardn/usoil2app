@@ -8038,3 +8038,5 @@ input[type="radio"] .styled:checked + label::after {
 .form-control:focus {box-shadow:none !important; color: #999999 !important; border:2px solid #75BD6C !important; color:#000000 !important;}
 .mui-textfield > input.mui--is-not-empty, .mui-textfield > textarea.mui--is-not-empty {border:2px solid #75BD6C !important; color:#000000 !important;}
 .mui-textfield > input.mui--is-not-empty:focus ~ label, .mui-textfield > textarea.mui--is-not-empty:focus ~ label {color: #999999 !important; padding-left:10px !important; }
+.form-control2 {height:10px;}
+.pagi ul {margin:0; float:right;}

@@ -33,15 +33,14 @@ class MachineController extends InfyOmBaseController
     {
         $this->machineRepository->pushCriteria(new RequestCriteria($request));
         $machines = $this->machineRepository->paginate(10);
-				
-		if($request->ajax())
+        
+        if($request->ajax())
         {
             return view('machines.table')->with('machines', $machines);
         }
         else
         {
-            return view('machines.index')
-            ->with('machines', $machines);
+            return view('machines.index')->with('machines', $machines);
         }
     }
 
