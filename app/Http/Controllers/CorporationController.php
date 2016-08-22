@@ -39,17 +39,18 @@ class CorporationController extends InfyOmBaseController
      */
     public function index(Request $request)
     {
+		$pagesize = (isset($_GET['ps']))?trim($_GET['ps']):10;
 		$this->corporationRepository->pushCriteria(new RequestCriteria($request));
-       	$corporations = $this->corporationRepository->paginate(10);
+		$corporations = $this->corporationRepository->paginate($pagesize);
 		
         if($request->ajax())
         {
-            return view('corporations.table')->with('corporations', $corporations);
+            return view('corporations.table')->with('corporations', $corporations)->with('pagesize', $pagesize);
         }
         else
         {
             return view('corporations.index')
-            ->with('corporations', $corporations);
+            ->with('corporations', $corporations)->with('pagesize', $pagesize);
         }
     }
 

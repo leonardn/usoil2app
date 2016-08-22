@@ -35,8 +35,14 @@
                 @endforeach
                 </tbody>
             </table>
-            @include('core-templates::common.paginate', ['records' => $corporations])
-			
-        </div>
+	    </div>
+		<div class="col-md-12">
+			 <div class="col-md-2 row-spacer-top-bot">
+				<label>Records Per Page</label>
+				{!! Form::select('pagesize', Config::get('constants.pagesize'), $pagesize, ['class' => 'form-control', 'id' => 'pagesize']) !!}
+			</div>
+			<strong>Total Records Found:</strong> {!! $corporations->total() !!}
+			@include('core-templates::common.paginate', ['records' => $corporations])
+		</div>
     </div>
 </div>

@@ -122,8 +122,9 @@
         var corporation_city = $("#corporation_city").val();
         var corporation_state = $("#corporation_state").val();
         var corporation_zipcode = $("#corporation_zipcode").val();
+		var pgsz = $("#pagesize").val();
 
-        var urlRequest = 'corporations?search='+setDefault(corporation_name, 'corporation_name')+''+setDefault(corporation_phone, 'corporation_phone')+''+setDefault(contact_person_first_name, 'contact_person_first_name')+''+setDefault(contact_person_email, 'contact_person_email')+''+setDefault(corporation_address1, 'corporation_address1')+''+setDefault(corporation_city, 'corporation_city')+''+setDefault(corporation_state, 'corporation_state')+''+setDefault(corporation_zipcode, 'corporation_zipcode');
+        var urlRequest = 'corporations?ps='+pgsz+'&search='+setDefault(corporation_name, 'corporation_name')+''+setDefault(corporation_phone, 'corporation_phone')+''+setDefault(contact_person_first_name, 'contact_person_first_name')+''+setDefault(contact_person_email, 'contact_person_email')+''+setDefault(corporation_address1, 'corporation_address1')+''+setDefault(corporation_city, 'corporation_city')+''+setDefault(corporation_state, 'corporation_state')+''+setDefault(corporation_zipcode, 'corporation_zipcode');
 
         console.log(urlRequest.slice(0, -1));
 
@@ -136,7 +137,7 @@
             corporation_state ||
             corporation_zipcode){
         } else {
-            urlRequest = '/corporations;'
+            urlRequest = '/corporations?ps='+pgsz+';'
         }
 
         $.ajax({
@@ -146,7 +147,7 @@
            if(response)   
            {
                 $("#get-corporation").html(response);
-                return false;
+			    return false;
            }
            else 
            {
@@ -179,6 +180,11 @@
          'X-CSRF-TOKEN': '{{ csrf_token() }}'
        }
      });*/
+	 
+	 $("#pagesize").change(function() {
+	 		var urlRequest = 'corporations?ps='+$(this).val();
+			window.location = urlRequest;
+		});
     </script>
 
 @endsection
